@@ -10,8 +10,7 @@ const Login = () => {
             <section>
                 <div className="flex h-screen">
                     {/* Bagian kiri */}
-                    {/* style={{backgroundImage: LoginLogo}} */}
-                    <div className="bg-cover bg-no-repeat w-1/4 bg-orange-500" style={{backgroundImage: "url('{LoginLogo}')",}}></div>
+                    <div className="bg-cover bg-no-repeat w-1/4 hidden md:block bg-[url('../assets/image/login.png')]"></div>
 
                     {/* Bagian kanan */}
                     <div className="flex flex-1 flex-col justify-center items-center my-10">
@@ -49,12 +48,12 @@ const Login = () => {
                             <button className="flex-1 flex items-center justify-center border-white py-4 rounded-xl shadow-2xl">
                                 {/* <img className="h-6 w-6" src="/assets/facebook.png" alt="" /> */}
                                 <FaFacebookF />
-                                <div className="ml-4">Facebook</div>
+                                <div className="ml-4 hidden md:block">Facebook</div>
                             </button>
                             <button className="flex-1 flex items-center justify-center border-white py-4 rounded-xl shadow-2xl">
                                 {/* <img className="h-6 w-6" src="/assets/google.png" alt="" /> */}
                                 <FaGoogle />
-                                <div className="ml-4">Google</div>
+                                <div className="ml-4 hidden md:block">Google</div>
                             </button>
                         </div>
                         
