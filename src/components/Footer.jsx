@@ -43,13 +43,13 @@ const Footer = () => {
                         <div className="flex">
                             <ul className="flex gap-5 items-center">
                                 <li>
-                                    <button className="px-2 py-2 bg-orange-500 border-orange-500 rounded-full"><FaFacebookF /></button>
+                                    <button className="px-2 py-2 bg-orange-500 border-orange-500 rounded-full transition duration-300 ease-in-out hover:scale-110"><FaFacebookF /></button>
                                 </li>
                                 <li>
-                                    <button className="px-2 py-2 bg-orange-500 border border-orange-500 rounded-full"><FaTwitter /></button>
+                                    <button className="px-2 py-2 bg-orange-500 border border-orange-500 rounded-full transition duration-300 ease-in-out hover:scale-110"><FaTwitter /></button>
                                 </li>
                                 <li>
-                                    <button className="px-2 py-2 bg-orange-500 border border-orange-500 rounded-full"><FaInstagram /></button>
+                                    <button className="px-2 py-2 bg-orange-500 border border-orange-500 rounded-full transition duration-300 ease-in-out hover:scale-110"><FaInstagram /></button>
                                 </li>
                             </ul>
                         </div>
