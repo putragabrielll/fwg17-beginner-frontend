@@ -90,7 +90,7 @@ const Home = () => {
                     {/* Bagian atas */}
                     <div className="flex-1 flex flex-col md:justify-center md:items-center">
                         <section className="flex justify-center items-center">
-                            <h1 className="text-5xl">Here is People’s&nbsp;<span className="text-yellow-800">Favorite</span></h1>
+                            <h1 className="text-5xl text-center">Here is People’s&nbsp;<span className="text-yellow-800">Favorite</span></h1>
                         </section>
                         <div className="flex justify-center items-center">
                             <div className="border-b-8 border-orange-500 leading-10 w-16">
