@@ -1,8 +1,11 @@
 import Navbar from "../components/Navbar"
+import Footer from "../components/Footer"
 import { FaCircleCheck } from "react-icons/fa6"
-import { MdOutlineShoppingCart } from "react-icons/md";
+import { MdOutlineShoppingCart } from "react-icons/md"
+import { FaStar, FaArrowLeft, FaArrowRight } from "react-icons/fa"
 import Product from "../assets/images/coffee1.png"
 import Map from "../assets/images/Map.png"
+import Manager from "../assets/images/manager.png"
 
 const Home = () => {
     return (
@@ -226,7 +229,62 @@ const Home = () => {
                         <img src={Map} alt="" />
                     </div>
                 </div>
-                
+
+                <div className="bg-gradient-to-b from-gray-700 to-black">
+                    <div className="flex flex-col md:flex-row p-10 gap-6 items-center">
+                        {/* Bagian kiri */}
+                        <div className="text-white md:hidden">TESTIMONIAL</div>
+                        <div className="flex-1 flex justify-end">
+                            <img src={Manager} alt="" />
+                        </div>
+
+                        {/* Bagian kanan */}
+                        <div className="flex-1 flex flex-col justify-start gap-6">
+
+                            <div className="text-white hidden md:block">TESTIMONIAL</div>
+                            <div>
+                                <div className="flex justify-start">
+                                    <div className="border-s-8 border-orange-500 leading-10 max-h-24">
+                                        &nbsp;
+                                    </div>
+                                    <h3 className="ml-5 text-5xl text-white">Viezh Robert</h3>
+                                </div>
+                            </div>
+                            <div className="text-orange-500 text-lg">Manager Coffe Shop</div>
+                            <p className="text-white">“Wow... I am very happy to spend my whole day here. the Wi-fi is good, and the coffee and meals tho. I like it here!! Very recommended!</p>
+                            <div className="flex items-center gap-6">
+                                <FaStar className="text-orange-500 text-xl" />
+                                <FaStar className="text-orange-500 text-xl" />
+                                <FaStar className="text-orange-500 text-xl" />
+                                <FaStar className="text-orange-500 text-xl" />
+                                <FaStar className="text-orange-500 text-xl" />
+                                <span className="text-white text-xl">5.0</span>
+                            </div>
+                            <div className="flex justify-start">
+                                <ul className="flex gap-5 items-center">
+                                    <li>
+                                        <button className="px-5 py-5 bg-white border border-white rounded-full"><FaArrowLeft className="text-xl" /></button>
+                                    </li>
+                                    <li>
+                                        <button className="px-5 py-5 bg-orange-500 border border-orange-500 rounded-full"><FaArrowRight className="text-xl" /></button>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="76" height="9" viewBox="0 0 76 9" fill="none">
+                                <circle cx="38" cy="4" r="4" fill="#DDE0E4"/>
+                                <circle cx="55" cy="4" r="4" fill="#DDE0E4"/>
+                                <circle cx="72" cy="4" r="4" fill="#DDE0E4"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M4.25441 8.44432C4.24369 8.4444 4.23296 8.44444 4.22222 8.44444C4.21148 8.44444 4.20075 8.4444 4.19003 8.44432H3.91085V8.43314C1.72437 8.27376 0 6.44937 0 4.22222C0 1.99508 1.72437 0.170685 3.91085 0.0113071V0H4.22222H20.877V0.00638229C20.9545 0.0021459 21.0325 0 21.1111 0C23.443 0 25.3333 1.89035 25.3333 4.22222C25.3333 6.55409 23.443 8.44444 21.1111 8.44444C21.0325 8.44444 20.9545 8.4423 20.877 8.43806V8.44432H4.25441Z" fill="#FF8906"/>
+                                </svg>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                {/* Untuk footer */}
+                <Footer />
             </div>
         </>
     )
