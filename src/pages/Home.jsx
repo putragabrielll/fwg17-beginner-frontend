@@ -2,6 +2,7 @@ import Navbar from "../components/Navbar"
 import { FaCircleCheck } from "react-icons/fa6"
 import { MdOutlineShoppingCart } from "react-icons/md";
 import Product from "../assets/images/coffee1.png"
+import Map from "../assets/images/Map.png"
 
 const Home = () => {
     return (
@@ -204,7 +205,7 @@ const Home = () => {
                     </div>
                 </div>
 
-                <div className="bg-[#F8F8F8] mt-10">
+                <div className="bg-[#F8F8F8] mt-10 flex flex-col gap-6">
                     {/* Bagian atas */}
                     <div className="pt-10 flex-1 flex flex-col md:justify-center md:items-center">
                         <section className="flex justify-center items-center">
@@ -216,13 +217,16 @@ const Home = () => {
                             </div>
                         </div>
                         <div className="flex mt-6 justify-center items-center">
-                            <p className="text-gray-600 text-center max-w-md">You can explore the menu that we provide with fun and have their own taste and make your day better.</p>
+                            <p className="text-gray-600 text-center max-w-md md:max-w-2xl">You can explore the menu that we provide with fun and have their own taste and make your day better.</p>
                         </div>
                     </div>
 
                     {/* Bagian bawah */}
-                    <div></div>
+                    <div className="h-full">
+                        <img src={Map} alt="" />
+                    </div>
                 </div>
+                
             </div>
         </>
     )
