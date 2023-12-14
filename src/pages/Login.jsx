@@ -29,12 +29,12 @@ const Login = () => {
                         <form className="flex flex-col w-3/4 gap-4" action="">
                             <div className="flex flex-col">
                                 <label className="font-semibold my-2" htmlFor="email">Email</label>
-                                <input className="h-12 border pl-5 rounded-md relative pl-9" type="email" name="email" placeholder="Enter Your Email" id="email" />
+                                <input className="h-12 border rounded-md relative pl-9" type="email" name="email" placeholder="Enter Your Email" id="email" />
                                 <MdOutlineEmail className="absolute text-gray-500 my-[53px] mx-2 text-xl" />
                             </div>
                             <div className="flex flex-col">
                                 <label className="font-semibold my-2" htmlFor="password">Password</label>
-                                <input className="h-12 border pl-5 rounded-md relative pl-9" type="password" name="password" placeholder="Enter Your Password" id="password" />
+                                <input className="h-12 border rounded-md relative pl-9" type="password" name="password" placeholder="Enter Your Password" id="password" />
                                 <RiLockPasswordLine className="absolute text-gray-500 my-[53px] mx-2 text-xl" />
                             </div>
                             <div className="flex justify-end">
