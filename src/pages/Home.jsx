@@ -24,7 +24,7 @@ const Home = () => {
                             <h1 className="text-5xl">Start Your Day with Coffee and Good Meals</h1>
                             <p>We provide high quality beans, good taste, and healthy meals made by love just for you. Start your day with us for a bigger smile!</p>
                             <div>
-                                <button className="px-5 py-2 bg-orange-500 border border-orange-500 rounded-md">Get Started</button>
+                                <button className="px-5 py-2 bg-orange-500 border border-orange-500 rounded-md transition duration-300 ease-in-out hover:scale-110">Get Started</button>
                             </div>
                             <div className="flex justify-between divide-x">
                                 <div className="flex flex-1 items-center flex-col">
@@ -115,10 +115,10 @@ const Home = () => {
 
                                     <div className="flex items-center mx-2 my-2 gap-4">
                                         <div className="flex-1">
-                                            <button className="px-5 py-2 bg-orange-500 border border-orange-500 rounded-md w-full">Buy</button>
+                                            <button className="px-5 py-2 bg-orange-500 border border-orange-500 rounded-md w-full transition duration-300 ease-in-out hover:scale-110">Buy</button>
                                         </div>
                                         <div className="w-1/4">
-                                            <button className="px-5 py-2 border border-orange-500 rounded-md w-full flex justify-center">
+                                            <button className="px-5 py-2 border border-orange-500 rounded-md w-full flex justify-center transition duration-300 ease-in-out hover:scale-110">
                                                 <MdOutlineShoppingCart className="text-orange-500 text-2xl" />
                                             </button>
                                         </div>
@@ -140,10 +140,10 @@ const Home = () => {
 
                                     <div className="flex items-center mx-2 my-2 gap-4">
                                         <div className="flex-1">
-                                            <button className="px-5 py-2 bg-orange-500 border border-orange-500 rounded-md w-full">Buy</button>
+                                            <button className="px-5 py-2 bg-orange-500 border border-orange-500 rounded-md w-full transition duration-300 ease-in-out hover:scale-110">Buy</button>
                                         </div>
                                         <div className="w-1/4">
-                                            <button className="px-5 py-2 border border-orange-500 rounded-md w-full flex justify-center">
+                                            <button className="px-5 py-2 border border-orange-500 rounded-md w-full flex justify-center transition duration-300 ease-in-out hover:scale-110">
                                                 <MdOutlineShoppingCart className="text-orange-500 text-2xl" />
                                             </button>
                                         </div>
@@ -165,10 +165,10 @@ const Home = () => {
 
                                     <div className="flex items-center mx-2 my-2 gap-4">
                                         <div className="flex-1">
-                                            <button className="px-5 py-2 bg-orange-500 border border-orange-500 rounded-md w-full">Buy</button>
+                                            <button className="px-5 py-2 bg-orange-500 border border-orange-500 rounded-md w-full transition duration-300 ease-in-out hover:scale-110">Buy</button>
                                         </div>
                                         <div className="w-1/4">
-                                            <button className="px-5 py-2 border border-orange-500 rounded-md w-full flex justify-center">
+                                            <button className="px-5 py-2 border border-orange-500 rounded-md w-full flex justify-center transition duration-300 ease-in-out hover:scale-110">
                                                 <MdOutlineShoppingCart className="text-orange-500 text-2xl" />
                                             </button>
                                         </div>
@@ -190,10 +190,10 @@ const Home = () => {
 
                                     <div className="flex items-center mx-2 my-2 gap-4">
                                         <div className="flex-1">
-                                            <button className="px-5 py-2 bg-orange-500 border border-orange-500 rounded-md w-full">Buy</button>
+                                            <button className="px-5 py-2 bg-orange-500 border border-orange-500 rounded-md w-full transition duration-300 ease-in-out hover:scale-110">Buy</button>
                                         </div>
                                         <div className="w-1/4">
-                                            <button className="px-5 py-2 border border-orange-500 rounded-md w-full flex justify-center">
+                                            <button className="px-5 py-2 border border-orange-500 rounded-md w-full flex justify-center transition duration-300 ease-in-out hover:scale-110">
                                                 <MdOutlineShoppingCart className="text-orange-500 text-2xl" />
                                             </button>
                                         </div>
@@ -263,10 +263,10 @@ const Home = () => {
                             <div className="flex justify-start">
                                 <ul className="flex gap-5 items-center">
                                     <li>
-                                        <button className="px-5 py-5 bg-white border border-white rounded-full"><FaArrowLeft className="text-xl" /></button>
+                                        <button className="px-5 py-5 bg-white border border-white rounded-full transition duration-300 ease-in-out hover:scale-110"><FaArrowLeft className="text-xl" /></button>
                                     </li>
                                     <li>
-                                        <button className="px-5 py-5 bg-orange-500 border border-orange-500 rounded-full"><FaArrowRight className="text-xl" /></button>
+                                        <button className="px-5 py-5 bg-orange-500 border border-orange-500 rounded-full transition duration-300 ease-in-out hover:scale-110"><FaArrowRight className="text-xl" /></button>
                                     </li>
                                 </ul>
                             </div>
