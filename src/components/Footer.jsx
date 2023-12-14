@@ -1,5 +1,5 @@
 import LogoCoffee from "../assets/images/logo-coffee.png"
-import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
+import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa"
 
 const Footer = () => {
     return (
