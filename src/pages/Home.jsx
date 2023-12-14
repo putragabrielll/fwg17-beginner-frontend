@@ -53,7 +53,7 @@ const Home = () => {
                                         &nbsp;
                                         &nbsp;
                                     </div>
-                                    <h1 className="ml-5 text-3xl md:text-5xl">We Provide&nbsp;<span className="text-yellow-800">Good Coffee&nbsp;</span>and&nbsp;<span class="text-yellow-800">Healthy Meals</span></h1>
+                                    <h1 className="ml-5 text-3xl md:text-5xl">We Provide&nbsp;<span className="text-yellow-800">Good Coffee&nbsp;</span>and&nbsp;<span className="text-yellow-800">Healthy Meals</span></h1>
                                 </div>
                                 <p className="text-gray-600">You can explore the menu that we provide with fun and have their own taste and make your day better.</p>
                                 <div className="flex">
@@ -202,6 +202,26 @@ const Home = () => {
                         </div>
 
                     </div>
+                </div>
+
+                <div className="bg-[#F8F8F8] mt-10">
+                    {/* Bagian atas */}
+                    <div className="pt-10 flex-1 flex flex-col md:justify-center md:items-center">
+                        <section className="flex justify-center items-center">
+                            <h1 className="text-5xl text-yellow-800 text-center">Visit Our Store&nbsp;<span className="text-black">in the Spot on the Map Below</span></h1>
+                        </section>
+                        <div className="flex justify-center items-center">
+                            <div className="border-b-8 border-orange-500 leading-10 w-16">
+                                &nbsp;
+                            </div>
+                        </div>
+                        <div className="flex mt-6 justify-center items-center">
+                            <p className="text-gray-600 text-center max-w-md">You can explore the menu that we provide with fun and have their own taste and make your day better.</p>
+                        </div>
+                    </div>
+
+                    {/* Bagian bawah */}
+                    <div></div>
                 </div>
             </div>
         </>
