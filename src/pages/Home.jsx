@@ -4,7 +4,9 @@ const Home = () => {
     return (
         <>
             <Navbar />
-            <div>Ini halaman Home</div>        
+            <div className="flex justify-center items-center h-screen">
+                Ini halaman Home
+            </div>        
         </>
     )
 }

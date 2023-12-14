@@ -1,41 +1,44 @@
 import { Link } from "react-router-dom"
-// import LoginLogo from '../assets/image/login.png'
-import LogoCoffee from '../assets/image/logo-coffee.png'
-import { FaGoogle, FaFacebookF } from "react-icons/fa";
+import LogoCoffee from '../assets/images/logo-coffee.png'
+import { FaGoogle, FaFacebookF } from 'react-icons/fa'
+import { MdOutlineEmail } from 'react-icons/md'
+import { RiLockPasswordLine } from 'react-icons/ri'
 
 
 const Login = () => {
     return (
         <>
-            <section>
+            <div>
                 <div className="flex h-screen">
                     {/* Bagian kiri */}
-                    <div className="bg-cover bg-no-repeat w-1/4 hidden md:block bg-[url('../assets/image/login.png')]"></div>
+                    <div className="bg-cover bg-no-repeat w-1/4 hidden md:block bg-[url('../assets/images/login.png')]"></div>
 
                     {/* Bagian kanan */}
                     <div className="flex flex-1 flex-col justify-center items-center my-10">
 
                         <div className="flex flex-1 w-3/4 items-center">
                             <img src={LogoCoffee} alt="Logo Coffee" />
-                            <span className="ml-2 text-xl text-yellow-800">Coffee Shop</span>
+                            <span className="ml-2 text-xl text-yellow-800 font-link">Coffee Shop</span>
                         </div>
 
-                        <div className="flex-1 w-3/4 items-center">
+                        <section className="flex-1 w-3/4 items-center">
                             <h1 className="text-xl text-yellow-800">Login</h1>
                             <div className="mt-4 text-gray-600">Fill out the form correctly</div>
-                        </div>
+                        </section>
 
                         <form className="flex flex-col w-3/4 gap-4" action="">
                             <div className="flex flex-col">
                                 <label className="font-semibold my-2" htmlFor="email">Email</label>
-                                <input className="h-12 border pl-5 rounded-md" type="email" name="email" placeholder="Enter Your Email" id="email" />
+                                <input className="h-12 border pl-5 rounded-md relative pl-9" type="email" name="email" placeholder="Enter Your Email" id="email" />
+                                <MdOutlineEmail className="absolute text-gray-500 my-[53px] mx-2 text-xl" />
                             </div>
                             <div className="flex flex-col">
                                 <label className="font-semibold my-2" htmlFor="password">Password</label>
-                                <input className="h-12 border pl-5 rounded-md" type="password" name="password" placeholder="Enter Your Password" id="password" />
+                                <input className="h-12 border pl-5 rounded-md relative pl-9" type="password" name="password" placeholder="Enter Your Password" id="password" />
+                                <RiLockPasswordLine className="absolute text-gray-500 my-[53px] mx-2 text-xl" />
                             </div>
                             <div className="flex justify-end">
-                                <a href="/forgot-password.html" className="text-orange-500">Lupa Password?</a>
+                                <Link className="text-orange-500" to={"/forgot-password"}>Lupa Password?</Link>
                             </div>
                             <button className="px-5 py-2 bg-orange-500 border border-orange-500 rounded-md" type="submit"><a href="index.html">Login</a></button>
                         </form>
@@ -45,12 +48,12 @@ const Login = () => {
                         </div>
 
                         <div className="flex w-3/4 justify-between gap-4">
-                            <button className="flex-1 flex items-center justify-center border-white py-4 rounded-xl shadow-2xl">
+                            <button className="flex-1 flex items-center justify-center border-white py-4 rounded-xl shadow-2xl transition duration-300 ease-in-out hover:scale-110">
                                 {/* <img className="h-6 w-6" src="/assets/facebook.png" alt="" /> */}
                                 <FaFacebookF />
                                 <div className="ml-4 hidden md:block">Facebook</div>
                             </button>
-                            <button className="flex-1 flex items-center justify-center border-white py-4 rounded-xl shadow-2xl">
+                            <button className="flex-1 flex items-center justify-center border-white py-4 rounded-xl shadow-2xl transition duration-300 ease-in-out hover:scale-110">
                                 {/* <img className="h-6 w-6" src="/assets/google.png" alt="" /> */}
                                 <FaGoogle />
                                 <div className="ml-4 hidden md:block">Google</div>
@@ -59,7 +62,7 @@ const Login = () => {
                         
                     </div>
                 </div>
-            </section>
+            </div>
         </>
     )
 }
