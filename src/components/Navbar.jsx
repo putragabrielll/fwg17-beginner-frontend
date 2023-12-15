@@ -4,25 +4,23 @@ import { FiCoffee, FiSearch } from "react-icons/fi"
 import { MdOutlineShoppingCart, MdMenu } from "react-icons/md"
 
 const Navbar = () => {
-    const [menuClose, setMenuOpen] = React.useState(true)
+    const [menuClose, setMenuClose] = React.useState(true)
     return (
         <>
             <div className={`${menuClose ? 'h-16' : ''} top-0 text-white flex flex-col md:flex-row px-20 md:px-32 py-4 items-center w-full gap-6 md:gap-0`}>
                 {/* Bagian kiri */}
                 <div className="flex flex-1 gap-8 w-full flex-col md:flex-row">
                     <div className="flex text-xl font-bold tracking-widest justify-between">
-                        <a className="flex gap-2" href="#">
+                        <Link className="flex gap-2 font-link" to={"/"}>
                             <FiCoffee className="text-white" />
-                            <div className="font-link">
-                                Coffee Shop
-                            </div>
-                        </a>
+                            Coffee Shop
+                        </Link>
                         <ul className="flex gap-6 md:hidden">
                             <li>
                                 <MdOutlineShoppingCart className="text-white" />
                             </li>
                             <li>
-                                <button onClick={()=>setMenuOpen (!menuClose)}>
+                                <button onClick={()=>setMenuClose (!menuClose)}>
                                     <MdMenu className="text-white" />
                                 </button>
                             </li>
@@ -30,10 +28,10 @@ const Navbar = () => {
                     </div>
                     <ul className="flex gap-8 flex-1 justify-center flex-col items-center md:items-start md:flex-row">
                         <li className="w-full md:w-auto">
-                            <Link className="hover:border-b hover:border-orange-500 pb-2 -mt-2" to={"/login"}>Login</Link>
+                            <Link className="hover:border-b hover:border-orange-500 pb-2 -mt-2" to={"/"}>Home</Link>
                         </li>
                         <li className="w-full md:w-auto ">
-                            <Link className="hover:border-b hover:border-orange-500 pb-2 -mt-2" to={"/register"}>Register</Link>
+                            <Link className="hover:border-b hover:border-orange-500 pb-2 -mt-2" to={"/product"}>Product</Link>
                         </li>
                     </ul>
                 </div>
