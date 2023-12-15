@@ -5,6 +5,7 @@ import Register from "./pages/Auth/Register"
 import ForgotPassword from "./pages/Auth/ForgotPassword"
 import Home from "./pages/Home"
 import Project from "./pages/Project"
+import DetailProduct from "./pages/DetailProduct"
 
 
 const router = createBrowserRouter([
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
   {
     path: '/product',
     element: <Project />
+  },
+  {
+    path: '/detail-product',
+    element: <DetailProduct />
   }
 ])
 
