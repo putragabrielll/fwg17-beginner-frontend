@@ -1,11 +1,13 @@
+import React from "react"
 import { Link } from "react-router-dom"
-import { FiCoffee, FiSearch } from "react-icons/fi";
-import { MdOutlineShoppingCart, MdMenu } from "react-icons/md";
+import { FiCoffee, FiSearch } from "react-icons/fi"
+import { MdOutlineShoppingCart, MdMenu } from "react-icons/md"
 
 const Navbar = () => {
+    const [menuClose, setMenuOpen] = React.useState(true)
     return (
         <>
-            <div className="top-0 text-white flex flex-col md:flex-row px-20 md:px-32 py-4 items-center w-full gap-6 md:gap-0">
+            <div className={`${menuClose ? 'h-16' : ''} top-0 text-white flex flex-col md:flex-row px-20 md:px-32 py-4 items-center w-full gap-6 md:gap-0`}>
                 {/* Bagian kiri */}
                 <div className="flex flex-1 gap-8 w-full flex-col md:flex-row">
                     <div className="flex text-xl font-bold tracking-widest justify-between">
@@ -20,7 +22,9 @@ const Navbar = () => {
                                 <MdOutlineShoppingCart className="text-white" />
                             </li>
                             <li>
-                                <MdMenu className="text-white" />
+                                <button onClick={()=>setMenuOpen (!menuClose)}>
+                                    <MdMenu className="text-white" />
+                                </button>
                             </li>
                         </ul>
                     </div>
