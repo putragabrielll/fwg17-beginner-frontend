@@ -4,36 +4,36 @@ import Login from "./pages/Auth/Login"
 import Register from "./pages/Auth/Register"
 import ForgotPassword from "./pages/Auth/ForgotPassword"
 import Home from "./pages/Home"
-import Project from "./pages/Project"
+import Product from "./pages/Product"
 import DetailProduct from "./pages/DetailProduct"
 
 
 const router = createBrowserRouter([
   {
-    path: '/',
-    element: <Home />
+    path: "/",
+    element: <Home />,
   },
   {
-    path: '/login',
-    element: <Login />
+    path: "/login",
+    element: <Login />,
   },
   {
-    path: '/register',
-    element: <Register />
+    path: "/register",
+    element: <Register />,
   },
   {
-    path: '/forgot-password',
-    element: <ForgotPassword />
+    path: "/forgot-password",
+    element: <ForgotPassword />,
   },
   {
-    path: '/product',
-    element: <Project />
+    path: "/product",
+    element: <Product />,
   },
   {
-    path: '/detail-product',
-    element: <DetailProduct />
-  }
-])
+    path: "/detail-product",
+    element: <DetailProduct />,
+  },
+]);
 
 const App = () => {
   return (

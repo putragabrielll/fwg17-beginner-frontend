@@ -4,7 +4,7 @@ import ChatBox from "../components/Chat"
 import { FaCircleCheck } from "react-icons/fa6"
 import { MdOutlineShoppingCart } from "react-icons/md"
 import { FaStar, FaArrowLeft, FaArrowRight } from "react-icons/fa"
-import Product from "../assets/images/coffee1.png"
+import ProductImage from "../assets/images/coffee1.png"
 import Map from "../assets/images/Map.png"
 import Manager from "../assets/images/manager.png"
 
@@ -108,7 +108,7 @@ const Home = () => {
 
                         <div className="">
                             <div className="flex-1 relative">
-                                <img className="w-full" src={Product} alt="" />
+                                <img className="w-full" src={ProductImage} alt="" />
                                 <div className="bg-white mx-2 absolute -mt-10 shadow-2xl">
                                     <h1 className="text-2xl my-3.5 mx-2">Hazelnut Latte</h1>
                                     <p className="text-gray-600 my-3.5 mx-2">You can explore the menu that we provide with fun and have their own taste and make your day better.</p>
@@ -133,7 +133,7 @@ const Home = () => {
 
                         <div className="">
                             <div className="flex-1 relative">
-                                <img className="w-full" src={Product} alt="" />
+                                <img className="w-full" src={ProductImage} alt="" />
                                 <div className="bg-white mx-2 absolute -mt-10 shadow-2xl">
                                     <h1 className="text-2xl my-3.5 mx-2">Hazelnut Latte</h1>
                                     <p className="text-gray-600 my-3.5 mx-2">You can explore the menu that we provide with fun and have their own taste and make your day better.</p>
@@ -158,7 +158,7 @@ const Home = () => {
 
                         <div className="">
                             <div className="flex-1 relative">
-                                <img className="w-full" src={Product} alt="" />
+                                <img className="w-full" src={ProductImage} alt="" />
                                 <div className="bg-white mx-2 absolute -mt-10 shadow-2xl">
                                     <h1 className="text-2xl my-3.5 mx-2">Hazelnut Latte</h1>
                                     <p className="text-gray-600 my-3.5 mx-2">You can explore the menu that we provide with fun and have their own taste and make your day better.</p>
@@ -183,7 +183,7 @@ const Home = () => {
 
                         <div className="">
                             <div className="flex-1 relative">
-                                <img className="w-full" src={Product} alt="" />
+                                <img className="w-full" src={ProductImage} alt="" />
                                 <div className="bg-white mx-2 absolute -mt-10 shadow-2xl">
                                     <h1 className="text-2xl my-3.5 mx-2">Hazelnut Latte</h1>
                                     <p className="text-gray-600 my-3.5 mx-2">You can explore the menu that we provide with fun and have their own taste and make your day better.</p>
