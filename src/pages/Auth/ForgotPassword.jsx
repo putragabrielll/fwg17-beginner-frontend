@@ -1,4 +1,4 @@
-import LogoCoffee from '../assets/images/logo-coffee.png'
+import LogoCoffee from '../../assets/images/logo-coffee.png'
 import { MdOutlineEmail } from 'react-icons/md'
 
 const ForgotPassword = () => {

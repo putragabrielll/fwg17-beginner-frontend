@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import LogoCoffee from '../assets/images/logo-coffee.png'
+import LogoCoffee from '../../assets/images/logo-coffee.png'
 import { FaGoogle, FaFacebookF, FaRegUser } from 'react-icons/fa'
 import { MdOutlineEmail } from 'react-icons/md'
 import { RiLockPasswordLine } from 'react-icons/ri'
