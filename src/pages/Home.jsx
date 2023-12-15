@@ -1,5 +1,6 @@
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
+import ChatBox from "../components/Chat"
 import { FaCircleCheck } from "react-icons/fa6"
 import { MdOutlineShoppingCart } from "react-icons/md"
 import { FaStar, FaArrowLeft, FaArrowRight } from "react-icons/fa"
@@ -285,6 +286,9 @@ const Home = () => {
 
                 {/* Untuk footer */}
                 <Footer />
+
+                {/* Untuk chat */}
+                <ChatBox />
             </div>
         </>
     )
