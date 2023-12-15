@@ -13,14 +13,14 @@ const Register = () => {
                     <div className="bg-cover bg-no-repeat w-1/4 hidden md:block bg-[url('../assets/images/register.png')]"></div>
 
                     {/* Bagian kanan */}
-                    <div className="flex flex-1 flex-col justify-center items-center my-10">
+                    <div className="flex flex-1 flex-col justify-center items-center my-10 gap-6">
 
-                        <div className="flex flex-1 w-3/4 items-center">
+                        <div className="flex w-3/4 items-center">
                             <img src={LogoCoffee} alt="Logo Coffee" />
                             <p className="ml-2 text-xl text-yellow-800 font-link">Coffee Shop</p>
                         </div>
 
-                        <div className="flex-1 w-3/4 items-center">
+                        <div className="w-3/4 items-center">
                             <h1 className="text-xl text-yellow-800">Register</h1>
                             <div className="mt-4 text-gray-600">Fill out the form correctly</div>
                         </div>
