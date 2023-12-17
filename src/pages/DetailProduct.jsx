@@ -2,9 +2,9 @@ import ChatBox from "../components/Chat"
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
 import { Link } from "react-router-dom"
-import ProductImage from "../assets/images/coffee1.png";
+import ProductImage from "../assets/images/coffee1.png"
 import { FaStar, FaMinus, FaPlus, FaArrowRight } from "react-icons/fa"
-import { MdOutlineShoppingCart } from "react-icons/md";
+import { MdOutlineShoppingCart } from "react-icons/md"
 
 const DetailProduct = () => {
     return (
@@ -71,7 +71,9 @@ const DetailProduct = () => {
                             <button className="px-32 py-2 bg-transparent border border-orange-500 rounded-sm">Hot</button>
                         </div>
                         <div className="flex justify-between my-16">
-                            <button className="px-32 py-2 bg-orange-500 border border-orange-500 rounded-md transition duration-300 ease-in-out hover:scale-110"><a href="/checkout.html">Buy</a></button>
+                            <button className="px-32 py-2 bg-orange-500 border border-orange-500 rounded-md transition duration-300 ease-in-out hover:scale-110">
+                                <Link to={"/checkout"}>Buy</Link>
+                            </button>
                             <button className="flex gap-3 items-center px-20 border border-orange-500 rounded-md transition duration-300 ease-in-out hover:scale-110">
                                 <MdOutlineShoppingCart className="text-orange-500 text-xl" />
                                 add to cart

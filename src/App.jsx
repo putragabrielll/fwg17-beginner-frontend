@@ -6,33 +6,38 @@ import ForgotPassword from "./pages/Auth/ForgotPassword"
 import Home from "./pages/Home"
 import Product from "./pages/Product"
 import DetailProduct from "./pages/DetailProduct"
+import CheckOut from "./pages/Checkout"
 
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: <Home />
   },
   {
     path: "/login",
-    element: <Login />,
+    element: <Login />
   },
   {
     path: "/register",
-    element: <Register />,
+    element: <Register />
   },
   {
     path: "/forgot-password",
-    element: <ForgotPassword />,
+    element: <ForgotPassword />
   },
   {
     path: "/product",
-    element: <Product />,
+    element: <Product />
   },
   {
     path: "/detail-product",
-    element: <DetailProduct />,
+    element: <DetailProduct />
   },
+  {
+    path: "/checkout",
+    element: <CheckOut />
+  }
 ]);
 
 const App = () => {
