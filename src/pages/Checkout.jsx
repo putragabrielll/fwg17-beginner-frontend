@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar"
 import { FaPlus, FaRegTimesCircle, FaRegUser } from "react-icons/fa"
 import { IoLocationOutline } from "react-icons/io5"
 import { MdOutlineEmail } from "react-icons/md"
+import { Link } from "react-router-dom"
 import ProductImage from "../assets/images/coffee1.png"
 import BRI from "../assets/images/Bank BRI.png"
 import DANA from "../assets/images/DANA.png"
@@ -136,7 +137,7 @@ const CheckOut = () => {
                                     <span className="text-xl text-gray-600">Sub Total</span>
                                     <span className="text-xl font-medium">Idr.44.000</span>
                                 </div>
-                                <button className="px-5 py-2 bg-orange-500 border border-orange-500 rounded-md text-black"><a href="/history-order.html">Checkout</a></button>
+                                <button className="px-5 py-2 bg-orange-500 border border-orange-500 rounded-md text-black transition duration-300 ease-in-out hover:scale-110"><Link to={"/history-order"}>Checkout</Link></button>
                                 <span className="text-gray-500">We Accept</span>
                                 <div className="flex gap-2 justify-between">
                                     <div>
