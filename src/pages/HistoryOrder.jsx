@@ -96,7 +96,7 @@ const HistoryOrder = () => {
                                         </div>
                                         <span>No. Order</span>
                                     </div>
-                                    <span className="text-md font-semibold"><a href="/detail-order.html">#12354-09893</a></span>
+                                    <Link className="text-md font-semibold" to={"/detail-order"}>#12354-09893</Link>
                                     <a className="text-orange-500" href="#">Views Order Detail</a>
                                 </div>
                                 <div className="flex-1 flex pt-2 flex-col gap-4">
@@ -135,7 +135,7 @@ const HistoryOrder = () => {
                                         </div>
                                         <span>No. Order</span>
                                     </div>
-                                    <span className="text-md font-semibold"><a href="/detail-order.html">#12354-09893</a></span>
+                                    <Link className="text-md font-semibold" to={"/detail-order"}>#12354-09893</Link>
                                     <a className="text-orange-500" href="#">Views Order Detail</a>
                                 </div>
                                 <div className="flex-1 flex pt-2 flex-col gap-4">
@@ -174,7 +174,7 @@ const HistoryOrder = () => {
                                         </div>
                                         <span>No. Order</span>
                                     </div>
-                                    <span className="text-md font-semibold"><a href="/detail-order.html">#12354-09893</a></span>
+                                    <Link className="text-md font-semibold" to={"/detail-order"}>#12354-09893</Link>
                                     <a className="text-orange-500" href="#">Views Order Detail</a>
                                 </div>
                                 <div className="flex-1 flex pt-2 flex-col gap-4">
