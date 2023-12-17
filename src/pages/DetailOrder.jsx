@@ -7,6 +7,7 @@ import { MdOutlinePhoneInTalk, MdPayment } from "react-icons/md"
 import { LiaShippingFastSolid } from "react-icons/lia"
 import { TiArrowRepeat } from "react-icons/ti"
 import ProductImage from "../assets/images/coffee1.png"
+import { Link } from "react-router-dom"
 
 const DetailOrder = () => {
     return (
@@ -35,7 +36,9 @@ const DetailOrder = () => {
                                         <FaRegUser className="text-gray-600" />
                                         <span className="text-xl text-gray-600">Full Name</span>
                                     </div>
-                                    <span className="text-xl font-semibold"><a href="/profile.html">Ghaluh Wizard Anggoro</a></span>
+                                    <span className="text-xl font-semibold">
+                                        <Link to={"/profile"}>Ghaluh Wizard Anggoro</Link>
+                                    </span>
                                 </div>
                                 <hr />
                                 <div className="flex justify-between">
@@ -91,7 +94,7 @@ const DetailOrder = () => {
                         <div className="flex-1 flex justify-start items-center">
                             <span className="text-xl">Your Order</span>
                         </div>
-                        
+
                         <div className="flex-1 flex flex-col gap-4">
 
                             <div className="flex bg-gray-100 p-2 gap-4 pr-8">
