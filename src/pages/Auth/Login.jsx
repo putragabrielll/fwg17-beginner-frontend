@@ -1,3 +1,5 @@
+import React, { useRef } from "react"
+import axios from "axios"
 import { Link } from "react-router-dom"
 import LogoCoffee from '../../assets/images/logo-coffee.png'
 import { FaGoogle, FaFacebookF } from 'react-icons/fa'
@@ -6,6 +8,21 @@ import { RiLockPasswordLine } from 'react-icons/ri'
 
 
 const Login = () => {
+    const inputEmail = React.useRef()
+    const inputPassword = React.useRef()
+
+    const processLogin = async (event) => {
+        event.preventDefault()
+        const { value: email } = event.target.email
+        const { value: password } = event.target.password
+        const form = new URLSearchParams ()
+        form. append ( 'email', email) 
+        form. append ('password', password)
+
+        const { data } = await axios.post("http://localhost:8000/auth/login", form.toString())
+
+        
+    }
     return (
         <>
             <div>
@@ -26,15 +43,15 @@ const Login = () => {
                             <div className="mt-4 text-gray-600">Fill out the form correctly</div>
                         </section>
 
-                        <form className="flex flex-col w-3/4 gap-4" action="">
+                        <form onSubmit={processLogin} className="flex flex-col w-3/4 gap-4" action="">
                             <div className="flex flex-col">
                                 <label className="font-semibold my-2" htmlFor="email">Email</label>
-                                <input className="h-12 border rounded-md relative pl-9" type="email" name="email" placeholder="Enter Your Email" id="email" />
+                                <input ref={inputEmail} className="h-12 border rounded-md relative pl-9" type="email" name="email" placeholder="Enter Your Email" id="email" />
                                 <MdOutlineEmail className="absolute text-gray-500 my-[53px] mx-2 text-xl" />
                             </div>
                             <div className="flex flex-col">
                                 <label className="font-semibold my-2" htmlFor="password">Password</label>
-                                <input className="h-12 border rounded-md relative pl-9" type="password" name="password" placeholder="Enter Your Password" id="password" />
+                                <input ref={inputPassword} className="h-12 border rounded-md relative pl-9" type="password" name="password" placeholder="Enter Your Password" id="password" />
                                 <RiLockPasswordLine className="absolute text-gray-500 my-[53px] mx-2 text-xl" />
                             </div>
                             <div className="flex justify-end">
