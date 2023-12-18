@@ -3,7 +3,7 @@ import { FaStar } from "react-icons/fa"
 import { MdOutlineShoppingCart } from "react-icons/md"
 import ProductImage from "../assets/images/coffee1.png"
 
-const ProductCard = () => {
+const ProductCard = ({name, description, price}) => {
     return (
         <>
             <div className="flex-1 max-w-md relative">
@@ -11,9 +11,9 @@ const ProductCard = () => {
                     <img className="object-fill flex-1" src={ProductImage} alt="" />
                 </div>
                 
-                <div className="bg-white mx-2 absolute -mt-10 shadow-2xl">
-                    <Link className="text-2xl my-3.5 mx-2" to={"/detail-product"}>Hazelnut Latte</Link>
-                    <p className="text-gray-600 my-3.5 mx-2">You can explore the menu that we provide with fun and have their own taste and make your day better.</p>
+                <div className="flex-1 flex flex-col bg-white mx-2 absolute -mt-10 shadow-2xl">
+                    <Link className="text-2xl my-3.5 mx-2" to={"/detail-product"}>{name}</Link>
+                    <p className="text-gray-600 my-3.5 mx-2 flex-1">{description}</p>
                     <div className="flex gap-3 mx-2">
                         <FaStar className="text-orange-500 text-xl" />
                         <FaStar className="text-orange-500 text-xl" />
@@ -24,7 +24,7 @@ const ProductCard = () => {
                     </div>
                     <div className="my-3.5">
                         <del className="text-red-600 text-xs mx-2">IDR 20.000</del>
-                        <span className="text-orange-500 text-md">IDR 10.000</span>
+                        <span className="text-orange-500 text-md">IDR{price},-</span>
                     </div>
                     <div className="flex items-center mx-2 my-2 gap-4">
                         <div className="flex-1">
@@ -38,7 +38,7 @@ const ProductCard = () => {
                     </div>
                 </div>
                 
-                <div className="h-[250px]"></div>
+                <div className="h-[320px]"></div>
             </div>
         </>
     )

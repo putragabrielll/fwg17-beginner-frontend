@@ -13,28 +13,32 @@ const Product = () => {
             <div className="bg-black">
                 <Navbar />
             </div>
-
-            <header className="px-32 h-[305px] bg-[url('../assets/images/product-header.png')] bg-cover bg-no-repeat flex justify-start items-center">
-                <h1 className="text-white text-4xl">
-                    We Provide Good Coffee and Healthy <br /> Meals
-                </h1>
+            
+            <header className="hidden md:block">
+                <div className="px-32 h-[305px] bg-[url('../assets/images/product-header.png')] bg-cover bg-no-repeat flex justify-start items-center">
+                    <h1 className="text-white text-4xl">
+                        We Provide Good Coffee and Healthy <br /> Meals
+                    </h1>
+                </div>
             </header>
 
             <div className="my-10 flex flex-col gap-8">
                 {/* Bagian atas */}
-                <div className="flex-1 px-32 flex">
+                <div className="flex-1 px-4 md:px-32 flex">
                     <div className="flex-1">
                         <h1 className="text-5xl">Today <span className="text-yellow-800">Promo</span></h1>
                     </div>
-                    <div className="flex-1 flex justify-end">
-                        <ul className="flex gap-5 items-center">
-                            <li>
-                                <button className="px-3 py-3 bg-[#E8E8E8] rounded-full transition duration-300 ease-in-out hover:scale-110"><FaArrowLeft className="text-xl" /></button>
-                            </li>
-                            <li>
-                                <button className="px-3 py-3 bg-orange-500 border border-orange-500 rounded-full transition duration-300 ease-in-out hover:scale-110"><FaArrowRight className="text-xl" /></button>
-                            </li>
-                        </ul>
+                    <div className="flex-1 hidden md:block">
+                        <div className="flex justify-end">
+                            <ul className="flex gap-5 items-center">
+                                <li>
+                                    <button className="px-3 py-3 bg-[#E8E8E8] rounded-full transition duration-300 ease-in-out hover:scale-110"><FaArrowLeft className="text-xl" /></button>
+                                </li>
+                                <li>
+                                    <button className="px-3 py-3 bg-orange-500 border border-orange-500 rounded-full transition duration-300 ease-in-out hover:scale-110"><FaArrowRight className="text-xl" /></button>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
@@ -48,27 +52,33 @@ const Product = () => {
                             <Link className="text-white text-xs" to={"/product"}>Klaim Kupon</Link>
                         </div>
                     </div>
-                    <div className="bg-[#88B788] flex rounded-3xl px-6">
-                        <img className="ml-4" src={Karakter2} alt="" />
-                        <div className="flex flex-col gap-0.5 justify-center">
-                            <h3 className="text-md font-bold">HAPPY MOTHER’S DAY!</h3>
-                            <span className="text-xs font-thin">Get one of our favorite menu for free!</span>
-                            <Link className="text-white text-xs" to={"/product"}>Klaim Kupon</Link>
+                    <div className="hidden md:block">
+                        <div className="bg-[#88B788] flex rounded-3xl px-6">
+                            <img className="ml-4" src={Karakter2} alt="" />
+                            <div className="flex flex-col gap-0.5 justify-center">
+                                <h3 className="text-md font-bold">HAPPY MOTHER’S DAY!</h3>
+                                <span className="text-xs font-thin">Get one of our favorite menu for free!</span>
+                                <Link className="text-white text-xs" to={"/product"}>Klaim Kupon</Link>
+                            </div>
                         </div>
                     </div>
-                    <div className="bg-[#88B788] flex rounded-3xl px-6">
-                        <img className="ml-4" src={Karakter2} alt="" />
-                        <div className="flex flex-col gap-0.5 justify-center">
-                            <h3 className="text-md font-bold">HAPPY MOTHER’S DAY!</h3>
-                            <span className="text-xs font-thin">Get one of our favorite menu for free!</span>
-                            <Link className="text-white text-xs" to={"/product"}>Klaim Kupon</Link>
+                    <div className="hidden md:block">
+                        <div className="bg-[#88B788] flex rounded-3xl px-6">
+                            <img className="ml-4" src={Karakter2} alt="" />
+                            <div className="flex flex-col gap-0.5 justify-center">
+                                <h3 className="text-md font-bold">HAPPY MOTHER’S DAY!</h3>
+                                <span className="text-xs font-thin">Get one of our favorite menu for free!</span>
+                                <Link className="text-white text-xs" to={"/product"}>Klaim Kupon</Link>
+                            </div>
                         </div>
                     </div>
-                    <div className="bg-[#F5C361] flex rounded-l-3xl">
-                        <img className="ml-4" src={Karakter1} alt="" />
-                        <div className="flex flex-col gap-0.5 justify-center">
-                            <h3 className="text-md font-bold">Get a cup of coffee for free on sunday morning</h3>
-                            <Link className="text-xs" to={"/product"}>Only at 7 to 9 AM</Link>
+                    <div className="hidden md:block">
+                        <div className="bg-[#F5C361] flex rounded-l-3xl">
+                            <img className="ml-4" src={Karakter1} alt="" />
+                            <div className="flex flex-col gap-0.5 justify-center">
+                                <h3 className="text-md font-bold">Get a cup of coffee for free on sunday morning</h3>
+                                <Link className="text-xs" to={"/product"}>Only at 7 to 9 AM</Link>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -84,7 +94,7 @@ const Product = () => {
                 </div>
             </div>
 
-            <div className="px-32 flex flex-col gap-12">
+            <div className="px-4 md:px-32 flex flex-col gap-12">
                 {/* Bagian atas */}
                 <div>
                     <h1 className="text-5xl">Our <span className="text-yellow-800">Product</span></h1>
@@ -93,7 +103,7 @@ const Product = () => {
                 {/* Bagian bawah */}
                 <div className="flex gap-4">
                     {/* Bagian kiri */}
-                    <div className="w-1/4 h-screen bg-black text-white rounded-xl">
+                    <div className="w-1/4 h-screen bg-black text-white rounded-xl hidden md:block">
                         <form className="mx-3 flex flex-col gap-6 my-6">
                             <div className="flex gap-4">
                                 <span className="flex-1">Filter</span>
@@ -159,18 +169,18 @@ const Product = () => {
                     <div className="flex-1 flex flex-col">
 
                         <div className="flex gap-4">
-                            <ProductCard />
-                            <ProductCard />
+                            <ProductCard name='Americano' price={100000} description='Caffè Americano atau Amerikano adalah minuman kopi yang dibuat dengan mencampurkan satu seloki espresso dengan air panas. Air panas yang digunakan dalam minuman ini adalah sebanyak 6 hingga 8 ons.' />
+                            <ProductCard name='Latte' price={100000} description='YLatte atau Caffè latte adalah espreso atau kopi yang dicampur dengan susu dan memiliki lapisan busa yang tipis di bagian atasnya. Perbandingan antara susu dengan kopi pada caffè latte adalah 2:1.' />
                         </div>
 
                         <div className="flex gap-4">
-                            <ProductCard />
-                            <ProductCard />
+                            <ProductCard name='Orange Juice' price={100000} description='Jus jeruk atau orange juice atau populer dengan sebutan OJ merupakan air jeruk murni tanpa tambahan air, es ataupun gula. Jus ini berupa air yang keluar saat jeruk jenis navel diperas.' />
+                            <ProductCard name='Cola' price={100000} description='Coca-cola atau Coke adalah produk minuman bersoda yang telah mendunia dan sangat terkenal, produk ini dapat ditemukan hampir di setiap penjuru dunia, di restoran-restoran, toko swalayan. ' />
                         </div>
 
                         <div className="flex gap-4">
-                            <ProductCard />
-                            <ProductCard />
+                            <ProductCard name='Chocolate Hot' price={100000} description='Cokelat panas adalah minuman panas yang dibuat dari cokelat atau kakao bubuk dan gula, dengan air atau susu hangat. Beberapa studi telah menunjukkan bahwa cokelat panas menyehatkan karena antioksidan yang terkandung dalam kakao.' />
+                            <ProductCard name='Lemon Water' price={100000} description='Lemon water mengandung elektrolit yang penting untuk menjaga keseimbangan cairan dan elektrolit tubuh. Lemon water juga dilengkapi dengan vitamin C 1000mg. Minuman lemon water untuk menggantikan cairan dan elektrolit yang hilang dengan rasa yang berbeda.' />
                         </div>
 
                         <div className="my-10 flex-1 flex justify-center">
