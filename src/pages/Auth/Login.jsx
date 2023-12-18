@@ -1,4 +1,4 @@
-import React, { useRef } from "react"
+import React from "react"
 import axios from "axios"
 import { Link } from "react-router-dom"
 import LogoCoffee from '../../assets/images/logo-coffee.png'
@@ -19,9 +19,16 @@ const Login = () => {
         form. append ( 'email', email) 
         form. append ('password', password)
 
-        const { data } = await axios.post("http://localhost:8000/auth/login", form.toString())
+        try {
+            const { data } = await axios.post("http://localhost:8000/auth/login", form.toString())
+            // proses apapun
+            const {token} = data.result // token di simpan di redux
+            // proses token untuk di simpan di global state dengan redux
+            window.location = '/'
+        } catch (err) {
+            alert(err.response.data.message)
+        }
 
-        
     }
     return (
         <>
@@ -57,7 +64,7 @@ const Login = () => {
                             <div className="flex justify-end">
                                 <Link className="text-orange-500" to={"/forgot-password"}>Lupa Password?</Link>
                             </div>
-                            <button className="px-5 py-2 bg-orange-500 border border-orange-500 rounded-md" type="submit"><a href="index.html">Login</a></button>
+                            <button className="px-5 py-2 bg-orange-500 border border-orange-500 rounded-md" type="submit">Login</button>
                         </form>
 
                         <div className="my-6">
