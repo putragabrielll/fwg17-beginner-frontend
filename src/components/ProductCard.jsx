@@ -1,14 +1,13 @@
 import { Link } from "react-router-dom"
 import { FaStar } from "react-icons/fa"
 import { MdOutlineShoppingCart } from "react-icons/md"
-import ProductImage from "../assets/images/coffee1.png"
 
-const ProductCard = ({name, description, price}) => {
+const ProductCard = ({image, name, description, price, ShowCardButton}) => {
     return (
         <>
             <div className="flex-1 max-w-md relative">
                 <div className="bg-black h-78 flex">
-                    <img className="object-fill flex-1" src={ProductImage} alt="" />
+                    <img className="object-fill flex-1" src={image} alt="" />
                 </div>
                 
                 <div className="flex-1 flex flex-col bg-white mx-2 absolute -mt-10 shadow-2xl">
@@ -30,11 +29,11 @@ const ProductCard = ({name, description, price}) => {
                         <div className="flex-1">
                             <button className="px-5 py-2 bg-orange-500 border border-orange-500 rounded-md w-full transition duration-300 ease-in-out hover:scale-110">Buy</button>
                         </div>
-                        <div className="w-1/4">
+                        {ShowCardButton && <div className="w-1/4">
                             <button className="px-5 py-2 border border-orange-500 rounded-md w-full flex justify-center transition duration-300 ease-in-out hover:scale-110">
                                 <MdOutlineShoppingCart className="text-orange-500 text-2xl" />
                             </button>
-                        </div>
+                        </div>}
                     </div>
                 </div>
                 

@@ -6,6 +6,7 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa"
 import Karakter1 from "../assets/images/karakter1.png"
 import Karakter2 from "../assets/images/karakter2.png"
 import ProductCard from "../components/ProductCard"
+import ProductImage from "../assets/images/coffee1.png"
 
 const Product = () => {
     return (
@@ -169,18 +170,18 @@ const Product = () => {
                     <div className="flex-1 flex flex-col">
 
                         <div className="flex gap-4">
-                            <ProductCard name='Americano' price={100000} description='Caffè Americano atau Amerikano adalah minuman kopi yang dibuat dengan mencampurkan satu seloki espresso dengan air panas. Air panas yang digunakan dalam minuman ini adalah sebanyak 6 hingga 8 ons.' />
-                            <ProductCard name='Latte' price={100000} description='YLatte atau Caffè latte adalah espreso atau kopi yang dicampur dengan susu dan memiliki lapisan busa yang tipis di bagian atasnya. Perbandingan antara susu dengan kopi pada caffè latte adalah 2:1.' />
+                            <ProductCard image={ProductImage} ShowCardButton={true} name='Americano' price={100000} description='Caffè Americano atau Amerikano adalah minuman kopi yang dibuat dengan mencampurkan satu seloki espresso dengan air panas. Air panas yang digunakan dalam minuman ini adalah sebanyak 6 hingga 8 ons.' />
+                            <ProductCard image={ProductImage} ShowCardButton={false} name='Latte' price={100000} description='YLatte atau Caffè latte adalah espreso atau kopi yang dicampur dengan susu dan memiliki lapisan busa yang tipis di bagian atasnya. Perbandingan antara susu dengan kopi pada caffè latte adalah 2:1.' />
                         </div>
 
                         <div className="flex gap-4">
-                            <ProductCard name='Orange Juice' price={100000} description='Jus jeruk atau orange juice atau populer dengan sebutan OJ merupakan air jeruk murni tanpa tambahan air, es ataupun gula. Jus ini berupa air yang keluar saat jeruk jenis navel diperas.' />
-                            <ProductCard name='Cola' price={100000} description='Coca-cola atau Coke adalah produk minuman bersoda yang telah mendunia dan sangat terkenal, produk ini dapat ditemukan hampir di setiap penjuru dunia, di restoran-restoran, toko swalayan. ' />
+                            <ProductCard image={ProductImage} ShowCardButton={false} name='Orange Juice' price={100000} description='Jus jeruk atau orange juice atau populer dengan sebutan OJ merupakan air jeruk murni tanpa tambahan air, es ataupun gula. Jus ini berupa air yang keluar saat jeruk jenis navel diperas.' />
+                            <ProductCard image={ProductImage} ShowCardButton={true} name='Cola' price={100000} description='Coca-cola atau Coke adalah produk minuman bersoda yang telah mendunia dan sangat terkenal, produk ini dapat ditemukan hampir di setiap penjuru dunia, di restoran-restoran, toko swalayan. ' />
                         </div>
 
                         <div className="flex gap-4">
-                            <ProductCard name='Chocolate Hot' price={100000} description='Cokelat panas adalah minuman panas yang dibuat dari cokelat atau kakao bubuk dan gula, dengan air atau susu hangat. Beberapa studi telah menunjukkan bahwa cokelat panas menyehatkan karena antioksidan yang terkandung dalam kakao.' />
-                            <ProductCard name='Lemon Water' price={100000} description='Lemon water mengandung elektrolit yang penting untuk menjaga keseimbangan cairan dan elektrolit tubuh. Lemon water juga dilengkapi dengan vitamin C 1000mg. Minuman lemon water untuk menggantikan cairan dan elektrolit yang hilang dengan rasa yang berbeda.' />
+                            <ProductCard image={ProductImage} ShowCardButton={true} name='Chocolate Hot' price={100000} description='Cokelat panas adalah minuman panas yang dibuat dari cokelat atau kakao bubuk dan gula, dengan air atau susu hangat. Beberapa studi telah menunjukkan bahwa cokelat panas menyehatkan karena antioksidan yang terkandung dalam kakao.' />
+                            <ProductCard image={ProductImage} ShowCardButton={true} name='Lemon Water' price={100000} description='Lemon water mengandung elektrolit yang penting untuk menjaga keseimbangan cairan dan elektrolit tubuh. Lemon water juga dilengkapi dengan vitamin C 1000mg. Minuman lemon water untuk menggantikan cairan dan elektrolit yang hilang dengan rasa yang berbeda.' />
                         </div>
 
                         <div className="my-10 flex-1 flex justify-center">
