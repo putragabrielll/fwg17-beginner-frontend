@@ -163,12 +163,10 @@ const Product = () => {
                             <ProductCard />
                         </div>
 
-
                         <div className="flex gap-4">
                             <ProductCard />
                             <ProductCard />
                         </div>
-
 
                         <div className="flex gap-4">
                             <ProductCard />
