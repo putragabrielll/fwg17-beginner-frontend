@@ -38,17 +38,17 @@ const Profile = () => {
                             <form className="flex flex-col gap-4" action="">
                                 <div className="flex flex-col">
                                     <label className="font-semibold my-2" htmlFor="full-name">Full Name</label>
-                                    <input className="h-11 border rounded-md relative pl-9" type="text" name="full-name" placeholder="Ghaluh Wizard" id="full-name" />
+                                    <input className="h-11 border rounded-md relative pl-9" type="text" name="full-name" value="Ghaluh Wizard" id="full-name" />
                                     <FaRegUser className="absolute text-gray-500 my-[53px] mx-2" />
                                 </div>
                                 <div className="flex flex-col">
                                     <label className="font-semibold my-2" htmlFor="email">Email</label>
-                                    <input className="h-12 border rounded-md relative pl-9" type="email" name="email" placeholder="ghaluhwizz@gmail.com" id="email" />
+                                    <input className="h-12 border rounded-md relative pl-9" type="email" name="email" value="ghaluhwizz@gmail.com" id="email" />
                                     <MdOutlineEmail className="absolute text-gray-500 my-[53px] mx-2 text-xl" />
                                 </div>
                                 <div className="flex flex-col">
                                     <label className="font-semibold my-2" htmlFor="phone">Phone</label>
-                                    <input className="h-12 border rounded-md relative pl-9" type="number" name="phone" placeholder="082116304338" id="phone" />
+                                    <input className="h-12 border rounded-md relative pl-9" type="number" name="phone" value="082116304338" id="phone" />
                                     <MdOutlinePhoneInTalk className="absolute text-gray-500 my-[53px] mx-2 text-xl" />
                                 </div>
                                 <div className="flex flex-col">
@@ -56,12 +56,12 @@ const Profile = () => {
                                         <label className="font-semibold my-2" htmlFor="password">Password</label>
                                         <Link className="text-orange-500" to={"/"}>Set New Password</Link>
                                     </div>
-                                    <input className="h-12 border rounded-md relative pl-9" type="password" name="password" placeholder="************" id="password" />
+                                    <input className="h-12 border rounded-md relative pl-9" type="password" name="password" value="ujicobapassword" id="password" />
                                     <IoKeyOutline className="absolute text-gray-500 my-[53px] mx-2 text-xl" />
                                 </div>
                                 <div className="flex flex-col">
                                     <label className="font-semibold my-2" htmlFor="address">Address</label>
-                                    <input className="h-12 border rounded-md relative pl-9" type="text" name="address" placeholder="Griya Bandung Indah" id="address" />
+                                    <input className="h-12 border rounded-md relative pl-9" type="text" name="address" value="Griya Bandung Indah" id="address" />
                                     <IoLocationOutline className="absolute text-gray-500 my-[53px] mx-2 text-xl" />
                                 </div>
                                 <button className="px-5 py-2 bg-orange-500 border border-orange-500 rounded-md" type="submit">Submit</button>
