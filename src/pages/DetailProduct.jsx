@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 import ProductImage from "../assets/images/coffee1.png"
 import { FaStar, FaMinus, FaPlus, FaArrowRight } from "react-icons/fa"
 import { MdOutlineShoppingCart } from "react-icons/md"
+import ProductCard from "../components/ProductCard"
 
 const DetailProduct = () => {
     return (
@@ -13,7 +14,7 @@ const DetailProduct = () => {
                 <Navbar />
             </div>
             
-            <div className="flex px-32 my-20 gap-4">
+            <div className="flex flex-col md:flex-row px-4 md:px-32 my-20 gap-4">
                 {/* Bagian kiri */}
                 <div className="flex-1 flex items-center">
                     <div className="max-w-xl flex flex-col gap-4">
@@ -60,21 +61,21 @@ const DetailProduct = () => {
                             <button className="bg-orange-500 border border-orange-500 rounded-sm p-2"><FaPlus className="text-sm" /></button>
                         </div>
                         <span className="font-semibold text-lg">Choose Size</span>
-                        <div className="flex justify-between">
-                            <button className="px-16 py-2 bg-transparent border border-orange-500 rounded-sm">Regular</button>
-                            <button className="px-16 py-2 bg-transparent border border-orange-500 rounded-sm">Medium</button>
-                            <button className="px-16 py-2 bg-transparent border border-orange-500 rounded-sm">Large</button>
+                        <div className="flex justify-between gap-2">
+                            <button className="flex-1 px-4 md:px-16 py-2 bg-transparent border border-orange-500 rounded-sm">Regular</button>
+                            <button className="flex-1 px-4 md:px-16 py-2 bg-transparent border border-orange-500 rounded-sm">Medium</button>
+                            <button className="flex-1 px-4 md:px-16 py-2 bg-transparent border border-orange-500 rounded-sm">Large</button>
                         </div>
                         <span className="font-semibold text-lg">Hot/Ice?</span>
-                        <div className="flex justify-between">
-                            <button className="px-32 py-2 bg-transparent border border-orange-500 rounded-sm">Ice</button>
-                            <button className="px-32 py-2 bg-transparent border border-orange-500 rounded-sm">Hot</button>
+                        <div className="flex justify-between gap-2">
+                            <button className="flex-1 px-4 md:px-32 py-2 bg-transparent border border-orange-500 rounded-sm">Ice</button>
+                            <button className="flex-1 px-4 md:px-32 py-2 bg-transparent border border-orange-500 rounded-sm">Hot</button>
                         </div>
-                        <div className="flex justify-between my-16">
-                            <button className="px-32 py-2 bg-orange-500 border border-orange-500 rounded-md transition duration-300 ease-in-out hover:scale-110">
+                        <div className="flex justify-between my-16 gap-2">
+                            <button className="w-6/12 md:w-1/4 md:px-32 py-2 bg-orange-500 border border-orange-500 rounded-md transition duration-300 ease-in-out hover:scale-110">
                                 <Link to={"/checkout"}>Buy</Link>
                             </button>
-                            <button className="flex gap-3 items-center px-20 border border-orange-500 rounded-md transition duration-300 ease-in-out hover:scale-110">
+                            <button className="flex-1 flex gap-3 justify-center items-center md:px-20 border border-orange-500 rounded-md transition duration-300 ease-in-out hover:scale-110">
                                 <MdOutlineShoppingCart className="text-orange-500 text-xl" />
                                 add to cart
                             </button>
@@ -83,115 +84,14 @@ const DetailProduct = () => {
                 </section>
             </div>
 
-            <div className="h-screen mb-20 flex flex-col gap-8 px-32">
+            <div className="h-screen mb-20 flex flex-col gap-8 px-4 md:px-32">
                 <h1 className="text-5xl">Recommendation <span className="text-yellow-800">For You</span></h1>
                 
                 <div className="flex gap-5">
 
-                    <div className="flex-1 max-w-md relative">
-                        <div className="bg-black h-78 flex">
-                            <img className="object-fill flex-1" src={ProductImage} alt="" />
-                        </div>
-                        
-                        <div className="flex flex-col bg-white mx-2 absolute -mt-10 shadow-2xl py-2 gap-6">
-                            <Link className="text-2xl mx-2" to={"/detail-product"}>Hazelnut Latte</Link>
-                            <p className="text-gray-600 mx-2">You can explore the menu that we provide with fun and have their own taste and make your day better.</p>
-                            <div className="flex gap-3 mx-2">
-                                <FaStar className="text-orange-500 text-xl" />
-                                <FaStar className="text-orange-500 text-xl" />
-                                <FaStar className="text-orange-500 text-xl" />
-                                <FaStar className="text-orange-500 text-xl" />
-                                <FaStar className="text-orange-500 text-xl" />
-                                <span className="text-gray-600 text-xl">5.0</span>
-                            </div>
-                            <div className="">
-                                <del className="text-red-600 text-xs mx-2">IDR 20.000</del>
-                                <span className="text-orange-500 text-md">IDR 10.000</span>
-                            </div>
-                            <div className="flex items-center mx-2 gap-4">
-                                <div className="flex-1">
-                                    <button className="px-5 py-2 bg-orange-500 border border-orange-500 rounded-md w-full transition duration-300 ease-in-out hover:scale-110">Buy</button>
-                                </div>
-                                <div className="w-1/4">
-                                    <button className="px-5 py-2 border border-orange-500 rounded-md w-full flex justify-center transition duration-300 ease-in-out hover:scale-110">
-                                        <MdOutlineShoppingCart className="text-orange-500 text-2xl" />
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div className="h-[250px]"></div>
-                    </div>
-                    
-                    <div className="flex-1 max-w-md relative">
-                        <div className="bg-black h-78 flex">
-                            <img className="object-fill flex-1" src={ProductImage} alt="" />
-                        </div>
-                        
-                        <div className="flex flex-col bg-white mx-2 absolute -mt-10 shadow-2xl py-2 gap-6">
-                            <Link className="text-2xl mx-2" to={"/detail-product"}>Hazelnut Latte</Link>
-                            <p className="text-gray-600 mx-2">You can explore the menu that we provide with fun and have their own taste and make your day better.</p>
-                            <div className="flex gap-3 mx-2">
-                                <FaStar className="text-orange-500 text-xl" />
-                                <FaStar className="text-orange-500 text-xl" />
-                                <FaStar className="text-orange-500 text-xl" />
-                                <FaStar className="text-orange-500 text-xl" />
-                                <FaStar className="text-orange-500 text-xl" />
-                                <span className="text-gray-600 text-xl">5.0</span>
-                            </div>
-                            <div className="">
-                                <del className="text-red-600 text-xs mx-2">IDR 20.000</del>
-                                <span className="text-orange-500 text-md">IDR 10.000</span>
-                            </div>
-                            <div className="flex items-center mx-2 gap-4">
-                                <div className="flex-1">
-                                    <button className="px-5 py-2 bg-orange-500 border border-orange-500 rounded-md w-full transition duration-300 ease-in-out hover:scale-110">Buy</button>
-                                </div>
-                                <div className="w-1/4">
-                                    <button className="px-5 py-2 border border-orange-500 rounded-md w-full flex justify-center transition duration-300 ease-in-out hover:scale-110">
-                                        <MdOutlineShoppingCart className="text-orange-500 text-2xl" />
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div className="h-[250px]"></div>
-                    </div>
-
-                    <div className="flex-1 max-w-md relative">
-                        <div className="bg-black h-78 flex">
-                            <img className="object-fill flex-1" src={ProductImage} alt="" />
-                        </div>
-                        
-                        <div className="flex flex-col bg-white mx-2 absolute -mt-10 shadow-2xl py-2 gap-6">
-                            <Link className="text-2xl mx-2" to={"/detail-product"}>Hazelnut Latte</Link>
-                            <p className="text-gray-600 mx-2">You can explore the menu that we provide with fun and have their own taste and make your day better.</p>
-                            <div className="flex gap-3 mx-2">
-                                <FaStar className="text-orange-500 text-xl" />
-                                <FaStar className="text-orange-500 text-xl" />
-                                <FaStar className="text-orange-500 text-xl" />
-                                <FaStar className="text-orange-500 text-xl" />
-                                <FaStar className="text-orange-500 text-xl" />
-                                <span className="text-gray-600 text-xl">5.0</span>
-                            </div>
-                            <div className="">
-                                <del className="text-red-600 text-xs mx-2">IDR 20.000</del>
-                                <span className="text-orange-500 text-md">IDR 10.000</span>
-                            </div>
-                            <div className="flex items-center mx-2 gap-4">
-                                <div className="flex-1">
-                                    <button className="px-5 py-2 bg-orange-500 border border-orange-500 rounded-md w-full transition duration-300 ease-in-out hover:scale-110">Buy</button>
-                                </div>
-                                <div className="w-1/4">
-                                    <button className="px-5 py-2 border border-orange-500 rounded-md w-full flex justify-center transition duration-300 ease-in-out hover:scale-110">
-                                        <MdOutlineShoppingCart className="text-orange-500 text-2xl" />
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div className="h-[250px]"></div>
-                    </div>
+                    <ProductCard image={ProductImage} ShowCardButton={true} name='Americano' price={100000} description='Caffè Americano atau Amerikano adalah minuman kopi yang dibuat dengan mencampurkan satu seloki espresso dengan air panas. Air panas yang digunakan dalam minuman ini adalah sebanyak 6 hingga 8 ons.' />
+                    <ProductCard image={ProductImage} ShowCardButton={false} name='Latte' price={100000} description='YLatte atau Caffè latte adalah espreso atau kopi yang dicampur dengan susu dan memiliki lapisan busa yang tipis di bagian atasnya. Perbandingan antara susu dengan kopi pada caffè latte adalah 2:1.' />
+                    {/* <ProductCard image={ProductImage} ShowCardButton={false} name='Orange Juice' price={100000} description='Jus jeruk atau orange juice atau populer dengan sebutan OJ merupakan air jeruk murni tanpa tambahan air, es ataupun gula. Jus ini berupa air yang keluar saat jeruk jenis navel diperas.' /> */}
                     
                 </div>
 
