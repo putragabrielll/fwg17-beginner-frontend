@@ -5,9 +5,10 @@ import { MdOutlineShoppingCart, MdMenu } from "react-icons/md"
 
 const Navbar = () => {
     const [menuClose, setMenuClose] = React.useState(true)
+
     return (
         <>
-            <div className={`${menuClose ? 'h-16' : ''} top-0 text-white flex flex-col md:flex-row px-20 md:px-32 py-4 items-center w-full gap-6 md:gap-0`}>
+            <div className={`${menuClose ? 'h-16' : ''} overflow-hidden top-0 text-white flex flex-col md:flex-row px-20 md:px-32 py-4 items-center w-full gap-6 md:gap-0`}>
                 {/* Bagian kiri */}
                 <div className="flex flex-1 gap-8 w-full flex-col md:flex-row">
                     <div className="flex text-xl font-bold tracking-widest justify-between">

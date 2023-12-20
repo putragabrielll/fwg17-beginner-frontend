@@ -13,7 +13,7 @@ const Home = () => {
         <>
             <div>
                 {/* Untuk navbar */}
-                <div className="bg-[rgba(0,0,0,0.5)] w-full md:absolute">
+                <div className="bg-[rgba(0,0,0,0.5)] w-full md:fixed z-50">
                     <Navbar />
                 </div>
 
