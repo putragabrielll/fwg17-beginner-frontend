@@ -16,13 +16,13 @@ const DetailOrder = () => {
                 <Navbar />
             </div>
 
-            <div className="my-20 px-32 flex flex-col gap-12">
+            <div className="my-20 px-4 md:px-32 flex flex-col gap-12">
                 <div className="flex-1 flex flex-col gap-4">
                     <h1 className="text-4xl">Order <span className="font-bold">#12354-09893</span></h1>
                     <span className="text-gray-500">21 March 2023 at 10:30 AM</span>
                 </div>
 
-                <div className="flex-1 flex gap-6">
+                <div className="flex-1 flex flex-col md:flex-row gap-20 md:gap-6">
                     {/* Bagian kiri */}
                     <div className="flex-1 flex flex-col gap-4">
                         <div className="flex-1 flex justify-start items-center">
@@ -110,7 +110,7 @@ const DetailOrder = () => {
                                         <span className="px-1 py-1 bg-red-600 border border-red-600 text-white rounded-full">FLASH SALE!</span>
                                     </div>
                                     <h1 className="text-2xl">Hazelnut Latte</h1>
-                                    <div className="flex text-gray-600 gap-3 text-lg">
+                                    <div className="flex text-gray-600 gap-1 md:gap-3 text-lg">
                                         <span>2 pcs</span>
                                         <span>|</span>
                                         <span>Reguler</span>
@@ -139,7 +139,7 @@ const DetailOrder = () => {
                                         <span className="px-1 py-1 bg-red-600 border border-red-600 text-white rounded-full">FLASH SALE!</span>
                                     </div>
                                     <h1 className="text-2xl">Hazelnut Latte</h1>
-                                    <div className="flex text-gray-600 gap-3 text-lg">
+                                    <div className="flex text-gray-600 gap-1 md:gap-3 text-lg">
                                         <span>2 pcs</span>
                                         <span>|</span>
                                         <span>Reguler</span>
