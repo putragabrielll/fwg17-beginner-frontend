@@ -53,7 +53,7 @@ const CheckOut = () => {
                                         <span className="px-1 py-1 bg-red-600 border border-red-600 text-white rounded-full">FLASH SALE!</span>
                                     </div>
                                     <h1 className="text-2xl">Hazelnut Latte</h1>
-                                    <div className="flex text-gray-600 gap-3 text-lg">
+                                    <div className="flex text-gray-600 gap-1 md:gap-3 text-lg">
                                         <span>2 pcs</span>
                                         <span>|</span>
                                         <span>Reguler</span>
@@ -87,7 +87,7 @@ const CheckOut = () => {
                                         <span className="px-1 py-1 bg-red-600 border border-red-600 text-white rounded-full">FLASH SALE!</span>
                                     </div>
                                     <h1 className="text-2xl">Hazelnut Latte</h1>
-                                    <div className="flex text-gray-600 gap-3 text-lg">
+                                    <div className="flex text-gray-600 gap-1 md:gap-3 text-lg">
                                         <span>2 pcs</span>
                                         <span>|</span>
                                         <span>Reguler</span>
