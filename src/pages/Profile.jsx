@@ -14,15 +14,15 @@ const Profile = () => {
                 <Navbar />
             </div>
 
-            <div className="my-20 px-32 flex flex-col gap-12">
+            <div className="my-20 px-4 md:px-32 flex flex-col gap-12">
 
                 <div className="flex-1">
                     <h1 className="text-4xl">Profile</h1>
                 </div>
 
-                <div className="flex-1 flex gap-4">
+                <div className="flex-1 flex flex-col md:flex-row gap-4">
                     {/* Bagian kiri */}
-                    <div className="w-1/4 border flex flex-col items-center h-1/5 gap-4 p-2">
+                    <div className="md:w-1/4 border flex flex-col items-center h-1/5 gap-4 p-2">
                         <h3 className="text-xl">Ghaluh Wizard</h3>
                         <span className="text-gray-500">ghaluhwizz@gmail.com</span>
                         <div className="bg-black h-[100px] rounded-full flex overflow-hidden">
