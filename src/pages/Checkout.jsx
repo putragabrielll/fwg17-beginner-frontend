@@ -20,13 +20,13 @@ const CheckOut = () => {
                 <Navbar />
             </div>
 
-            <div className="my-20 px-32 flex flex-col gap-12">
+            <div className="my-20 px-4 md:px-32 flex flex-col gap-12">
 
                 <header className="flex-1">
                     <h1 className="text-4xl">Payment Details</h1>
                 </header>
 
-                <div className="flex-1 flex gap-6">
+                <div className="flex-1 flex flex-col md:flex-row gap-6">
                     {/* Bagian kiri */}
                     <div className="flex-1 flex flex-col gap-4">
 
