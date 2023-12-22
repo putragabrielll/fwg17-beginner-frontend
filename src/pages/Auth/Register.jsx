@@ -5,6 +5,28 @@ import { MdOutlineEmail } from 'react-icons/md'
 import { RiLockPasswordLine } from 'react-icons/ri'
 
 const Register = () => {
+    const prosesRegister = async (event) => {
+        try {
+            event.preventDefault()
+            const { value: inputFullName } = event.target.full_name
+            const { value: inputEmail } = event.target.email
+            const { value: inputPassword } = event.target.password
+            const form = new URLSearchParams () // form dalam bentuk x-www-form-urlencoded
+            form.append( 'fullName', inputFullName)
+            form.append( 'email', inputEmail)
+            form.append("password", inputPassword)
+
+            const { data } = await axios.post("http://localhost:8000/auth/register", form.toString())
+            // proses apapun
+            
+            setTimeout(()=>{
+                window.location = '/login'
+            }, 2000)
+        } catch (err) {
+            alert(err.response.data.message)
+        }
+    }
+
     return(
         <>
             <div>
@@ -25,10 +47,10 @@ const Register = () => {
                             <div className="mt-4 text-gray-600">Fill out the form correctly</div>
                         </div>
 
-                        <form className="flex flex-col w-3/4 gap-4" action="">
+                        <form onSubmit={prosesRegister} className="flex flex-col w-3/4 gap-4" action="">
                             <div className="flex flex-col">
                                 <label className="font-semibold my-2" htmlFor="full-name">Full Name</label>
-                                <input className="h-11 border rounded-md relative pl-9" type="text" name="full-name" placeholder="Enter Your Full Name" id="full-name" />
+                                <input className="h-11 border rounded-md relative pl-9" type="text" name="full_name" placeholder="Enter Your Full Name" id="full-name" />
                                 <FaRegUser className="absolute text-gray-500 my-[53px] mx-2" />
                             </div>
                             <div className="flex flex-col">
@@ -43,7 +65,7 @@ const Register = () => {
                             </div>
                             <div className="flex flex-col">
                                 <label className="font-semibold my-2" htmlFor="confirm-password">Confirm Password</label>
-                                <input className="h-12 border rounded-md relative pl-9" type="password" name="confirm-password" placeholder="Enter Your Password Again" id="confirm-password" />
+                                <input className="h-12 border rounded-md relative pl-9" type="password" name="confirm_password" placeholder="Enter Your Password Again" id="confirm-password" />
                                 <RiLockPasswordLine className="absolute text-gray-500 my-[53px] mx-2 text-xl" />
                             </div>
                             <button className="px-5 py-2 bg-orange-500 border border-orange-500 rounded-md" type="submit">Register</button>
