@@ -22,7 +22,7 @@ const ProductCard = ({image, name, description, price, ShowCardButton}) => {
                         </div>
                         <div className="my-3.5">
                             <del className="text-red-600 text-xs mx-2">IDR 20.000</del>
-                            <span className="text-orange-500 text-md">IDR{price},-</span>
+                            <span className="text-orange-500 text-md">IDR. {price.toLocaleString('id')},-</span>
                         </div>
                         <div className="flex items-center mx-2 my-2 gap-4">
                             <div className="flex-1">
