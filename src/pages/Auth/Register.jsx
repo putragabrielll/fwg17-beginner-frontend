@@ -1,10 +1,17 @@
+import React from "react"
+import axios from "axios"
 import { Link } from "react-router-dom"
 import LogoCoffee from '../../assets/images/logo-coffee.png'
 import { FaGoogle, FaFacebookF, FaRegUser } from 'react-icons/fa'
 import { MdOutlineEmail } from 'react-icons/md'
 import { RiLockPasswordLine } from 'react-icons/ri'
+import Modals from "../../components/Modals"
 
 const Register = () => {
+    const [alertMessage, setAlertMessage] = React.useState('')
+    const [isHiddenAlert, setIsHiddenAlert] = React.useState(true)
+    const [isSuccess, setIsSuccess] = React.useState(true)
+
     const prosesRegister = async (event) => {
         try {
             event.preventDefault()
@@ -12,18 +19,34 @@ const Register = () => {
             const { value: inputEmail } = event.target.email
             const { value: inputPassword } = event.target.password
             const form = new URLSearchParams () // form dalam bentuk x-www-form-urlencoded
-            form.append( 'fullName', inputFullName)
-            form.append( 'email', inputEmail)
-            form.append("password", inputPassword)
+            if (inputFullName) {
+                form.append( 'fullName', inputFullName)
+            }
+            if (inputEmail) {
+                form.append( 'email', inputEmail)
+            }
+            if (inputPassword) {
+                form.append( 'password', inputPassword)
+            }
+            if (!inputEmail || !inputPassword) {
+                setAlertMessage('Email dan Password Wajib di isi!')
+                setIsHiddenAlert(false)
+                setIsSuccess(false)
+                return 0
+            }
 
             const { data } = await axios.post("http://localhost:8000/auth/register", form.toString())
             // proses apapun
-            
+            setAlertMessage(data.message)
+            setIsHiddenAlert(false)
+            setIsSuccess(true)
             setTimeout(()=>{
                 window.location = '/login'
             }, 2000)
         } catch (err) {
-            alert(err.response.data.message)
+            setAlertMessage(err.response.data.message)
+            setIsHiddenAlert(false)
+            setIsSuccess(false)
         }
     }
 
@@ -45,6 +68,10 @@ const Register = () => {
                         <div className="w-3/4 items-center">
                             <h1 className="text-xl text-yellow-800">Register</h1>
                             <div className="mt-4 text-gray-600">Fill out the form correctly</div>
+                        </div>
+
+                        <div className="w-3/4">
+                            <Modals message={alertMessage} isHiddenAlert={isHiddenAlert} isSuccess={isSuccess} />
                         </div>
 
                         <form onSubmit={prosesRegister} className="flex flex-col w-3/4 gap-4" action="">

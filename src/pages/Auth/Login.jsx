@@ -13,10 +13,12 @@ const Login = () => {
     const inputPassword = React.useRef()
     const [alertMessage, setAlertMessage] = React.useState('')
     const [isHiddenAlert, setIsHiddenAlert] = React.useState(true)
+    const [isSuccess, setIsSuccess] = React.useState(true)
 
     const processLogin = async (event) => {
         try {
             event.preventDefault()
+            setIsHiddenAlert(true) // Hiden alert pada saat button login di klik
             const { value: email } = event.target.email
             const { value: password } = event.target.password
             const form = new URLSearchParams () // form dalam bentuk x-www-form-urlencoded
@@ -29,12 +31,14 @@ const Login = () => {
             // proses token untuk di simpan di global state dengan redux
             setAlertMessage(data.message)
             setIsHiddenAlert(false)
+            setIsSuccess(true)
             setTimeout(()=>{
                 window.location = '/'
             }, 2000)
         } catch (err) {
             setAlertMessage(err.response.data.message)
             setIsHiddenAlert(false)
+            setIsSuccess(false)
         }
 
     }
@@ -58,8 +62,8 @@ const Login = () => {
                             <div className="mt-4 text-gray-600">Fill out the form correctly</div>
                         </section>
 
-                        <div>
-                            <Modals message={alertMessage} isHiddenAlert={isHiddenAlert} />
+                        <div className="w-3/4">
+                            <Modals message={alertMessage} isHiddenAlert={isHiddenAlert} isSuccess={isSuccess}/>
                         </div>
 
                         <form onSubmit={processLogin} className="flex flex-col w-3/4 gap-4" action="">
