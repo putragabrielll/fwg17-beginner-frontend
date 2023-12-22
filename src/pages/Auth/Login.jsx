@@ -5,11 +5,14 @@ import LogoCoffee from '../../assets/images/logo-coffee.png'
 import { FaGoogle, FaFacebookF } from 'react-icons/fa'
 import { MdOutlineEmail } from 'react-icons/md'
 import { RiLockPasswordLine } from 'react-icons/ri'
+import Modals from "../../components/Modals"
 
 
 const Login = () => {
     const inputEmail = React.useRef()
     const inputPassword = React.useRef()
+    const [alertMessage, setAlertMessage] = React.useState('')
+    const [isHiddenAlert, setIsHiddenAlert] = React.useState(true)
 
     const processLogin = async (event) => {
         try {
@@ -24,9 +27,14 @@ const Login = () => {
             // proses apapun
             const {token} = data.results // token di simpan di redux
             // proses token untuk di simpan di global state dengan redux
-            window.location = '/'
+            setAlertMessage(data.message)
+            setIsHiddenAlert(false)
+            setTimeout(()=>{
+                window.location = '/'
+            }, 2000)
         } catch (err) {
-            alert(err.response.data.message)
+            setAlertMessage(err.response.data.message)
+            setIsHiddenAlert(false)
         }
 
     }
@@ -49,6 +57,10 @@ const Login = () => {
                             <h1 className="text-xl text-yellow-800">Login</h1>
                             <div className="mt-4 text-gray-600">Fill out the form correctly</div>
                         </section>
+
+                        <div>
+                            <Modals message={alertMessage} isHiddenAlert={isHiddenAlert} />
+                        </div>
 
                         <form onSubmit={processLogin} className="flex flex-col w-3/4 gap-4" action="">
                             <div className="flex flex-col">
