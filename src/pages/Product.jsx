@@ -1,3 +1,5 @@
+import axios from "axios"
+import React from "react"
 import ChatBox from "../components/Chat"
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
@@ -6,9 +8,22 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa"
 import Karakter1 from "../assets/images/karakter1.png"
 import Karakter2 from "../assets/images/karakter2.png"
 import ProductCard from "../components/ProductCard"
-import ProductImage from "../assets/images/coffee1.png"
+import PlacaHolderImage from "../assets/images/img-placeholder.jpeg"
+import { useEffect } from "react"
 
 const Product = () => {
+    const [products, setProducts] = React.useState([])
+
+    const getProduct = async() => {
+        const { data } = await axios.get("http://localhost:8000/products")
+        console.log(data)
+        setProducts(data.results)
+    }
+
+    useEffect(() => {
+        getProduct()
+    }, [])
+
     return (
         <>
             <div>
@@ -171,20 +186,14 @@ const Product = () => {
 
                         {/* Bagian kanan */}
                         <div className="flex-1 flex flex-col">
-
-                            <div className="flex gap-4">
-                                <ProductCard image={ProductImage} ShowCardButton={true} name='Americano' price={100000} description='Caffè Americano atau Amerikano adalah minuman kopi yang dibuat dengan mencampurkan satu seloki espresso dengan air panas. Air panas yang digunakan dalam minuman ini adalah sebanyak 6 hingga 8 ons.' />
-                                <ProductCard image={ProductImage} ShowCardButton={false} name='Latte' price={100000} description='YLatte atau Caffè latte adalah espreso atau kopi yang dicampur dengan susu dan memiliki lapisan busa yang tipis di bagian atasnya. Perbandingan antara susu dengan kopi pada caffè latte adalah 2:1.' />
-                            </div>
-
-                            <div className="flex gap-4">
-                                <ProductCard image={ProductImage} ShowCardButton={false} name='Orange Juice' price={100000} description='Jus jeruk atau orange juice atau populer dengan sebutan OJ merupakan air jeruk murni tanpa tambahan air, es ataupun gula. Jus ini berupa air yang keluar saat jeruk jenis navel diperas.' />
-                                <ProductCard image={ProductImage} ShowCardButton={true} name='Cola' price={100000} description='Coca-cola atau Coke adalah produk minuman bersoda yang telah mendunia dan sangat terkenal, produk ini dapat ditemukan hampir di setiap penjuru dunia, di restoran-restoran, toko swalayan. ' />
-                            </div>
-
-                            <div className="flex gap-4">
-                                <ProductCard image={ProductImage} ShowCardButton={true} name='Chocolate Hot' price={100000} description='Cokelat panas adalah minuman panas yang dibuat dari cokelat atau kakao bubuk dan gula, dengan air atau susu hangat. Beberapa studi telah menunjukkan bahwa cokelat panas menyehatkan karena antioksidan yang terkandung dalam kakao.' />
-                                <ProductCard image={ProductImage} ShowCardButton={true} name='Lemon Water' price={100000} description='Lemon water mengandung elektrolit yang penting untuk menjaga keseimbangan cairan dan elektrolit tubuh. Lemon water juga dilengkapi dengan vitamin C 1000mg. Minuman lemon water untuk menggantikan cairan dan elektrolit yang hilang dengan rasa yang berbeda.' />
+                            <div className="grid grid-cols-2 gap-4">
+                                {products?.map((data, i) => {
+                                    let images = data.image ? `http://localhost:8000/uploads/${data.image}` : null
+                                    return (
+                                        <ProductCard key={data.name + i} image={images || PlacaHolderImage} ShowCardButton={true} name={data.name} discount={data.price} price={data.price - data.discount} description={data.description} />
+                                    )
+                                })}
+                                
                             </div>
 
                             <div className="my-10 flex-1 flex justify-center">
