@@ -13,11 +13,27 @@ import { useEffect } from "react"
 
 const Product = () => {
     const [products, setProducts] = React.useState([])
+    const [pages, setPages] = React.useState(1)
+    const [pagesArr, setPagesArr] = React.useState([]) // [1,2,3,4]
+    const [totalPages, setTotalPages] = React.useState(1)
 
     const getProduct = async() => {
         const { data } = await axios.get("http://localhost:8000/products")
         console.log(data)
         setProducts(data.results)
+        setPages(data.pageInfo.currentPage)
+        let page = [] // [1,2,3,4] // Untuk looping total pages
+        for(let i = 1; i <= data.pageInfo.totalPage; i++){
+            page.push(i)
+        }
+        setPagesArr(page)
+        setTotalPages(data.pageInfo.totalPage)
+    }
+
+    const changePages = async(e) => {
+        const { data } = await axios.get(`http://localhost:8000/products?page=${e}`)
+        setProducts(data.results)
+        setPages(data.pageInfo.currentPage)
     }
 
     useEffect(() => {
@@ -193,26 +209,34 @@ const Product = () => {
                                         <ProductCard key={data.name + i} image={images || PlacaHolderImage} ShowCardButton={true} name={data.name} discount={data.price} price={data.price - data.discount} description={data.description} />
                                     )
                                 })}
-                                
                             </div>
 
                             <div className="my-10 flex-1 flex justify-center">
                                 <ul className="flex gap-5 items-center">
-                                    <li>
-                                        <button className="px-5 py-3 bg-orange-500 border border-orange-500 rounded-full">1</button>
-                                    </li>
-                                    <li>
-                                        <button className="px-5 py-3 text-[#A0A3BD] bg-[#E8E8E8] rounded-full">2</button>
-                                    </li>
-                                    <li>
-                                        <button className="px-5 py-3 text-[#A0A3BD] bg-[#E8E8E8] rounded-full">3</button>
-                                    </li>
-                                    <li>
-                                        <button className="px-5 py-3 text-[#A0A3BD] bg-[#E8E8E8] rounded-full">4</button>
-                                    </li>
-                                    <li>
-                                        <button className="px-3 py-3 bg-orange-500 border border-orange-500 rounded-full"><FaArrowRight className="text-xl text-white" /></button>
-                                    </li>
+                                    {/* Previous data */}
+                                    {1 !== pages && 
+                                        <li>
+                                            <button onClick={()=>changePages(pages - 1)} className="px-3 py-3 bg-orange-500 border border-orange-500 rounded-full"><FaArrowLeft className="text-xl text-white" /></button>
+                                        </li>
+                                    }
+
+                                    {/* Pagination */}
+                                    {pagesArr?.map((data,i)=>{
+                                        let isShow = data <= pages + 2 && data >= pages - 2
+                                        return(
+                                            isShow && 
+                                            <li key={i}>
+                                                <button onClick={()=>changePages(data)} className={`px-5 py-3 ${data == pages ? 'bg-orange-500 border-orange-500':'text-[#A0A3BD] bg-[#E8E8E8]'} border rounded-full`}>{data}</button>
+                                            </li>
+                                        )
+                                    })}
+
+                                    {/* Next data */}
+                                    {totalPages !== pages && 
+                                        <li>
+                                            <button onClick={()=>changePages(pages + 1)} className="px-3 py-3 bg-orange-500 border border-orange-500 rounded-full"><FaArrowRight className="text-xl text-white" /></button>
+                                        </li>
+                                    }
                                 </ul>
                             </div>
 
