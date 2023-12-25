@@ -90,13 +90,13 @@ const DetailProduct = () => {
                 <div className="flex gap-5">
 
                     <div>
-                        <ProductCard image={ProductImage} ShowCardButton={true} name='Americano' price={100000} description='Caffè Americano atau Amerikano adalah minuman kopi yang dibuat dengan mencampurkan satu seloki espresso dengan air panas. Air panas yang digunakan dalam minuman ini adalah sebanyak 6 hingga 8 ons.' />
+                        <ProductCard image={ProductImage} ShowCardButton={true} name='Americano' discount={5000} price={100000} description='Caffè Americano atau Amerikano adalah minuman kopi yang dibuat dengan mencampurkan satu seloki espresso dengan air panas. Air panas yang digunakan dalam minuman ini adalah sebanyak 6 hingga 8 ons.' />
                     </div>
                     <div>
-                        <ProductCard image={ProductImage} ShowCardButton={false} name='Latte' price={100000} description='YLatte atau Caffè latte adalah espreso atau kopi yang dicampur dengan susu dan memiliki lapisan busa yang tipis di bagian atasnya. Perbandingan antara susu dengan kopi pada caffè latte adalah 2:1.' />
+                        <ProductCard image={ProductImage} ShowCardButton={false} name='Latte' discount={5000} price={100000} description='YLatte atau Caffè latte adalah espreso atau kopi yang dicampur dengan susu dan memiliki lapisan busa yang tipis di bagian atasnya. Perbandingan antara susu dengan kopi pada caffè latte adalah 2:1.' />
                     </div>
                     <div className="hidden md:block">
-                        <ProductCard image={ProductImage} ShowCardButton={true} name='Orange Juice' price={100000} description='Jus jeruk atau orange juice atau populer dengan sebutan OJ merupakan air jeruk murni tanpa tambahan air, es ataupun gula. Jus ini berupa air yang keluar saat jeruk jenis navel diperas.' />
+                        <ProductCard image={ProductImage} ShowCardButton={true} name='Orange Juice' discount={5000} price={100000} description='Jus jeruk atau orange juice atau populer dengan sebutan OJ merupakan air jeruk murni tanpa tambahan air, es ataupun gula. Jus ini berupa air yang keluar saat jeruk jenis navel diperas.' />
                     </div>
                     
                 </div>
