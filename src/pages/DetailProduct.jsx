@@ -13,15 +13,18 @@ import ProductCard from "../components/ProductCard"
 const DetailProduct = () => {
     const {id} = useParams()
     const [products, setProducts] = React.useState([])
-    // const [productsSize, setSizeProducts] = React.useState([])
+    const [productsSize, setSizeProducts] = React.useState([])
+    const [productsVariant, setVariantProducts] = React.useState([])
 
     const getProduct = async() => {
         const { data: dataProducts } = await axios.get(`http://localhost:8000/products/${id}`)
-        // const { sizeProducts } = await axios.get(`http://localhost:8000/product-size`)
+        const { data: sizeProducts } = await axios.get(`http://localhost:8000/product-size`)
+        const { data: variantProducts } = await axios.get(`http://localhost:8000/product-variant`)
 
-        console.log(dataProducts)
+        console.log(sizeProducts.results)
         setProducts(dataProducts.results)
-        // setSizeProducts(sizeProducts.results)
+        setSizeProducts(sizeProducts.results)
+        setVariantProducts(variantProducts.results);
     }
 
     useEffect(() => {
@@ -86,14 +89,19 @@ const DetailProduct = () => {
                         </div>
                         <span className="font-semibold text-lg">Choose Size</span>
                         <div className="flex justify-between gap-2">
-                            <button className="flex-1 px-4 md:px-16 py-2 bg-transparent border border-orange-500 rounded-sm">Regular</button>
-                            <button className="flex-1 px-4 md:px-16 py-2 bg-transparent border border-orange-500 rounded-sm">Medium</button>
-                            <button className="flex-1 px-4 md:px-16 py-2 bg-transparent border border-orange-500 rounded-sm">Large</button>
+                            {productsSize?.map((data, i) => {
+                                return (
+                                    <button key={i} className="flex-1 px-4 md:px-16 py-2 bg-transparent border border-orange-500 rounded-sm">{data.size}</button>
+                                )
+                            })}
                         </div>
                         <span className="font-semibold text-lg">Hot/Ice?</span>
                         <div className="flex justify-between gap-2">
-                            <button className="flex-1 px-4 md:px-32 py-2 bg-transparent border border-orange-500 rounded-sm">Ice</button>
-                            <button className="flex-1 px-4 md:px-32 py-2 bg-transparent border border-orange-500 rounded-sm">Hot</button>
+                            {productsVariant?.map((data, i) => {
+                                return(
+                                    <button key={i} className="flex-1 px-4 md:px-32 py-2 bg-transparent border border-orange-500 rounded-sm">{data.name}</button>
+                                )
+                            })}
                         </div>
                         <div className="flex justify-between my-16 gap-2">
                             <button className="w-6/12 md:w-1/4 md:px-32 py-2 bg-orange-500 border border-orange-500 rounded-md transition duration-300 ease-in-out hover:scale-110">
