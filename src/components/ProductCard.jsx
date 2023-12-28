@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import { FaStar } from "react-icons/fa"
 import { MdOutlineShoppingCart } from "react-icons/md"
 
-const ProductCard = ({image, name, description, discount, price, ShowCardButton}) => {
+const ProductCard = ({image, name, description, discount, price, ShowCardButton, id}) => {
     return (
         <>
             <div className="flex-1 max-w-md">
@@ -11,7 +11,7 @@ const ProductCard = ({image, name, description, discount, price, ShowCardButton}
                     <img className="object-cover flex-1 h-24" src={image} alt="Image Products" />
 
                     <div className="flex-1 flex flex-col bg-white mx-2 -mt-10 shadow-2xl">
-                        <Link className="text-2xl my-3.5 mx-2" to={"/detail-product"}>{name}</Link>
+                        <Link className="text-2xl my-3.5 mx-2" to={`/detail-product/${id}`}>{name}</Link>
                         <p className="text-gray-600 my-3.5 mx-2 flex-1">{description}</p>
                         <div className="flex gap-3 mx-2">
                             <FaStar className="text-orange-500 text-xl" />

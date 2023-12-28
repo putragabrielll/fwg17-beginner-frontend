@@ -1,13 +1,33 @@
+import axios from "axios"
+import React from "react"
+import { useEffect } from "react"
 import ChatBox from "../components/Chat"
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import ProductImage from "../assets/images/coffee1.png"
 import { FaStar, FaMinus, FaPlus, FaArrowRight } from "react-icons/fa"
 import { MdOutlineShoppingCart } from "react-icons/md"
 import ProductCard from "../components/ProductCard"
 
 const DetailProduct = () => {
+    const {id} = useParams()
+    const [products, setProducts] = React.useState([])
+    // const [productsSize, setSizeProducts] = React.useState([])
+
+    const getProduct = async() => {
+        const { data: dataProducts } = await axios.get(`http://localhost:8000/products/${id}`)
+        // const { sizeProducts } = await axios.get(`http://localhost:8000/product-size`)
+
+        console.log(dataProducts)
+        setProducts(dataProducts.results)
+        // setSizeProducts(sizeProducts.results)
+    }
+
+    useEffect(() => {
+        getProduct()
+    }, [])
+
     return (
         <>
             <div className="bg-black">
@@ -33,10 +53,10 @@ const DetailProduct = () => {
                         <div className="py-2">
                             <span className="px-2 py-2 bg-red-600 border border-red-600 text-white rounded-full">FLASH SALE!</span>
                         </div>
-                        <h1 className="text-4xl">Hazelnut Latte</h1>
+                        <h1 className="text-4xl">{products?.name}</h1>
                         <div className="flex items-center gap-2">
-                            <del className="text-red-600 text-xs">IDR 20.000</del>
-                            <span className="text-orange-500 text-md">IDR 10.000</span>
+                            <del className="text-red-600 text-xs">IDR {products?.price?.toLocaleString('id')}</del>
+                            <span className="text-orange-500 text-md">IDR {(products?.price - products?.discount)?.toLocaleString('id')}</span>
                         </div>
                         <div className="flex items-center gap-3">
                             <FaStar className="text-orange-500 text-xl" />
@@ -48,12 +68,16 @@ const DetailProduct = () => {
                         </div>
                         <div className="flex gap-3">
                             <span>200+ Review</span>
-                            <span>|</span>
-                            <span>Recommendation</span>
+                            {products?.isRecommended &&
+                                <>
+                                    <span>|</span>
+                                    <span>Recommendation</span>
+                                </>
+                            }
                             <i className="text-orange-500 text-xl" data-feather="thumbs-up"></i>
                         </div>
                         <span>
-                            Cold brewing is a method of brewing that combines ground coffee and cool water and uses time instead of heat to extract the flavor. It is brewed in small batches and steeped for as long as 48 hours.
+                            {products?.description}
                         </span>
                         <div className="flex items-center gap-5">
                             <button className="bg-transparent border border-orange-500 rounded-sm p-2"><FaMinus className="text-sm" /></button>

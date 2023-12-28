@@ -1,5 +1,6 @@
 import axios from "axios"
 import React from "react"
+import { useEffect } from "react"
 import ChatBox from "../components/Chat"
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
@@ -9,7 +10,6 @@ import Karakter1 from "../assets/images/karakter1.png"
 import Karakter2 from "../assets/images/karakter2.png"
 import ProductCard from "../components/ProductCard"
 import PlacaHolderImage from "../assets/images/img-placeholder.jpeg"
-import { useEffect } from "react"
 
 const Product = () => {
     const [products, setProducts] = React.useState([])
@@ -206,7 +206,7 @@ const Product = () => {
                                 {products?.map((data, i) => {
                                     let images = data.image ? `http://localhost:8000/uploads/${data.image}` : null
                                     return (
-                                        <ProductCard key={i} image={images || PlacaHolderImage} ShowCardButton={true} name={data.name} discount={data.price} price={data.price - data.discount} description={data.description} />
+                                        <ProductCard key={i} image={images || PlacaHolderImage} ShowCardButton={true} name={data.name} discount={data.price} price={data.price - data.discount} description={data.description} id={data.id} />
                                     )
                                 })}
                             </div>
