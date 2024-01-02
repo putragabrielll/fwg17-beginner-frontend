@@ -1,4 +1,5 @@
 import React from "react"
+import {useNavigate} from "react-router-dom"
 import { Link } from "react-router-dom"
 import { FiCoffee, FiSearch } from "react-icons/fi"
 import { MdOutlineShoppingCart, MdMenu } from "react-icons/md"
@@ -7,6 +8,13 @@ const Navbar = () => {
     const [menuClose, setMenuClose] = React.useState(true)
     const [profileClose, setProfileClose] = React.useState(true)
     const [token, setToken] = React.useState(window.localStorage.getItem("token"))
+    const navigation = useNavigate()
+
+    const onLogout = () => {
+        setToken(null)
+        window.localStorage.removeItem("token")
+        navigation('/login')
+    }
 
     return (
         <>
@@ -58,11 +66,14 @@ const Navbar = () => {
                                 <li className="w-full md:w-auto hidden md:block">
                                     <div className="h-8 w-8 rounded-full bg-white"></div>
                                 </li>
-                                <br />
-                                <div>
-                                    <button type="button">Profile</button>
-                                    <button type="button">Log Out</button>
-                                </div>
+                                <li className="w-full md:w-auto">
+                                    <button type="button" className="px-5 py-2 bg-orange-500 border border-orange-500 rounded-md w-full">
+                                        <Link to={"/profile"}>Profile</Link>
+                                    </button>
+                                </li>
+                                <li className="w-full md:w-auto">
+                                    <button onClick={onLogout} type="button" className="px-5 py-2 bg-orange-500 border border-orange-500 rounded-md w-full">Log Out</button>
+                                </li>
                             </>
                         }
                         {!token && 
