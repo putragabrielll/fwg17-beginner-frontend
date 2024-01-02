@@ -14,15 +14,20 @@ import PlacaHolderImage from "../assets/images/img-placeholder.jpeg"
 const Product = () => {
     const [products, setProducts] = React.useState([])
     const [pages, setPages] = React.useState(1)
-    const [pagesArr, setPagesArr] = React.useState([]) // [1,2,3,4]
+    const [pagesArr, setPagesArr] = React.useState([]) // [1,2,3,4,....,9] isi nya nanti
     const [totalPages, setTotalPages] = React.useState(1)
+    const [isRecomended, setIsRecomended] = React.useState(false)
 
     const getProduct = async() => {
-        const { data } = await axios.get("http://localhost:8000/products")
-        console.log(data)
+        const { data } = await axios.get("http://localhost:8000/products", {
+            params: {
+                best_seller: isRecomended
+            }
+        })
+        // console.log(isRecomended)
         setProducts(data.results)
         setPages(data.pageInfo.currentPage)
-        let page = [] // [1,2,3,4] // Untuk looping total pages
+        let page = [] // [1,2,3,4,....,9] // Untuk looping total pages
         for(let i = 1; i <= data.pageInfo.totalPage; i++){
             page.push(i)
         }
@@ -38,6 +43,7 @@ const Product = () => {
 
     useEffect(() => {
         getProduct()
+        // console.log('apa aja')
     }, [])
 
     return (
@@ -57,6 +63,7 @@ const Product = () => {
                     </div>
                 </header>
 
+                {/* Section promo */}
                 <div className="my-10 flex flex-col gap-8">
                     {/* Bagian atas */}
                     <div className="flex-1 px-4 md:px-32 flex">
@@ -129,6 +136,7 @@ const Product = () => {
                     </div>
                 </div>
 
+                {/* Section product */}
                 <div className="px-4 md:px-32 flex flex-col gap-12">
                     {/* Bagian atas */}
                     <div>
@@ -137,9 +145,10 @@ const Product = () => {
 
                     {/* Bagian bawah */}
                     <div className="flex gap-4">
-                        {/* Bagian kiri */}
+                        {/* Bagian filter */}
                         <div className="w-1/4 h-screen bg-black text-white rounded-xl hidden md:block">
-                            <form className="mx-3 flex flex-col gap-6 my-6">
+                            {/* Sebelumnya form */}
+                            <div className="mx-3 flex flex-col gap-6 my-6">
                                 <div className="flex gap-4">
                                     <span className="flex-1">Filter</span>
                                     <button className="flex-1" type="reset">Reset Filter</button>
@@ -151,7 +160,7 @@ const Product = () => {
                                 <div className="flex flex-col">
                                     <span>Category</span>
                                     <div className="flex justify-start items-center gap-2">
-                                        <input className="h-11" type="checkbox" name="favorite" id="favorite" />
+                                        <input onChange={()=>setIsRecomended(!isRecomended)} className="h-11" type="checkbox" name="favorite" id="favorite" />
                                         <label htmlFor="favorite">Favorite Product</label>
                                     </div>
                                     <div className="flex justify-start items-center gap-2">
@@ -174,19 +183,19 @@ const Product = () => {
                                 <div className="flex flex-col">
                                     <span>Sort By</span>
                                     <div className="flex justify-start items-center gap-2">
-                                        <input className="h-11" type="checkbox" name="favorite" id="buy-get" />
+                                        <input className="h-11" type="checkbox" name="buy-get" id="buy-get" />
                                         <label htmlFor="buy-get">Buy 1 get 1</label>
                                     </div>
                                     <div className="flex justify-start items-center gap-2">
-                                        <input className="h-11" type="checkbox" name="favorite" id="flash-sale" />
+                                        <input className="h-11" type="checkbox" name="flash-sale" id="flash-sale" />
                                         <label htmlFor="flash-sale">Flash sale</label>
                                     </div>
                                     <div className="flex justify-start items-center gap-2">
-                                        <input className="h-11" type="checkbox" name="favorite" id="birthday" />
+                                        <input className="h-11" type="checkbox" name="birthday" id="birthday" />
                                         <label htmlFor="birthday">Birthday Package</label>
                                     </div>
                                     <div className="flex justify-start items-center gap-2">
-                                        <input className="h-11" type="checkbox" name="favorite" id="cheap" />
+                                        <input className="h-11" type="checkbox" name="chep" id="cheap" />
                                         <label htmlFor="cheap">Cheap</label>
                                     </div>
                                 </div>
@@ -196,12 +205,13 @@ const Product = () => {
                                         <input className="h-11 w-full" type="range" name="favorite" id="buy-get" />
                                     </div>
                                 </div>
-                                <button className="px-5 py-2 bg-orange-500 border border-orange-500 rounded-md text-black transition duration-300 ease-in-out hover:scale-110" type="submit">Apply Filter</button>
-                            </form>
+                                <button onClick={()=>getProduct()} className="px-5 py-2 bg-orange-500 border border-orange-500 rounded-md text-black transition duration-300 ease-in-out hover:scale-110" >Apply Filter</button>
+                            </div>
                         </div>
 
-                        {/* Bagian kanan */}
+                        {/* Bagian product */}
                         <div className="flex-1 flex flex-col">
+                            {/* Products */}
                             <div className="grid grid-cols-2 gap-4">
                                 {products?.map((data, i) => {
                                     let images = data.image ? `http://localhost:8000/uploads/${data.image}` : null
@@ -211,6 +221,7 @@ const Product = () => {
                                 })}
                             </div>
 
+                            {/* Pagination */}
                             <div className="my-10 flex-1 flex justify-center">
                                 <ul className="flex gap-5 items-center">
                                     {/* Previous data */}

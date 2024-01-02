@@ -1,5 +1,6 @@
 import React from "react"
 import axios from "axios"
+import {useNavigate} from "react-router-dom"
 import { Link } from "react-router-dom"
 import LogoCoffee from '../../assets/images/logo-coffee.png'
 import { FaGoogle, FaFacebookF } from 'react-icons/fa'
@@ -11,9 +12,11 @@ import Modals from "../../components/Modals"
 const Login = () => {
     const inputEmail = React.useRef()
     const inputPassword = React.useRef()
+    const [token, setToken] = React.useState(null)
     const [alertMessage, setAlertMessage] = React.useState('')
     const [isHiddenAlert, setIsHiddenAlert] = React.useState(true)
     const [isSuccess, setIsSuccess] = React.useState(true)
+    const navigation = useNavigate()
 
     const processLogin = async (event) => {
         try {
@@ -22,18 +25,22 @@ const Login = () => {
             const { value: email } = event.target.email
             const { value: password } = event.target.password
             const form = new URLSearchParams () // form dalam bentuk x-www-form-urlencoded
-            form. append ( 'email', email) 
-            form. append ('password', password)
+            form.append ('password', password)
+            form.append ( 'email', email) 
 
             const { data } = await axios.post("http://localhost:8000/auth/login", form.toString())
-            // proses apapun
-            const {token} = data.results // token di simpan di redux
-            // proses token untuk di simpan di global state dengan redux
+
+            const {token: resultToken} = data.results // proses pengambilan token
+            setToken(resultToken)
+            window.localStorage.setItem("token", resultToken) // memberikan token ke local storage pada browser
+
+            // proses alert onlogin
             setAlertMessage(data.message)
             setIsHiddenAlert(false)
             setIsSuccess(true)
             setTimeout(()=>{
-                window.location = '/'
+                // window.location = '/'
+                navigation('/')
             }, 2000)
         } catch (err) {
             setAlertMessage(err.response.data.message)

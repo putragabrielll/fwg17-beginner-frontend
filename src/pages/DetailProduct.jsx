@@ -9,6 +9,7 @@ import ProductImage from "../assets/images/coffee1.png"
 import { FaStar, FaMinus, FaPlus, FaArrowRight } from "react-icons/fa"
 import { MdOutlineShoppingCart } from "react-icons/md"
 import ProductCard from "../components/ProductCard"
+import PlacaHolderImage from "../assets/images/img-placeholder.jpeg"
 
 const DetailProduct = () => {
     const {id} = useParams()
@@ -21,10 +22,10 @@ const DetailProduct = () => {
         const { data: sizeProducts } = await axios.get(`http://localhost:8000/product-size`)
         const { data: variantProducts } = await axios.get(`http://localhost:8000/product-variant`)
 
-        console.log(sizeProducts.results)
+        console.log(dataProducts.results)
         setProducts(dataProducts.results)
         setSizeProducts(sizeProducts.results)
-        setVariantProducts(variantProducts.results);
+        setVariantProducts(variantProducts.results)
     }
 
     useEffect(() => {
@@ -41,7 +42,7 @@ const DetailProduct = () => {
                 {/* Bagian kiri */}
                 <div className="flex-1 flex items-center">
                     <div className="max-w-xl flex flex-col gap-4">
-                        <img src={ProductImage} alt="product coffee" />
+                        <img src={products?.image !== null ? `http://localhost:8000/uploads/${products?.image}` : PlacaHolderImage} alt="product coffee" />
                         <div className="flex max-w-[31.5%] gap-4 justify-between">
                             <img src={ProductImage} alt="product coffee" />
                             <img src={ProductImage} alt="product coffee" />

@@ -5,6 +5,8 @@ import { MdOutlineShoppingCart, MdMenu } from "react-icons/md"
 
 const Navbar = () => {
     const [menuClose, setMenuClose] = React.useState(true)
+    const [profileClose, setProfileClose] = React.useState(true)
+    const [token, setToken] = React.useState(window.localStorage.getItem("token"))
 
     return (
         <>
@@ -50,16 +52,34 @@ const Navbar = () => {
                                 <MdOutlineShoppingCart className="text-white text-xl" />
                             </a>
                         </li>
-                        <li className="w-full md:w-auto">
-                            <button className="px-5 py-2 bg-transparent border border-white rounded-md w-full">
-                                <Link to={"/login"}>Sign In</Link>
-                            </button>
-                        </li>
-                        <li className="w-full md:w-auto">
-                            <button className="px-5 py-2 bg-orange-500 border border-orange-500 rounded-md w-full">
-                                <Link to={"/register"}>Sign Out</Link>
-                            </button>
-                        </li>
+                        {token && 
+                        // profile picture
+                            <>
+                                <li className="w-full md:w-auto hidden md:block">
+                                    <div className="h-8 w-8 rounded-full bg-white"></div>
+                                </li>
+                                <br />
+                                <div>
+                                    <button type="button">Profile</button>
+                                    <button type="button">Log Out</button>
+                                </div>
+                            </>
+                        }
+                        {!token && 
+                        // section Sign In & Sign Out
+                            <>
+                                <li className="w-full md:w-auto">
+                                    <button className="px-5 py-2 bg-transparent border border-white rounded-md w-full">
+                                        <Link to={"/login"}>Sign In</Link>
+                                    </button>
+                                </li>
+                                <li className="w-full md:w-auto">
+                                    <button className="px-5 py-2 bg-orange-500 border border-orange-500 rounded-md w-full">
+                                        <Link to={"/register"}>Sign Out</Link>
+                                    </button>
+                                </li>
+                            </>
+                        }
                     </ul>
                 </div>
 
