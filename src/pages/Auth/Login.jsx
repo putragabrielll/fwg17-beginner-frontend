@@ -12,16 +12,22 @@ import Modals from "../../components/Modals"
 const Login = () => {
     const inputEmail = React.useRef()
     const inputPassword = React.useRef()
-    const [token, setToken] = React.useState(null)
     const [alertMessage, setAlertMessage] = React.useState('')
     const [isHiddenAlert, setIsHiddenAlert] = React.useState(true)
     const [isSuccess, setIsSuccess] = React.useState(true)
+    const [token, setToken] = React.useState(window.localStorage.getItem("token"))
     const navigation = useNavigate()
+
+    React.useEffect(() => { // untuk mengecek jika memiliki token atau sudah login maka tidak bisa akses page login.
+        if(token){
+            navigation('/')
+        }
+    }, [token, navigation]) // [token] artinya saat kondisi memiliki token, makan if yg di atas di jalankan.
 
     const processLogin = async (event) => {
         try {
             event.preventDefault()
-            setIsHiddenAlert(true) // Hiden alert pada saat button login di klik
+            setIsHiddenAlert(true) // Hiden alert pada saat awalnya login salah dan akan menampilkan alert kembali saat percobaan ke 2.
             const { value: email } = event.target.email
             const { value: password } = event.target.password
             const form = new URLSearchParams () // form dalam bentuk x-www-form-urlencoded
@@ -29,17 +35,17 @@ const Login = () => {
             form.append ( 'email', email) 
 
             const { data } = await axios.post("http://localhost:8000/auth/login", form.toString())
-
             const {token: resultToken} = data.results // proses pengambilan token
-            setToken(resultToken)
-            window.localStorage.setItem("token", resultToken) // memberikan token ke local storage pada browser
-
+            
             // proses alert onlogin
             setAlertMessage(data.message)
             setIsHiddenAlert(false)
             setIsSuccess(true)
+
             setTimeout(()=>{
-                // window.location = '/'
+                setToken(resultToken) // di pindahin karena setToken akan di isi ketikan menunggu waktu 2 detik dulu, agar useEffect di atas bisa terpakai dan alert bisa terpanggil.
+                window.localStorage.setItem("token", resultToken) // memberikan token ke local storage pada browser.
+                // window.location = '/' // hindari penggunaan window.location dan menggantinya dengan menggunakan navigation / useNavigate.
                 navigation('/')
             }, 2000)
         } catch (err) {
@@ -69,6 +75,7 @@ const Login = () => {
                             <div className="mt-4 text-gray-600">Fill out the form correctly</div>
                         </section>
 
+                        {/* Alert login */}
                         <div className="w-3/4">
                             <Modals message={alertMessage} isHiddenAlert={isHiddenAlert} isSuccess={isSuccess}/>
                         </div>

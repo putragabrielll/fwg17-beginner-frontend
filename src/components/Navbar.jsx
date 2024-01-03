@@ -6,14 +6,14 @@ import { MdOutlineShoppingCart, MdMenu } from "react-icons/md"
 
 const Navbar = () => {
     const [menuClose, setMenuClose] = React.useState(true)
-    const [profileClose, setProfileClose] = React.useState(true)
+    // const [profileClose, setProfileClose] = React.useState(true) // untuk dorp down profile
     const [token, setToken] = React.useState(window.localStorage.getItem("token"))
     const navigation = useNavigate()
 
     const onLogout = () => {
         setToken(null)
         window.localStorage.removeItem("token")
-        navigation('/login')
+        navigation('/')
     }
 
     return (

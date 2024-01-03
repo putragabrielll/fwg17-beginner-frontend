@@ -10,6 +10,7 @@ import CheckOut from "./pages/Checkout"
 import HistoryOrder from "./pages/HistoryOrder"
 import DetailOrder from "./pages/DetailOrder"
 import Profile from "./pages/Profile"
+import PrivateRoute from "./components/PrivateRoute"
 
 
 const router = createBrowserRouter([
@@ -39,21 +40,21 @@ const router = createBrowserRouter([
   },
   {
     path: "/checkout",
-    element: <CheckOut />
+    element: <PrivateRoute><CheckOut /></PrivateRoute>
   },
   {
     path: "/history-order",
-    element: <HistoryOrder />
+    element: <PrivateRoute><HistoryOrder /></PrivateRoute>
   },
   {
     path: "/detail-order",
-    element: <DetailOrder />
+    element: <PrivateRoute><DetailOrder /></PrivateRoute>
   },
   {
     path: "/profile",
-    element: <Profile />
+    element: <PrivateRoute><Profile /></PrivateRoute>
   }
-]);
+])
 
 const App = () => {
   return (
