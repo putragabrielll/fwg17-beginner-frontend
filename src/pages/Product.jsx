@@ -12,7 +12,7 @@ import ProductCard from "../components/ProductCard"
 import PlacaHolderImage from "../assets/images/img-placeholder.jpeg"
 
 const Product = () => {
-    const [products, setProducts] = React.useState([])
+    const [products, setProducts] = React.useState([])// [7- 12]
     const [pages, setPages] = React.useState(1)
     const [pagesArr, setPagesArr] = React.useState([]) // [1,2,3,4,....,9] isi nya nanti
     const [totalPages, setTotalPages] = React.useState(1)
@@ -233,7 +233,7 @@ const Product = () => {
 
                                     {/* Pagination 1, 2, 3 dan seterusnya */}
                                     {pagesArr?.map((data,i)=>{
-                                        let isShow = data <= pages + 2 && data >= pages - 2
+                                        let isShow =  data >= pages - 2 && data <= pages + 2
                                         return(
                                             isShow && 
                                             <li key={i}>

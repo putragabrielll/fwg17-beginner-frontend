@@ -47,6 +47,9 @@ const Register = () => {
             setAlertMessage(err.response.data.message)
             setIsHiddenAlert(false)
             setIsSuccess(false)
+            setTimeout(() => {
+                setIsHiddenAlert(true)
+            }, 2000)
         }
     }
 
