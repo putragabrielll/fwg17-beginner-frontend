@@ -2,29 +2,32 @@ import React from "react"
 import ChatBox from "../components/Chat"
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
-import ProductImage from "../assets/images/coffee1.png"
+import profilePicture from "../assets/images/coffee1.png" // untuk backup jika dari database tidak ada gambar
 import { FaRegUser } from "react-icons/fa"
 import { MdOutlineEmail, MdOutlinePhoneInTalk } from "react-icons/md"
-import { IoKeyOutline, IoLocationOutline } from "react-icons/io5";
+import { IoKeyOutline, IoLocationOutline } from "react-icons/io5"
 import { Link } from "react-router-dom"
 import axios from "axios"
 import Modals from "../components/Modals"
 
 const Profile = () => {
-    const [profile, setProfile] = React.useState({})
+    const [profile, setProfile] = React.useState({}) // get data awal
+    const token = window.localStorage.getItem("token")
+    const [previewPicture, setPreviewPicture] = React.useState()
+
+    // untuk alert
     const [alertMessage, setAlertMessage] = React.useState('')
     const [isHiddenAlert, setIsHiddenAlert] = React.useState(true)
     const [isSuccess, setIsSuccess] = React.useState(true)
-    const token = window.localStorage.getItem("token")
     
-    const getProfile = async() => { // logic untuk get data dari Back End
+    const getProfile = async() => { // logic untuk get data dari Back End pada saat page pertama di buka.
         setIsHiddenAlert(true)
         const {data} = await axios.get("http://localhost:8000/customer/profile", {
             headers: {
                 'Authorization' :  `Bearer ${token}`
             }
         })
-        console.log(data.results)
+        // console.log(data.results)
         setProfile(data.results)
     }
 
@@ -45,7 +48,7 @@ const Profile = () => {
             const {data} = await axios.patch("http://localhost:8000/customer/profile", form ,{
                 headers: {
                     'Content-Type' : 'multipart/form-data',
-                    'Authorization' :  `Bearer ${token}`
+                    'Authorization' : `Bearer ${token}`
                 }
             })
             setProfile(data.results)
@@ -54,14 +57,53 @@ const Profile = () => {
             setIsSuccess(true)
             setTimeout(() => {
                 setIsHiddenAlert(true)
-            }, 2000)
+            }, 3000)
         } catch(err) {
             setAlertMessage(err.response.data.message)
             setIsHiddenAlert(false)
             setIsSuccess(false)
             setTimeout(() => {
                 setIsHiddenAlert(true)
-            }, 2000)
+            }, 3000)
+        }
+    }
+
+    const chagePicture = (e) => { // logic untuk mereview image yg terbaru
+        const picture = URL.createObjectURL(e.target.files[0])
+        // console.log('url', reviewNewPicture)
+        setPreviewPicture(picture)
+    }
+
+    const uploadPicture = async(e) => {
+        try{
+            e.preventDefault()
+            const [file] = e.target.picture.files // files adalah sebuah array, makanya di line 72 files nya dengan index ke [0].
+            if(file){
+                const form = new FormData()
+                form.append('picture', file)
+                const {data} = await axios.patch("http://localhost:8000/customer/profile", form ,{
+                    headers: {
+                        'Content-Type' : 'multipart/form-data',
+                        'Authorization' : `Bearer ${token}`
+                    }
+                })
+                setProfile(data.results)
+                setAlertMessage(data.message)
+                setIsHiddenAlert(false)
+                setIsSuccess(true)
+                setTimeout(() => {
+                    setIsHiddenAlert(true)
+                    setPreviewPicture(null)
+                }, 3000)
+            }
+        } catch(err) {
+            setAlertMessage(err.response.data.message)
+            setIsHiddenAlert(false)
+            setIsSuccess(false)
+            setTimeout(() => {
+                setIsHiddenAlert(true)
+                setPreviewPicture(null)
+            }, 3000)
         }
     }
 
@@ -82,10 +124,19 @@ const Profile = () => {
                     <div className="md:w-1/4 border flex flex-col items-center h-1/5 gap-4 p-2">
                         <h3 className="text-xl">{profile.fullName}</h3>
                         <span className="text-gray-500">{profile.email}</span>
-                        <div className="bg-black h-[100px] rounded-full flex overflow-hidden">
-                            <img className="object-cover flex-1" src={ProductImage} alt="Logo Coffee" />
-                        </div>
-                        <button className="px-5 py-2 bg-orange-500 border border-orange-500 rounded-md text-black w-full" type="submit">Upload New Photo</button>
+                        <form onSubmit={uploadPicture} className="flex flex-col gap-4 justify-center items-center">
+                            <label className="bg-black h-[100px] w-[100px] rounded-full flex overflow-hidden relative">
+                                {(!previewPicture && profile.picture) && <img className="object-cover flex-1" src={`http://localhost:8000/uploads/profile/${profile.picture}` || profilePicture} alt="Picture" />}
+                                {previewPicture && 
+                                    <>
+                                        <img className="object-cover flex-1" src={previewPicture} alt="Picture" /> 
+                                        <div className="absolute w-full h-full bg-[rgba(0,0,0,0.3)]" />
+                                    </>
+                                }
+                                <input multiple={false} onChange={chagePicture} type="file" name="picture" className="hidden" />
+                            </label>
+                            <button className="px-5 py-2 bg-orange-500 border border-orange-500 rounded-md text-black w-full" type="submit">Upload New Photo</button>
+                        </form>
                         <div className="text-gray-500 font-thin">Since <span className="font-bold">20 January 2022</span></div>
                     </div>
 

@@ -16,14 +16,12 @@ const Product = () => {
     const [pages, setPages] = React.useState(1)
     const [pagesArr, setPagesArr] = React.useState([]) // [1,2,3,4,....,9] isi nya nanti
     const [totalPages, setTotalPages] = React.useState(1)
-    const [isRecomended, setIsRecomended] = React.useState(false)
 
-    const getProduct = async() => {
-        const { data } = await axios.get("http://localhost:8000/products", {
-            params: {
-                best_seller: isRecomended
-            }
-        })
+    const [isRecomended, setIsRecomended] = React.useState(false) // filter Best Seller
+    const [filterdata, setFilterData] = React.useState('') // search
+
+    const getProduct = async() => { // get pertama saat buka page
+        const { data } = await axios.get("http://localhost:8000/products")
         // console.log(isRecomended)
         setProducts(data.results)
         setPages(data.pageInfo.currentPage)
@@ -35,7 +33,22 @@ const Product = () => {
         setTotalPages(data.pageInfo.totalPage)
     }
 
-    const changePages = async(e) => {
+    const filterData = async(e) => { // filter data
+        e.preventDefault()
+        const {value: search} = e.target.search
+        setFilterData(search)
+
+        const { data } = await axios.get("http://localhost:8000/products", {
+            params: {
+                filter: filterdata,
+                best_seller: isRecomended
+            }
+        })
+        setProducts(data.results)
+        setPages(data.pageInfo.currentPage)
+    }
+
+    const changePages = async(e) => { // next page
         const { data } = await axios.get(`http://localhost:8000/products?page=${e}`)
         setProducts(data.results)
         setPages(data.pageInfo.currentPage)
@@ -43,6 +56,7 @@ const Product = () => {
 
     useEffect(() => {
         getProduct()
+        filterData()
         // console.log('apa aja')
     }, [])
 
@@ -146,12 +160,12 @@ const Product = () => {
                     {/* Bagian bawah */}
                     <div className="flex gap-4">
                         {/* Bagian filter */}
-                        <div className="w-1/4 h-screen bg-black text-white rounded-xl hidden md:block">
+                        <form onSubmit={filterData} className="w-1/4 h-screen bg-black text-white rounded-xl hidden md:block">
                             {/* Sebelumnya form */}
                             <div className="mx-3 flex flex-col gap-6 my-6">
                                 <div className="flex gap-4">
                                     <span className="flex-1">Filter</span>
-                                    <button className="flex-1" type="reset">Reset Filter</button>
+                                    <button onClick={getProduct} className="flex-1" type="reset">Reset Filter</button>
                                 </div>
                                 <div className="flex flex-col gap-2">
                                     <label htmlFor="search">Search</label>
@@ -205,16 +219,16 @@ const Product = () => {
                                         <input className="h-11 w-full" type="range" name="favorite" id="buy-get" />
                                     </div>
                                 </div>
-                                <button onClick={()=>getProduct()} className="px-5 py-2 bg-orange-500 border border-orange-500 rounded-md text-black transition duration-300 ease-in-out hover:scale-110" >Apply Filter</button>
+                                <button className="px-5 py-2 bg-orange-500 border border-orange-500 rounded-md text-black transition duration-300 ease-in-out hover:scale-110" >Apply Filter</button>
                             </div>
-                        </div>
+                        </form>
 
                         {/* Bagian product */}
                         <div className="flex-1 flex flex-col">
                             {/* Products */}
                             <div className="grid grid-cols-2 gap-4">
                                 {products?.map((data, i) => {
-                                    let images = data.image ? `http://localhost:8000/uploads/${data.image}` : null
+                                    let images = data.image ? `http://localhost:8000/uploads/products/${data.image}` : null
                                     return (
                                         <ProductCard key={i} image={images || PlacaHolderImage} ShowCardButton={true} name={data.name} discount={data.price} price={data.price - data.discount} description={data.description} id={data.id} />
                                     )
