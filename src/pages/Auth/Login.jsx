@@ -25,6 +25,7 @@ const Login = () => {
     }, [token, navigation]) // [token] artinya saat kondisi memiliki token, makan if yg di atas di jalankan.
 
     const processLogin = async (event) => {
+        console.log(event)
         try {
             event.preventDefault()
             setIsHiddenAlert(true) // Hiden alert pada saat awalnya login salah dan akan menampilkan alert kembali saat percobaan ke 2.

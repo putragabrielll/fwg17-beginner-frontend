@@ -1,5 +1,5 @@
-import axios from "axios"
 import React from "react"
+import axios from "axios"
 import { useEffect } from "react"
 import ChatBox from "../components/Chat"
 import Footer from "../components/Footer"
@@ -18,7 +18,6 @@ const Product = () => {
     const [totalPages, setTotalPages] = React.useState(1)
 
     const [isRecomended, setIsRecomended] = React.useState(false) // filter Best Seller
-    const [filterdata, setFilterData] = React.useState('') // search
 
     const getProduct = async() => { // get pertama saat buka page
         const { data } = await axios.get("http://localhost:8000/products")
@@ -34,13 +33,14 @@ const Product = () => {
     }
 
     const filterData = async(e) => { // filter data
-        e.preventDefault()
-        const {value: search} = e.target.search
-        setFilterData(search)
+        if(e){
+            e.preventDefault()
+        }
+        const {value: search} = e ? e.target.search : ''
 
         const { data } = await axios.get("http://localhost:8000/products", {
             params: {
-                filter: filterdata,
+                filter: search,
                 best_seller: isRecomended
             }
         })
@@ -246,8 +246,13 @@ const Product = () => {
                                     }
 
                                     {/* Pagination 1, 2, 3 dan seterusnya */}
-                                    {pagesArr?.map((data,i)=>{
+                                    {pagesArr?.map((data,i)=>{ // [1,2,3,4.....,9]
                                         let isShow =  data >= pages - 2 && data <= pages + 2
+                                        // data = 1
+                                        // page = 1
+                                        // 1 >= -1 && 1 <= 3
+                                        // console.log(data)
+                                        // console.log(isShow)
                                         return(
                                             isShow && 
                                             <li key={i}>
