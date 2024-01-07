@@ -10,36 +10,49 @@ import { Link } from "react-router-dom"
 import axios from "axios"
 import Modals from "../components/Modals"
 
+// redux get token
+import { useDispatch, useSelector } from "react-redux"
+import { setProfile as setProfileData } from "../redux/reducers/profile" // get data user
+
 const Profile = () => {
-    const [profile, setProfile] = React.useState({}) // get data awal
-    const token = window.localStorage.getItem("token")
+    // const [profile, setProfile] = React.useState({}) // get data awal
+    // const token = window.localStorage.getItem("token")
     const [previewPicture, setPreviewPicture] = React.useState()
 
     // untuk alert
     const [alertMessage, setAlertMessage] = React.useState('')
     const [isHiddenAlert, setIsHiddenAlert] = React.useState(true)
     const [isSuccess, setIsSuccess] = React.useState(true)
+
+    // redux
+    const token = useSelector(state => state.auth.token) // get token from redux.
+    const dispatch = useDispatch()
+    const profile = useSelector(state => state.profile.data) // get data user from redux
     
-    const getProfile = async() => { // logic untuk get data dari Back End pada saat page pertama di buka.
-        setIsHiddenAlert(true)
-        const {data} = await axios.get("http://localhost:8000/customer/profile", {
-            headers: {
-                'Authorization' :  `Bearer ${token}`
-            }
-        })
-        // console.log(data.results)
-        setProfile(data.results)
-    }
+    // tidak mengambil data dari getProfile lagi karena sudah menggunakan redux.
+    // const getProfile = async() => { // logic untuk get data dari Back End pada saat page pertama di buka.
+    //     setIsHiddenAlert(true)
+    //     const {data} = await axios.get("http://localhost:8000/customer/profile", {
+    //         headers: {
+    //             'Authorization' :  `Bearer ${token}`
+    //         }
+    //     })
+    //     // console.log(data.results)
+    //     // setProfile(data.results)
+    //     dispatch(setProfileData(data.results))
+    // }
 
-    React.useEffect(() => {
-        getProfile()
-    }, [])
+    // tidak menggunakan userEffect lagi karena sudah menggunakan redux.
+    // React.useEffect(() => {
+    //     // getProfile()
+    // }, [])
 
-    const updateProfileData = async(e) => { // logic untuk update data ke Back End.
+    const updateProfileData = async(e) => { // logic untuk update data form ke Back End.
         try {
             e.preventDefault()
             const form = new FormData()
             const dataUpdate = ['fullName', 'email', 'password', 'phoneNumber', 'address']
+            
             dataUpdate.forEach((field) => {
                 if(e.target[field]){
                     form.append(field, e.target[field].value)
@@ -51,7 +64,8 @@ const Profile = () => {
                     'Authorization' : `Bearer ${token}`
                 }
             })
-            setProfile(data.results)
+            // setProfile(data.results)
+            dispatch(setProfileData(data.results))
             setAlertMessage(data.message)
             setIsHiddenAlert(false)
             setIsSuccess(true)
@@ -74,7 +88,7 @@ const Profile = () => {
         setPreviewPicture(picture)
     }
 
-    const uploadPicture = async(e) => {
+    const uploadPicture = async(e) => { // logic untuk update picture profile
         try{
             e.preventDefault()
             const [file] = e.target.picture.files // files adalah sebuah array, makanya di line 72 files nya dengan index ke [0].
@@ -87,7 +101,8 @@ const Profile = () => {
                         'Authorization' : `Bearer ${token}`
                     }
                 })
-                setProfile(data.results)
+                // setProfile(data.results)
+                dispatch(setProfileData(data.results))
                 setAlertMessage(data.message)
                 setIsHiddenAlert(false)
                 setIsSuccess(true)
@@ -124,6 +139,7 @@ const Profile = () => {
                     <div className="md:w-1/4 border flex flex-col items-center h-1/5 gap-4 p-2">
                         <h3 className="text-xl">{profile.fullName}</h3>
                         <span className="text-gray-500">{profile.email}</span>
+
                         <form onSubmit={uploadPicture} className="flex flex-col gap-4 justify-center items-center">
                             <label className="bg-black h-[100px] w-[100px] rounded-full flex overflow-hidden relative">
                                 {(!previewPicture && profile.picture) && <img className="object-cover flex-1" src={`http://localhost:8000/uploads/profile/${profile.picture}` || profilePicture} alt="Picture" />}
@@ -133,10 +149,11 @@ const Profile = () => {
                                         <div className="absolute w-full h-full bg-[rgba(0,0,0,0.3)]" />
                                     </>
                                 }
-                                <input multiple={false} onChange={chagePicture} type="file" name="picture" className="hidden" />
+                                <input multiple={false} accept=".jpg, .png, .jpeg" onChange={chagePicture} type="file" name="picture" className="hidden" />
                             </label>
                             <button className="px-5 py-2 bg-orange-500 border border-orange-500 rounded-md text-black w-full" type="submit">Upload New Photo</button>
                         </form>
+
                         <div className="text-gray-500 font-thin">Since <span className="font-bold">20 January 2022</span></div>
                     </div>
 

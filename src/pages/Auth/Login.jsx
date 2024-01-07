@@ -1,12 +1,16 @@
 import React from "react"
 import axios from "axios"
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { Link } from "react-router-dom"
 import LogoCoffee from '../../assets/images/logo-coffee.png'
 import { FaGoogle, FaFacebookF } from 'react-icons/fa'
 import { MdOutlineEmail } from 'react-icons/md'
 import { RiLockPasswordLine } from 'react-icons/ri'
 import Modals from "../../components/Modals"
+
+// redux action
+import { useDispatch, useSelector } from "react-redux"
+import { login as loginAction } from "../../redux/reducers/auth"
 
 
 const Login = () => {
@@ -15,8 +19,12 @@ const Login = () => {
     const [alertMessage, setAlertMessage] = React.useState('')
     const [isHiddenAlert, setIsHiddenAlert] = React.useState(true)
     const [isSuccess, setIsSuccess] = React.useState(true)
-    const [token, setToken] = React.useState(window.localStorage.getItem("token"))
+    // const [token, setToken] = React.useState(window.localStorage.getItem("token"))
     const navigation = useNavigate()
+
+    // redux
+    const token = useSelector(state => state.auth.token) // gantinya mengambil token di line 22 dari window.localStorage.getItem("token")
+    const dispatch = useDispatch()
 
     React.useEffect(() => { // untuk mengecek jika memiliki token atau sudah login maka tidak bisa akses page login.
         if(token){
@@ -31,7 +39,7 @@ const Login = () => {
             setIsHiddenAlert(true) // Hiden alert pada saat awalnya login salah dan akan menampilkan alert kembali saat percobaan ke 2.
             const { value: email } = event.target.email
             const { value: password } = event.target.password
-            const form = new URLSearchParams () // form dalam bentuk x-www-form-urlencoded
+            const form = new URLSearchParams() // form dalam bentuk x-www-form-urlencoded
             form.append ('password', password)
             form.append ( 'email', email) 
 
@@ -44,9 +52,10 @@ const Login = () => {
             setIsSuccess(true)
 
             setTimeout(()=>{
-                setToken(resultToken) // di pindahin karena setToken akan di isi ketikan menunggu waktu 2 detik dulu, agar useEffect di atas bisa terpakai dan alert bisa terpanggil.
-                window.localStorage.setItem("token", resultToken) // memberikan token ke local storage pada browser.
+                // setToken(resultToken) // di pindahin karena setToken akan di isi ketikan menunggu waktu 2 detik dulu, agar useEffect di atas bisa terpakai dan alert bisa terpanggil.
+                // window.localStorage.setItem("token", resultToken) // memberikan token ke local storage pada browser.
                 // window.location = '/' // hindari penggunaan window.location dan menggantinya dengan menggunakan navigation / useNavigate.
+                dispatch(loginAction(resultToken))
                 navigation('/')
             }, 2000)
         } catch (err) {

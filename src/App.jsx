@@ -1,5 +1,7 @@
 // import React from "react"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
+
+// pages and components
 import Login from "./pages/Auth/Login"
 import Register from "./pages/Auth/Register"
 import ForgotPassword from "./pages/Auth/ForgotPassword"
@@ -11,6 +13,10 @@ import HistoryOrder from "./pages/HistoryOrder"
 import DetailOrder from "./pages/DetailOrder"
 import Profile from "./pages/Profile"
 import PrivateRoute from "./components/PrivateRoute"
+
+// redux integration
+import { Provider } from "react-redux"
+import { store } from "./redux/store"
 
 
 const router = createBrowserRouter([
@@ -59,7 +65,9 @@ const router = createBrowserRouter([
 const App = () => {
   return (
     <>
-      <RouterProvider router={router} />
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
     </>
   );
 }

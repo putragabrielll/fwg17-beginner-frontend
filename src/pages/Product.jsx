@@ -9,7 +9,7 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa"
 import Karakter1 from "../assets/images/karakter1.png"
 import Karakter2 from "../assets/images/karakter2.png"
 import ProductCard from "../components/ProductCard"
-import PlacaHolderImage from "../assets/images/img-placeholder.jpeg"
+import PlacaHolderImage from "../assets/images/img-placeholder.jpeg" // untuk backup jika dari database tidak ada gambar
 
 const Product = () => {
     const [products, setProducts] = React.useState([])// [7- 12]
