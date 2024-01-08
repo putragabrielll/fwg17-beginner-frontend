@@ -16,7 +16,8 @@ import PrivateRoute from "./components/PrivateRoute"
 
 // redux integration
 import { Provider } from "react-redux"
-import { store } from "./redux/store"
+import { persistor, store } from "./redux/store"
+import { PersistGate } from "redux-persist/integration/react"
 
 
 const router = createBrowserRouter([
@@ -66,7 +67,9 @@ const App = () => {
   return (
     <>
       <Provider store={store}>
-        <RouterProvider router={router} />
+        <PersistGate persistor={persistor}>
+          <RouterProvider router={router} />
+        </PersistGate>
       </Provider>
     </>
   );
