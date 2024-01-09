@@ -1,14 +1,28 @@
+import React from "react"
+import axios from "axios"
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
 import ChatBox from "../components/Chat"
 import { FaCircleCheck } from "react-icons/fa6"
-import { MdOutlineShoppingCart } from "react-icons/md"
 import { FaStar, FaArrowLeft, FaArrowRight } from "react-icons/fa"
-import ProductImage from "../assets/images/coffee1.png"
 import Map from "../assets/images/Map.png"
 import Manager from "../assets/images/manager.png"
+import ProductCard from "../components/ProductCard"
+import PlacaHolderImage from "../assets/images/img-placeholder.jpeg" // untuk backup jika dari database tidak ada gambar
 
 const Home = () => {
+    const [products, setProducts] = React.useState([])// [7- 12]
+
+    const getProduct = async() => { // get pertama saat buka page
+        const { data } = await axios.get("http://localhost:8000/products?sortby=createdAt&order=desc&limits=4")
+        // console.log(isRecomended)
+        setProducts(data.results)
+    }
+
+    React.useEffect(() => {
+        getProduct()
+    }, [])
+
     return (
         <>
             <div>
@@ -104,108 +118,15 @@ const Home = () => {
                     </div>
 
                     {/* Bagian bawah */}
-                    <div className="flex-1 flex flex-col md:flex-row mt-10 md:-mt-10 mx-4 md:mx-36 gap-5 justify-center items-center">
-
-                        <div className="">
-                            <div className="flex-1 relative">
-                                <img className="w-full" src={ProductImage} alt="" />
-                                <div className="bg-white mx-2 absolute -mt-10 shadow-2xl">
-                                    <h1 className="text-2xl my-3.5 mx-2">Hazelnut Latte</h1>
-                                    <p className="text-gray-600 my-3.5 mx-2">You can explore the menu that we provide with fun and have their own taste and make your day better.</p>
-                                    <h2 className="text-orange-500 text-2xl my-3.5 mx-2">IDR 20.000</h2>
-
-                                    <div className="flex items-center mx-2 my-2 gap-4">
-                                        <div className="flex-1">
-                                            <button className="px-5 py-2 bg-orange-500 border border-orange-500 rounded-md w-full transition duration-300 ease-in-out hover:scale-110">Buy</button>
-                                        </div>
-                                        <div className="w-1/4">
-                                            <button className="px-5 py-2 border border-orange-500 rounded-md w-full flex justify-center transition duration-300 ease-in-out hover:scale-110">
-                                                <MdOutlineShoppingCart className="text-orange-500 text-2xl" />
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <div className="h-[200px]"></div>
+                    <div className="flex-1 flex flex-col md:flex-row mx-6 justify-center items-center">
+                        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                            {products?.map((data, i) => {
+                                let images = data.image ? `http://localhost:8000/uploads/products/${data.image}` : null
+                                return (
+                                    <ProductCard key={i} image={images || PlacaHolderImage} ShowCardButton={true} name={data.name} discount={data.price} price={data.price - data.discount} description={data.description} id={data.id} />
+                                )
+                            })}
                         </div>
-
-                        <div className="">
-                            <div className="flex-1 relative">
-                                <img className="w-full" src={ProductImage} alt="" />
-                                <div className="bg-white mx-2 absolute -mt-10 shadow-2xl">
-                                    <h1 className="text-2xl my-3.5 mx-2">Hazelnut Latte</h1>
-                                    <p className="text-gray-600 my-3.5 mx-2">You can explore the menu that we provide with fun and have their own taste and make your day better.</p>
-                                    <h2 className="text-orange-500 text-2xl my-3.5 mx-2">IDR 20.000</h2>
-
-                                    <div className="flex items-center mx-2 my-2 gap-4">
-                                        <div className="flex-1">
-                                            <button className="px-5 py-2 bg-orange-500 border border-orange-500 rounded-md w-full transition duration-300 ease-in-out hover:scale-110">Buy</button>
-                                        </div>
-                                        <div className="w-1/4">
-                                            <button className="px-5 py-2 border border-orange-500 rounded-md w-full flex justify-center transition duration-300 ease-in-out hover:scale-110">
-                                                <MdOutlineShoppingCart className="text-orange-500 text-2xl" />
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <div className="h-[200px]"></div>
-                        </div>
-
-                        <div className="">
-                            <div className="flex-1 relative">
-                                <img className="w-full" src={ProductImage} alt="" />
-                                <div className="bg-white mx-2 absolute -mt-10 shadow-2xl">
-                                    <h1 className="text-2xl my-3.5 mx-2">Hazelnut Latte</h1>
-                                    <p className="text-gray-600 my-3.5 mx-2">You can explore the menu that we provide with fun and have their own taste and make your day better.</p>
-                                    <h2 className="text-orange-500 text-2xl my-3.5 mx-2">IDR 20.000</h2>
-
-                                    <div className="flex items-center mx-2 my-2 gap-4">
-                                        <div className="flex-1">
-                                            <button className="px-5 py-2 bg-orange-500 border border-orange-500 rounded-md w-full transition duration-300 ease-in-out hover:scale-110">Buy</button>
-                                        </div>
-                                        <div className="w-1/4">
-                                            <button className="px-5 py-2 border border-orange-500 rounded-md w-full flex justify-center transition duration-300 ease-in-out hover:scale-110">
-                                                <MdOutlineShoppingCart className="text-orange-500 text-2xl" />
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <div className="h-[200px]"></div>
-                        </div>
-
-                        <div className="">
-                            <div className="flex-1 relative">
-                                <img className="w-full" src={ProductImage} alt="" />
-                                <div className="bg-white mx-2 absolute -mt-10 shadow-2xl">
-                                    <h1 className="text-2xl my-3.5 mx-2">Hazelnut Latte</h1>
-                                    <p className="text-gray-600 my-3.5 mx-2">You can explore the menu that we provide with fun and have their own taste and make your day better.</p>
-                                    <h2 className="text-orange-500 text-2xl my-3.5 mx-2">IDR 20.000</h2>
-
-                                    <div className="flex items-center mx-2 my-2 gap-4">
-                                        <div className="flex-1">
-                                            <button className="px-5 py-2 bg-orange-500 border border-orange-500 rounded-md w-full transition duration-300 ease-in-out hover:scale-110">Buy</button>
-                                        </div>
-                                        <div className="w-1/4">
-                                            <button className="px-5 py-2 border border-orange-500 rounded-md w-full flex justify-center transition duration-300 ease-in-out hover:scale-110">
-                                                <MdOutlineShoppingCart className="text-orange-500 text-2xl" />
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <div className="h-[200px]"></div>
-                        </div>
-
                     </div>
                 </div>
 

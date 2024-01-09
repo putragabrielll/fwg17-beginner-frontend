@@ -92,7 +92,7 @@ const DetailProduct = () => {
                         <div className="flex justify-between gap-2">
                             {productsSize?.map((data, i) => {
                                 return (
-                                    <button key={i} className="flex-1 px-4 md:px-16 py-2 bg-transparent border border-orange-500 rounded-sm">{data.size}</button>
+                                    <button key={i} name="productsSize" type="radio" value={data.size} className="flex-1 px-4 md:px-16 py-2 bg-transparent border border-orange-500 rounded-sm">{data.size}</button>
                                 )
                             })}
                         </div>
@@ -100,7 +100,7 @@ const DetailProduct = () => {
                         <div className="flex justify-between gap-2">
                             {productsVariant?.map((data, i) => {
                                 return(
-                                    <button key={i} className="flex-1 px-4 md:px-32 py-2 bg-transparent border border-orange-500 rounded-sm">{data.name}</button>
+                                    <button key={i} name="productsVariant" type="radio" value={data.size} className="flex-1 px-4 md:px-32 py-2 bg-transparent border border-orange-500 rounded-sm">{data.name}</button>
                                 )
                             })}
                         </div>
