@@ -6,6 +6,7 @@ import storage from "redux-persist/lib/storage"
 
 import auth from "./auth" // reducer auth login
 import profile from "./profile" // reducer auth profile
+import cart from "./cart" // reducer cart
 
 const authConfig = {
     key: 'auth',
@@ -14,7 +15,8 @@ const authConfig = {
 
 const reducer = combineReducers({
     auth: persistReducer(authConfig, auth),
-    profile
+    profile,
+    cart
 })
 
 export default reducer

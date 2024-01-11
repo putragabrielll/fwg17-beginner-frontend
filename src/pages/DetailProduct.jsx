@@ -4,18 +4,50 @@ import { useEffect } from "react"
 import ChatBox from "../components/Chat"
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
-import { Link, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import ProductImage from "../assets/images/coffee1.png"
 import { FaStar, FaMinus, FaPlus, FaArrowRight } from "react-icons/fa"
 import { MdOutlineShoppingCart } from "react-icons/md"
 import ProductCard from "../components/ProductCard"
 import PlacaHolderImage from "../assets/images/img-placeholder.jpeg" // untuk backup jika dari database tidak ada gambar
 
+// redux get token
+import { useDispatch } from "react-redux"
+import { addToCart as addToCartAction } from "../redux/reducers/cart"
+
 const DetailProduct = () => {
     const {id} = useParams()
     const [products, setProducts] = React.useState([])
     const [productsSize, setSizeProducts] = React.useState([])
     const [productsVariant, setVariantProducts] = React.useState([])
+    const [qty, setQty] = React.useState(0)
+
+    const navigate = useNavigate()
+    console.log(products)
+
+    // redux
+    const dispatch = useDispatch()
+    
+
+    // keranjang pemensanan
+    const [selectProductCart, setSelectProductCart] = React.useState({
+        product: null,
+        variant: null,
+        size: null
+    })
+
+    // 
+    const plusButton = () =>  {
+        setQty(qty + 1)
+    }
+
+    const minusButton = () => {
+        if(qty <= 0){
+            setQty(0)
+        }else {
+            setQty(qty - 1)
+        }
+    }
 
     const getProduct = async() => {
         const { data: dataProducts } = await axios.get(`http://localhost:8000/products/${id}`)
@@ -23,9 +55,20 @@ const DetailProduct = () => {
         const { data: variantProducts } = await axios.get(`http://localhost:8000/product-variant`)
 
         // console.log(dataProducts.results)
-        setProducts(dataProducts.results)
-        setSizeProducts(sizeProducts.results)
-        setVariantProducts(variantProducts.results)
+        setProducts(dataProducts.results) // get data by id
+        setSizeProducts(sizeProducts.results) // get size
+        setVariantProducts(variantProducts.results) // get variant
+
+        setSelectProductCart({
+            product: dataProducts.results, // {}
+            variant: variantProducts.results[0], // []
+            size: sizeProducts.results[0] // []
+        })
+    }
+
+    const addChart = () => {
+        dispatch(addToCartAction(selectProductCart))
+        navigate('/checkout')
     }
 
     useEffect(() => {
@@ -55,7 +98,7 @@ const DetailProduct = () => {
                 <section className="flex-1">
                     <div className="max-w-xl flex flex-col gap-4">
                         <div className="py-2">
-                            <span className="px-2 py-2 bg-red-600 border border-red-600 text-white rounded-full">FLASH SALE!</span>
+                            {!products?.discount ? null : <span className="px-2 py-2 bg-red-600 border border-red-600 text-white rounded-full">FLASH SALE!</span>}
                         </div>
                         <h1 className="text-4xl">{products?.name}</h1>
                         <div className="flex items-center gap-2">
@@ -84,15 +127,15 @@ const DetailProduct = () => {
                             {products?.description}
                         </span>
                         <div className="flex items-center gap-5">
-                            <button className="bg-transparent border border-orange-500 rounded-sm p-2"><FaMinus className="text-sm" /></button>
-                            <div>1</div>
-                            <button className="bg-orange-500 border border-orange-500 rounded-sm p-2"><FaPlus className="text-sm" /></button>
+                            <button onClick={minusButton} className="bg-transparent border border-orange-500 rounded-sm p-2"><FaMinus className="text-sm" /></button>
+                            <div>{qty}</div>
+                            <button onClick={plusButton} className="bg-orange-500 border border-orange-500 rounded-sm p-2"><FaPlus className="text-sm" /></button>
                         </div>
                         <span className="font-semibold text-lg">Choose Size</span>
                         <div className="flex justify-between gap-2">
                             {productsSize?.map((data, i) => {
                                 return (
-                                    <button key={i} name="productsSize" type="radio" value={data.size} className="flex-1 px-4 md:px-16 py-2 bg-transparent border border-orange-500 rounded-sm">{data.size}</button>
+                                    <button key={i} onClick={() => setSelectProductCart({...selectProductCart, size: data})} value={data.id} className={`flex-1 px-4 md:px-16 py-2 border rounded-sm transition duration-300 ease-in-out hover:scale-110 ${(selectProductCart.size.id === data.id ? 'bg-orange-500 border-orange-500' : 'bg-transparent border-orange-500')}`}>{data.size}</button>
                                 )
                             })}
                         </div>
@@ -100,7 +143,7 @@ const DetailProduct = () => {
                         <div className="flex justify-between gap-2">
                             {productsVariant?.map((data, i) => {
                                 return(
-                                    <button key={i} name="productsVariant" type="radio" value={data.size} className="flex-1 px-4 md:px-32 py-2 bg-transparent border border-orange-500 rounded-sm">{data.name}</button>
+                                    <button key={i} onClick={() => setSelectProductCart({...selectProductCart, variant: data})} value={data.id} className={`flex-1 px-4 md:px-32 py-2 border rounded-sm transition duration-300 ease-in-out hover:scale-110' ${(selectProductCart.variant.id === data.id ? 'bg-orange-500 border-orange-500' : 'bg-transparent border-orange-500')}`}>{data.name}</button>
                                 )
                             })}
                         </div>
@@ -108,7 +151,7 @@ const DetailProduct = () => {
                             <button className="w-6/12 md:w-1/4 md:px-32 py-2 bg-orange-500 border border-orange-500 rounded-md transition duration-300 ease-in-out hover:scale-110">
                                 <Link to={"/checkout"}>Buy</Link>
                             </button>
-                            <button className="flex-1 flex gap-3 justify-center items-center md:px-20 border border-orange-500 rounded-md transition duration-300 ease-in-out hover:scale-110">
+                            <button onClick={addChart} className="flex-1 flex gap-3 justify-center items-center md:px-20 border border-orange-500 rounded-md transition duration-300 ease-in-out hover:scale-110">
                                 <MdOutlineShoppingCart className="text-orange-500 text-xl" />
                                 add to cart
                             </button>

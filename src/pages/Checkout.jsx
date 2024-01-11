@@ -5,7 +5,7 @@ import { FaPlus, FaRegTimesCircle, FaRegUser } from "react-icons/fa"
 import { IoLocationOutline } from "react-icons/io5"
 import { MdOutlineEmail } from "react-icons/md"
 import { Link } from "react-router-dom"
-import ProductImage from "../assets/images/coffee1.png"
+import PlacaHolderImage from "../assets/images/img-placeholder.jpeg" // untuk backup jika dari database tidak ada gambar
 import BRI from "../assets/images/Bank BRI.png"
 import DANA from "../assets/images/DANA.png"
 import BCA from "../assets/images/Bank BCA.png"
@@ -13,7 +13,15 @@ import GOPAY from "../assets/images/GoPay.png"
 import OVO from "../assets/images/OVO.png"
 import PAYPAL from "../assets/images/PayPal.png"
 
+// redux
+import { useSelector } from "react-redux"
+
 const CheckOut = () => {
+    
+    // redux
+    const dataCart = useSelector(state => state.cart.data)
+    // console.log(dataCart)
+
     return (
         <>
             <div className="bg-black">
@@ -41,73 +49,49 @@ const CheckOut = () => {
                         </div>
 
                         <div className="flex-1 flex flex-col gap-4">
-                            {/* Produk 1 */}
-                            <div className="flex bg-gray-100 p-2 gap-4 pr-8">
-                                {/* Bagian kiri */}
-                                <div className="flex h-[170px]">
-                                    <img className="object-fill" src={ProductImage} alt="" />
-                                </div>
-                                {/* Bagian tengah */}
-                                <div className="flex-1 flex flex-col gap-4">
-                                    <div className="pt-2">
-                                        <span className="px-1 py-1 bg-red-600 border border-red-600 text-white rounded-full">FLASH SALE!</span>
-                                    </div>
-                                    <h1 className="text-2xl">Hazelnut Latte</h1>
-                                    <div className="flex text-gray-600 gap-1 md:gap-3 text-lg">
-                                        <span>2 pcs</span>
-                                        <span>|</span>
-                                        <span>Reguler</span>
-                                        <span>|</span>
-                                        <span>Ice</span>
-                                        <span>|</span>
-                                        <span>Dine In</span>
-                                    </div>
-                                    <div className="flex items-center gap-2">
-                                        <del className="text-red-600 text-md">IDR 20.000</del>
-                                        <span className="text-orange-500 text-xl">IDR 10.000</span>
-                                    </div>
-                                </div>
-                                {/* Bagian kanan */}
-                                <div className="flex justify-start items-center">
-                                    <button className="flex justify-center">
-                                        <FaRegTimesCircle className="text-red-600 text-xl" />
-                                    </button>
-                                </div>
-                            </div>
-
-                            {/* Produk 2 */}
-                            <div className="flex bg-gray-100 p-2 gap-4 pr-8">
-                                {/* Bagian kiri */}
-                                <div className="flex h-[170px]">
-                                    <img className="object-fill" src={ProductImage} alt="" />
-                                </div>
-                                {/* Bagian tengah */}
-                                <div className="flex-1 flex flex-col gap-4">
-                                    <div className="pt-2">
-                                        <span className="px-1 py-1 bg-red-600 border border-red-600 text-white rounded-full">FLASH SALE!</span>
-                                    </div>
-                                    <h1 className="text-2xl">Hazelnut Latte</h1>
-                                    <div className="flex text-gray-600 gap-1 md:gap-3 text-lg">
-                                        <span>2 pcs</span>
-                                        <span>|</span>
-                                        <span>Reguler</span>
-                                        <span>|</span>
-                                        <span>Ice</span>
-                                        <span>|</span>
-                                        <span>Dine In</span>
-                                    </div>
-                                    <div className="flex items-center gap-2">
-                                        <del className="text-red-600 text-md">IDR 20.000</del>
-                                        <span className="text-orange-500 text-xl">IDR 10.000</span>
-                                    </div>
-                                </div>
-                                {/* Bagian kanan */}
-                                <div className="flex justify-start items-center">
-                                    <button className="flex justify-center">
-                                        <FaRegTimesCircle className="text-red-600 text-xl" />
-                                    </button>
-                                </div>
-                            </div>
+                            {/* Produk */}
+                            {dataCart == [] ? <span>data tidak ada!</span> : 
+                                <>
+                                {dataCart?.map((data, i) => {
+                                    let images = data.product.image ? `http://localhost:8000/uploads/products/${data.product.image}` : null
+                                    let flashSale = data.product.discount == null ? null : <span className="px-1 py-1 bg-red-600 border border-red-600 text-white rounded-full">FLASH SALE!</span>
+                                    return(
+                                        <div key={i} className="flex bg-gray-100 p-2 gap-4 pr-8">
+                                            {/* Bagian kiri */}
+                                            <div className="flex h-[170px]">
+                                                <img className="object-fill" src={images || PlacaHolderImage} alt="" />
+                                            </div>
+                                            {/* Bagian tengah */}
+                                            <div className="flex-1 flex flex-col gap-4">
+                                                <div className="pt-2">
+                                                    {flashSale}
+                                                </div>
+                                                <h1 className="text-2xl">{data.product.name}</h1>
+                                                <div className="flex text-gray-600 gap-1 md:gap-3 text-lg">
+                                                    <span>2 pcs</span>
+                                                    <span>|</span>
+                                                    <span>{data.size.size}</span>
+                                                    <span>|</span>
+                                                    <span>{data.variant.name}</span>
+                                                    <span>|</span>
+                                                    <span>Dine In</span>
+                                                </div>
+                                                <div className="flex items-center gap-2">
+                                                    <del className="text-red-600 text-md">IDR {data.product.price}</del>
+                                                    <span className="text-orange-500 text-xl">IDR {((data.product.price)-(data.product.discount)).toLocaleString('id')}</span>
+                                                </div>
+                                            </div>
+                                            {/* Bagian kanan */}
+                                            <div className="flex justify-start items-center">
+                                                <button className="flex justify-center">
+                                                    <FaRegTimesCircle className="text-red-600 text-xl" />
+                                                </button>
+                                            </div>
+                                        </div>
+                                    )
+                                })}
+                                </>
+                            }
                         </div>
 
                     </div>
