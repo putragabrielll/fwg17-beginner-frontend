@@ -20,7 +20,16 @@ const CheckOut = () => {
     
     // redux
     const dataCart = useSelector(state => state.cart.data)
-    // console.log(dataCart)
+
+    const total = dataCart.reduce((prev, curr) => {
+        return prev + (curr.product.price - curr.product.discount) + curr.variant.additionalPrice + curr.size.additionalPrice
+    }, 0)
+    const ppn = dataCart.reduce((prev) => {
+        return prev + total * 0.10
+    }, 0)
+    const subTotal = dataCart.reduce((prev) => {
+        return prev + total + ppn
+    }, 0)
 
     return (
         <>
@@ -28,77 +37,78 @@ const CheckOut = () => {
                 <Navbar />
             </div>
 
-            <div className="my-20 px-4 md:px-32 flex flex-col gap-12">
-
-                <header className="flex-1">
+            <div className="flex">
+                <header className="flex-1 p-4 md:p-20">
                     <h1 className="text-4xl">Payment Details</h1>
                 </header>
+            </div>
 
+            <div className="mb-20 px-4 md:px-20 flex flex-col gap-12">
+                
                 <div className="flex-1 flex flex-col md:flex-row gap-6">
                     {/* Bagian kiri */}
-                    <div className="flex-1 flex flex-col gap-4">
+                    <div className="flex-1 h-full flex flex-col gap-4">
 
                         <div className="flex-1">
                             <div className="flex justify-between items-center">
                                 <span className="text-xl">Your Order</span>
-                                <button className="flex bg-orange-400 border border-orange-400 rounded-md p-2 items-center gap-2">
-                                    <FaPlus className="text-black text-sm" />
-                                    <p>Add Menu</p>
-                                </button>
+                                <Link to={"/product"}>
+                                    <button className="flex bg-orange-400 border border-orange-400 rounded-md p-2 items-center gap-2">
+                                        <FaPlus className="text-black text-sm" />
+                                        <p>Add Menu</p>
+                                    </button>
+                                </Link>
                             </div>
                         </div>
 
                         <div className="flex-1 flex flex-col gap-4">
                             {/* Produk */}
-                            {dataCart == [] ? <span>data tidak ada!</span> : 
-                                <>
-                                {dataCart?.map((data, i) => {
-                                    let images = data.product.image ? `http://localhost:8000/uploads/products/${data.product.image}` : null
-                                    let flashSale = data.product.discount == null ? null : <span className="px-1 py-1 bg-red-600 border border-red-600 text-white rounded-full">FLASH SALE!</span>
-                                    return(
-                                        <div key={i} className="flex bg-gray-100 p-2 gap-4 pr-8">
-                                            {/* Bagian kiri */}
-                                            <div className="flex h-[170px]">
-                                                <img className="object-fill" src={images || PlacaHolderImage} alt="" />
+                            {dataCart?.map((data, i) => {
+                                let images = data.product.image ? `http://localhost:8000/uploads/products/${data.product.image}` : null
+                                let flashSale = data.product.discount == null ? null : <span className="px-1 py-1 bg-red-600 border border-red-600 text-white rounded-full">FLASH SALE!</span>
+
+                                return(
+                                    <div key={i} className="flex bg-gray-100 p-2 gap-4 pr-8">
+                                        {/* Bagian kiri */}
+                                        <div className="flex w-36">
+                                            <img className="object-cover" src={images || PlacaHolderImage} alt="" />
+                                        </div>
+                                        {/* Bagian tengah */}
+                                        <div className="flex-1 flex flex-col gap-4">
+                                            <div className="pt-2">
+                                                {flashSale}
                                             </div>
-                                            {/* Bagian tengah */}
-                                            <div className="flex-1 flex flex-col gap-4">
-                                                <div className="pt-2">
-                                                    {flashSale}
-                                                </div>
-                                                <h1 className="text-2xl">{data.product.name}</h1>
-                                                <div className="flex text-gray-600 gap-1 md:gap-3 text-lg">
-                                                    <span>2 pcs</span>
-                                                    <span>|</span>
-                                                    <span>{data.size.size}</span>
-                                                    <span>|</span>
-                                                    <span>{data.variant.name}</span>
-                                                    <span>|</span>
-                                                    <span>Dine In</span>
-                                                </div>
-                                                <div className="flex items-center gap-2">
-                                                    <del className="text-red-600 text-md">IDR {data.product.price}</del>
-                                                    <span className="text-orange-500 text-xl">IDR {((data.product.price)-(data.product.discount)).toLocaleString('id')}</span>
-                                                </div>
+                                            <h1 className="text-2xl">{data.product.name}</h1>
+                                            <div className="flex text-gray-600 gap-1 md:gap-3 text-lg">
+                                                <span>2 pcs</span>
+                                                <span>|</span>
+                                                <span>{data.size.size}</span>
+                                                <span>|</span>
+                                                <span>{data.variant.name}</span>
+                                                <span>|</span>
+                                                <span>Dine In</span>
                                             </div>
-                                            {/* Bagian kanan */}
-                                            <div className="flex justify-start items-center">
-                                                <button className="flex justify-center">
-                                                    <FaRegTimesCircle className="text-red-600 text-xl" />
-                                                </button>
+                                            <div className="flex items-center gap-2">
+                                                <del className="text-red-600 text-md">IDR {data.product.price}</del>
+                                                <span className="text-orange-500 text-xl">IDR {((data.product.price)-(data.product.discount)).toLocaleString('id')}</span>
                                             </div>
                                         </div>
-                                    )
-                                })}
-                                </>
-                            }
+                                        {/* Bagian kanan */}
+                                        <div className="flex justify-start items-center">
+                                            <button className="flex justify-center">
+                                                <FaRegTimesCircle className="text-red-600 text-xl" />
+                                            </button>
+                                        </div>
+                                    </div>
+                                )
+                            })}
                         </div>
-
                     </div>
 
                     {/* Bagian kanan */}
-                    <div className="flex-1 flex flex-col gap-4">
-                        <div className="flex-1 flex justify-start items-center">
+                    <div className="flex-1 h-full flex flex-col gap-4">
+                        
+                        <div className="flex-1 flex justify-start items-center p-2">
                             <span className="text-xl">Total</span>
                         </div>
 
@@ -106,7 +116,7 @@ const CheckOut = () => {
                             <div className="flex flex-col gap-4">
                                 <div className="flex justify-between">
                                     <span className="text-xl text-gray-600">Order</span>
-                                    <span className="text-xl font-medium">Idr. 40.000</span>
+                                    <span className="text-xl font-medium">IDR {total.toLocaleString('id')}</span>
                                 </div>
                                 <div className="flex justify-between">
                                     <span className="text-xl text-gray-600">Delivery</span>
@@ -114,12 +124,12 @@ const CheckOut = () => {
                                 </div>
                                 <div className="flex justify-between">
                                     <span className="text-xl text-gray-600">Tax</span>
-                                    <span className="text-xl font-medium">Idr. 4000</span>
+                                    <span className="text-xl font-medium">IDR {ppn.toLocaleString('id')}</span>
                                 </div>
                                 <hr />
                                 <div className="flex justify-between">
                                     <span className="text-xl text-gray-600">Sub Total</span>
-                                    <span className="text-xl font-medium">Idr.44.000</span>
+                                    <span className="text-xl font-medium">IDR {subTotal.toLocaleString('id')}</span>
                                 </div>
                                 <button className="px-5 py-2 bg-orange-500 border border-orange-500 rounded-md text-black transition duration-300 ease-in-out hover:scale-110"><Link to={"/history-order"}>Checkout</Link></button>
                                 <span className="text-gray-500">We Accept</span>

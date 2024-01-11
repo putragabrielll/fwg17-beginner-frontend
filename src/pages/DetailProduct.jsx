@@ -25,11 +25,10 @@ const DetailProduct = () => {
     const navigate = useNavigate()
     console.log(products)
 
-    // redux
+    // redux untuk passing data ke redux
     const dispatch = useDispatch()
     
-
-    // keranjang pemensanan
+    // state untuk menampung keranjang pemesanan
     const [selectProductCart, setSelectProductCart] = React.useState({
         product: null,
         variant: null,
@@ -85,7 +84,7 @@ const DetailProduct = () => {
                 {/* Bagian kiri */}
                 <div className="flex-1 flex items-center">
                     <div className="max-w-xl flex flex-col gap-4">
-                        <img src={products?.image !== null ? `http://localhost:8000/uploads/products/${products?.image}` : PlacaHolderImage} alt="product coffee" />
+                        <img className="max-w-[100%]" src={products?.image !== null ? `http://localhost:8000/uploads/products/${products?.image}` : PlacaHolderImage} alt="product coffee" />
                         <div className="flex max-w-[31.5%] gap-4 justify-between">
                             <img src={ProductImage} alt="product coffee" />
                             <img src={ProductImage} alt="product coffee" />

@@ -49,7 +49,7 @@ const Product = () => {
     }
 
     const changePages = async(e) => { // next page
-        const { data } = await axios.get(`http://localhost:8000/products?sortby=createdAt&order=desc?page=${e}`)
+        const { data } = await axios.get(`http://localhost:8000/products?sortby=createdAt&order=desc&page=${e}`)
         setProducts(data.results)
         setPages(data.pageInfo.currentPage)
     }

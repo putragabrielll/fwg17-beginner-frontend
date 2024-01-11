@@ -68,10 +68,14 @@ const Navbar = () => {
                             </li>
                         </ul>
                     </div>
+
                     <ul className="flex gap-4 flex-1 justify-center flex-col items-center md:items-start md:flex-row">
-                        <li className="justify-center items-center md:hidden">
-                            <img className="w-14 h-14 rounded-full" src={profile.picture !== null ? `http://localhost:8000/uploads/profile/${profile.picture}` : profilePicture} alt="Picture" />
-                        </li>
+                        {/* profile mobile */}
+                        {token && 
+                            <li className="justify-center items-center md:hidden">
+                                <img className="w-14 h-14 object-cover rounded-full" src={profile.picture !== null ? `http://localhost:8000/uploads/profile/${profile.picture}` : profilePicture} alt="Picture" />
+                            </li>
+                        }
                         <li className="w-full md:w-auto">
                             <Link className="hover:border-b hover:border-orange-500 pb-2 -mt-2" to={"/"}>Home</Link>
                         </li>
@@ -95,10 +99,10 @@ const Navbar = () => {
                             </a>
                         </li>
                         {token && 
-                        // profile picture
+                        // profile picture dekstop
                             <>
                                 <li className="w-full md:w-auto hidden md:block">
-                                    <img className="h-8 w-8 rounded-full" src={profile.picture !== null ? `http://localhost:8000/uploads/profile/${profile.picture}` : profilePicture} alt="Picture" />
+                                    <img className="h-8 w-8 object-cover rounded-full" src={profile.picture !== null ? `http://localhost:8000/uploads/profile/${profile.picture}` : profilePicture} alt="Picture" />
                                 </li>
                                 <li className="w-full md:w-auto">
                                     <button type="button" className="px-5 py-2 bg-orange-500 border border-orange-500 rounded-md w-full">
