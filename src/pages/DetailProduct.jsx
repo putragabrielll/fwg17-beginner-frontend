@@ -80,11 +80,13 @@ const DetailProduct = () => {
                 <Navbar />
             </div>
             
-            <div className="flex flex-col md:flex-row px-4 md:px-32 my-20 gap-4">
+            <div className="flex flex-col md:flex-row px-4 md:px-28 my-20 gap-4">
                 {/* Bagian kiri */}
-                <div className="flex-1 flex items-center">
-                    <div className="max-w-xl flex flex-col gap-4">
-                        <img className="max-w-[100%]" src={products?.image !== null ? `http://localhost:8000/uploads/products/${products?.image}` : PlacaHolderImage} alt="product coffee" />
+                <div className="flex-1 flex items-center justify-center">
+                    <div className="flex flex-col gap-4">
+                        <div className="flex">
+                            <img className="flex-1 object-cover" src={products?.image !== null ? `http://localhost:8000/uploads/products/${products?.image}` : PlacaHolderImage} alt="product coffee" />
+                        </div>
                         <div className="flex max-w-[31.5%] gap-4 justify-between">
                             <img src={ProductImage} alt="product coffee" />
                             <img src={ProductImage} alt="product coffee" />
