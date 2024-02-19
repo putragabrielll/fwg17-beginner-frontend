@@ -29,8 +29,8 @@ To run the project locally, follow these simple steps:
 
 1. Clone this repository
 ```sh
-  git clone https://github.com/](https://github.com/xel26/fwg-vallet-fe.git
-  cd fwg-vallet-fe
+  git clone https://github.com/putragabrielll/fwg17-beginner-frontend
+  cd fwg17-beginner-frontend
 ```
 
 2. Open in VSCode
