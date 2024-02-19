@@ -59,11 +59,11 @@ https://github.com/putragabrielll/fwg17-backend-beginner
 
 ## Technologies Used
 
-The project structure is organized as follows: -src/: contains the source code of the project
-
-asset/: image and icon media
-components/: Reusable component used throughout the project
-pages/: Individual pages of the application
+The project structure is organized as follows: 
+- src/: contains the source code of the project
+- asset/: image and icon media
+- components/: Reusable component used throughout the project
+- pages/: Individual pages of the application
 
 
 ## Contributing
