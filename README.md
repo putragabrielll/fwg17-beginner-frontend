@@ -71,6 +71,6 @@ The project structure is organized as follows:
 Contributions are always welcome!
 
 
-## Support
+## Feedback
 
-For support, email puragmahk@gmail.com or join our Discord Channel.
+If you have any feedback, please reach out to us at puragmahk@gmail.com
