@@ -2,6 +2,10 @@
 
 ![App Screenshot](https://github.com/putragabrielll/fwg17-beginner-frontend/blob/main/public/banner.png?raw=true)
 
+## Authors
+
+- [@putragabrielll](https://github.com/putragabrielll)
+
 welcome to the Coffee Shop Web Project! This project utilizes the power of Tailwind CSS to create a sleek and responsive user interface, and is built with a component-based architecture by React.
 
 Find a wide range of selected coffee, from coffee beans, ground coffee, to quality coffee equipment here. Order your favorite coffee easily and enjoy the best coffee experience at home.
