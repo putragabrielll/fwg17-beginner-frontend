@@ -61,6 +61,9 @@ To run the project locally, follow these simple steps:
 ## ✍️ Coffee Shop - Backend Repository
 [Back End Coffee Shop] (https://github.com/putragabrielll/fwg17-backend-beginner)
 
+## ✍️ Coffee Shop - Frontend Repository
+[Front End Coffee Shop] (https://github.com/putragabrielll/fwg17-beginner-frontend)
+
 ## Technologies Used
 
 The project structure is organized as follows: 
