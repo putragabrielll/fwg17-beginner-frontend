@@ -32,7 +32,7 @@ const Profile = () => {
     // tidak mengambil data dari getProfile lagi karena sudah menggunakan redux.
     // const getProfile = async() => { // logic untuk get data dari Back End pada saat page pertama di buka.
     //     setIsHiddenAlert(true)
-    //     const {data} = await axios.get("http://localhost:8000/customer/profile", {
+    //     const {data} = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/customer/profile`, {
     //         headers: {
     //             'Authorization' :  `Bearer ${token}`
     //         }
@@ -58,7 +58,7 @@ const Profile = () => {
                     form.append(field, e.target[field].value)
                 }
             })
-            const {data} = await axios.patch("http://localhost:8000/customer/profile", form ,{
+            const {data} = await axios.patch(`${import.meta.env.VITE_BACKEND_URL}/customer/profile`, form ,{
                 headers: {
                     'Content-Type' : 'multipart/form-data',
                     'Authorization' : `Bearer ${token}`
@@ -95,7 +95,7 @@ const Profile = () => {
             if(file){
                 const form = new FormData()
                 form.append('picture', file)
-                const {data} = await axios.patch("http://localhost:8000/customer/profile", form ,{
+                const {data} = await axios.patch(`${import.meta.env.VITE_BACKEND_URL}/customer/profile`, form ,{
                     headers: {
                         'Content-Type' : 'multipart/form-data',
                         'Authorization' : `Bearer ${token}`
@@ -142,7 +142,7 @@ const Profile = () => {
 
                         <form onSubmit={uploadPicture} className="flex flex-col gap-4 justify-center items-center">
                             <label className="bg-black h-[100px] w-[100px] rounded-full flex overflow-hidden relative">
-                                {(!previewPicture && profile.picture) && <img className="object-cover flex-1" src={`http://localhost:8000/uploads/profile/${profile.picture}` || profilePicture} alt="Picture" />}
+                                {(!previewPicture && profile.picture) && <img className="object-cover flex-1" src={`${import.meta.env.VITE_BACKEND_URL}/uploads/profile/${profile.picture}` || profilePicture} alt="Picture" />}
                                 {previewPicture && 
                                     <>
                                         <img className="object-cover flex-1" src={previewPicture} alt="Picture" /> 

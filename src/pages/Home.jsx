@@ -14,7 +14,7 @@ const Home = () => {
     const [products, setProducts] = React.useState([])// [7- 12]
 
     const getProduct = async() => { // get pertama saat buka page
-        const { data } = await axios.get("http://localhost:8000/products?sortby=createdAt&order=desc&limits=4")
+        const { data } = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/products?sortby=createdAt&order=desc&limits=4`)
         // console.log(isRecomended)
         setProducts(data.results)
     }
@@ -121,7 +121,7 @@ const Home = () => {
                     <div className="flex-1 flex flex-col md:flex-row mx-6 justify-center items-center">
                         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                             {products?.map((data, i) => {
-                                let images = data.image ? `http://localhost:8000/uploads/products/${data.image}` : null
+                                let images = data.image ? `${import.meta.env.VITE_BACKEND_URL}/uploads/products/${data.image}` : null
                                 return (
                                     <ProductCard key={i} image={images || PlacaHolderImage} ShowCardButton={true} name={data.name} discount={data.price} price={data.price - data.discount} description={data.description} id={data.id} />
                                 )

@@ -64,7 +64,7 @@ const CheckOut = () => {
                         <div className="flex-1 flex flex-col gap-4">
                             {/* Produk */}
                             {dataCart?.map((data, i) => {
-                                let images = data.product.image ? `http://localhost:8000/uploads/products/${data.product.image}` : null
+                                let images = data.product.image ? `${import.meta.env.VITE_BACKEND_URL}/uploads/products/${data.product.image}` : null
                                 let flashSale = data.product.discount == null ? null : <span className="px-1 py-1 bg-red-600 border border-red-600 text-white rounded-full">FLASH SALE!</span>
 
                                 return(

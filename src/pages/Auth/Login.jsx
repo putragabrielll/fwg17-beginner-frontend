@@ -43,7 +43,7 @@ const Login = () => {
             form.append ('password', password)
             form.append ( 'email', email) 
 
-            const { data } = await axios.post("http://localhost:8000/auth/login", form.toString())
+            const { data } = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/auth/login`, form.toString())
             const {token: resultToken} = data.results // proses pengambilan token
             
             // proses alert onlogin

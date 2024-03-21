@@ -23,7 +23,7 @@ const HistoryOrder = () => {
     const token = useSelector(state => state.auth.token) // get token from redux.
 
     const getHistoryOrder = async() => {
-        const {data} = await axios.get('http://localhost:8000/customer/orders', {
+        const {data} = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/customer/orders`, {
             headers: {
                 'Authorization' :  `Bearer ${token}`
             }

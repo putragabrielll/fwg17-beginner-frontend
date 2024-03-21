@@ -35,7 +35,7 @@ const Register = () => {
                 return 0
             }
 
-            const { data } = await axios.post("http://localhost:8000/auth/register", form.toString())
+            const { data } = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/auth/register`, form.toString())
             // proses apapun
             setAlertMessage(data.message)
             setIsHiddenAlert(false)

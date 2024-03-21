@@ -20,7 +20,7 @@ const Product = () => {
     const [isRecomended, setIsRecomended] = React.useState(false) // filter Best Seller
 
     const getProduct = async() => { // get pertama saat buka page
-        const { data } = await axios.get("http://localhost:8000/products?sortby=createdAt&order=desc")
+        const { data } = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/products?sortby=createdAt&order=desc`)
         // console.log(isRecomended)
         setProducts(data.results)
         setPages(data.pageInfo.currentPage)
@@ -38,7 +38,7 @@ const Product = () => {
         }
         const {value: search} = e ? e.target.search : ''
 
-        const { data } = await axios.get("http://localhost:8000/products?sortby=createdAt&order=desc", {
+        const { data } = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/products?sortby=createdAt&order=desc`, {
             params: {
                 filter: search,
                 best_seller: isRecomended
@@ -49,7 +49,7 @@ const Product = () => {
     }
 
     const changePages = async(e) => { // next page
-        const { data } = await axios.get(`http://localhost:8000/products?sortby=createdAt&order=desc&page=${e}`)
+        const { data } = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/products?sortby=createdAt&order=desc&page=${e}`)
         setProducts(data.results)
         setPages(data.pageInfo.currentPage)
     }
@@ -228,7 +228,7 @@ const Product = () => {
                             {/* Products */}
                             <div className="grid grid-cols-2 gap-4">
                                 {products?.map((data, i) => {
-                                    let images = data.image ? `http://localhost:8000/uploads/products/${data.image}` : null
+                                    let images = data.image ? `${import.meta.env.VITE_BACKEND_URL}/uploads/products/${data.image}` : null
                                     return (
                                         <ProductCard key={i} image={images || PlacaHolderImage} ShowCardButton={true} name={data.name} discount={data.price} price={data.price - data.discount} description={data.description} id={data.id} />
                                     )
