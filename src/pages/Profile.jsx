@@ -142,7 +142,7 @@ const Profile = () => {
 
                         <form onSubmit={uploadPicture} className="flex flex-col gap-4 justify-center items-center">
                             <label className="bg-black h-[100px] w-[100px] rounded-full flex overflow-hidden relative">
-                                {(!previewPicture && profile.picture) && <img className="object-cover flex-1" src={`${import.meta.env.VITE_BACKEND_URL}/uploads/profile/${profile.picture}` || profilePicture} alt="Picture" />}
+                                {(!previewPicture && profile.picture) && <img className="object-cover flex-1" src={`${profile.picture}` || profilePicture} alt="Picture" />}
                                 {previewPicture && 
                                     <>
                                         <img className="object-cover flex-1" src={previewPicture} alt="Picture" /> 

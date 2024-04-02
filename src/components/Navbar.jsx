@@ -73,7 +73,7 @@ const Navbar = () => {
                         {/* profile mobile */}
                         {token && 
                             <li className="justify-center items-center md:hidden">
-                                <img className="w-14 h-14 object-cover rounded-full" src={profile.picture !== null ? `${import.meta.env.VITE_BACKEND_URL}/uploads/profile/${profile.picture}` : profilePicture} alt="Picture" />
+                                <img className="w-14 h-14 object-cover rounded-full" src={profile.picture !== null ? `${profile.picture}` : profilePicture} alt="Picture" />
                             </li>
                         }
                         <li className="w-full md:w-auto">
@@ -102,7 +102,7 @@ const Navbar = () => {
                         // profile picture dekstop
                             <>
                                 <li className="w-full md:w-auto hidden md:block">
-                                    <img className="h-8 w-8 object-cover rounded-full" src={profile.picture !== null ? `${import.meta.env.VITE_BACKEND_URL}/uploads/profile/${profile.picture}` : profilePicture} alt="Picture" />
+                                    <img className="h-8 w-8 object-cover rounded-full" src={profile.picture !== null ? `${profile.picture}` : profilePicture} alt="Picture" />
                                 </li>
                                 <li className="w-full md:w-auto">
                                     <button type="button" className="px-5 py-2 bg-orange-500 border border-orange-500 rounded-md w-full">

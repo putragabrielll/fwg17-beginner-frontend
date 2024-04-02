@@ -1,3 +1,4 @@
+import axios from "axios"
 import ChatBox from "../components/Chat"
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
@@ -19,8 +20,10 @@ import { useSelector } from "react-redux"
 const CheckOut = () => {
     
     // redux
+    const token = useSelector(state => state.auth.token)
     const dataCart = useSelector(state => state.cart.data)
 
+    // perhitungan total
     const total = dataCart.reduce((prev, curr) => {
         return prev + (curr.product.price - curr.product.discount) + curr.variant.additionalPrice + curr.size.additionalPrice
     }, 0)
@@ -30,6 +33,23 @@ const CheckOut = () => {
     const subTotal = dataCart.reduce((prev) => {
         return prev + total + ppn
     }, 0)
+
+    // kirim ke BE
+    const orders = async () => {
+        try {
+            const formData = new URLSearchParams()
+            formData.append('data', JSON.stringify(dataCart))
+            
+            await axios.post(`${import.meta.env.VITE_BACKEND_URL}/customer/orders`,formData, {
+                headers: {
+                    'Authorization' : `Bearer ${token}`
+                }
+            })
+        } catch (err) {
+            console.log(err, "masuk ke err")
+        }
+    }
+
 
     return (
         <>
@@ -131,7 +151,10 @@ const CheckOut = () => {
                                     <span className="text-xl text-gray-600">Sub Total</span>
                                     <span className="text-xl font-medium">IDR {subTotal.toLocaleString('id')}</span>
                                 </div>
-                                <button className="px-5 py-2 bg-orange-500 border border-orange-500 rounded-md text-black transition duration-300 ease-in-out hover:scale-110"><Link to={"/history-order"}>Checkout</Link></button>
+                                <button onClick={orders} className="px-5 py-2 bg-orange-500 border border-orange-500 rounded-md text-black transition duration-300 ease-in-out hover:scale-110">
+                                    {/* <Link to={"/history-order"}>Checkout</Link> */}
+                                    Checkout
+                                </button>
                                 <span className="text-gray-500">We Accept</span>
                                 <div className="flex gap-2 justify-between">
                                     <div>

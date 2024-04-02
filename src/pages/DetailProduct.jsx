@@ -23,7 +23,6 @@ const DetailProduct = () => {
     const [qty, setQty] = React.useState(0)
 
     const navigate = useNavigate()
-    console.log(products)
 
     // redux untuk passing data ke redux
     const dispatch = useDispatch()
@@ -32,18 +31,22 @@ const DetailProduct = () => {
     const [selectProductCart, setSelectProductCart] = React.useState({
         product: null,
         variant: null,
-        size: null
+        size: null,
+        qty
     })
 
-    // 
+    // QTY
     const plusButton = () =>  {
+        setSelectProductCart({...selectProductCart, qty: qty + 1})
         setQty(qty + 1)
     }
 
     const minusButton = () => {
         if(qty <= 0){
+            setSelectProductCart({...selectProductCart, qty: 0})
             setQty(0)
         }else {
+            setSelectProductCart({...selectProductCart, qty: qty - 1})
             setQty(qty - 1)
         }
     }
@@ -61,7 +64,7 @@ const DetailProduct = () => {
         setSelectProductCart({
             product: dataProducts.results, // {}
             variant: variantProducts.results[0], // []
-            size: sizeProducts.results[0] // []
+            size: sizeProducts.results[0], // []
         })
     }
 
@@ -72,6 +75,11 @@ const DetailProduct = () => {
 
     useEffect(() => {
         getProduct()
+        window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+    })
     }, [])
 
     return (

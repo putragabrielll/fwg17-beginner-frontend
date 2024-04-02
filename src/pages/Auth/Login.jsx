@@ -23,8 +23,8 @@ const Login = () => {
     const navigation = useNavigate()
 
     // redux
-    const token = useSelector(state => state.auth.token) // gantinya mengambil token di line 22 dari window.localStorage.getItem("token")
-    const dispatch = useDispatch()
+    const token = useSelector(state => state.auth.token) // useSelector = mengambil data dari redux || gantinya mengambil token di line 22 dari window.localStorage.getItem("token")
+    const dispatch = useDispatch() // useDispatch = mengisi data ke redux
 
     React.useEffect(() => { // untuk mengecek jika memiliki token atau sudah login maka tidak bisa akses page login.
         if(token){
@@ -33,7 +33,6 @@ const Login = () => {
     }, [token, navigation]) // [token] artinya saat kondisi memiliki token, makan if yg di atas di jalankan.
 
     const processLogin = async (event) => {
-        console.log(event)
         try {
             event.preventDefault()
             setIsHiddenAlert(true) // Hiden alert pada saat awalnya login salah dan akan menampilkan alert kembali saat percobaan ke 2.

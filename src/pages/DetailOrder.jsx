@@ -9,7 +9,11 @@ import { TiArrowRepeat } from "react-icons/ti"
 import ProductImage from "../assets/images/coffee1.png"
 import { Link } from "react-router-dom"
 
+import { useSelector } from "react-redux"
+
 const DetailOrder = () => {
+    const profile = useSelector(state => state.profile.data)
+
     return (
         <>
             <div className="bg-black">
@@ -37,7 +41,7 @@ const DetailOrder = () => {
                                         <span className="text-xl text-gray-600">Full Name</span>
                                     </div>
                                     <span className="text-xl font-semibold">
-                                        <Link to={"/profile"}>Ghaluh Wizard Anggoro</Link>
+                                        <Link to={"/profile"}>{profile.fullName}</Link>
                                     </span>
                                 </div>
                                 <hr />
@@ -46,7 +50,7 @@ const DetailOrder = () => {
                                         <IoLocationOutline className="text-gray-600" />
                                         <span className="text-xl text-gray-600">Address</span>
                                     </div>
-                                    <span className="text-xl font-semibold">Griya bandung indah</span>
+                                    <span className="text-xl font-semibold">{profile.address}</span>
                                 </div>
                                 <hr />
                                 <div className="flex justify-between">
@@ -54,7 +58,7 @@ const DetailOrder = () => {
                                         <MdOutlinePhoneInTalk className="text-gray-600" />
                                         <span className="text-xl text-gray-600">Phone</span>
                                     </div>
-                                    <span className="text-xl font-semibold">082116304338</span>
+                                    <span className="text-xl font-semibold">{profile.phoneNumber}</span>
                                 </div>
                                 <hr />
                                 <div className="flex justify-between">
