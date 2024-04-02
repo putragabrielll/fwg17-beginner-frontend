@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar"
 import { FaPlus, FaRegTimesCircle, FaRegUser } from "react-icons/fa"
 import { IoLocationOutline } from "react-icons/io5"
 import { MdOutlineEmail } from "react-icons/md"
-import { Link } from "react-router-dom"
+import { Link, Navigate, useNavigate } from "react-router-dom"
 import PlacaHolderImage from "../assets/images/img-placeholder.jpeg" // untuk backup jika dari database tidak ada gambar
 import BRI from "../assets/images/Bank BRI.png"
 import DANA from "../assets/images/DANA.png"
@@ -35,6 +35,7 @@ const CheckOut = () => {
     }, 0)
 
     // kirim ke BE
+    const navigate = useNavigate()
     const orders = async () => {
         try {
             const formData = new URLSearchParams()
@@ -45,11 +46,12 @@ const CheckOut = () => {
                     'Authorization' : `Bearer ${token}`
                 }
             })
+            navigate('/history-order')
         } catch (err) {
             console.log(err, "masuk ke err")
         }
     }
-
+    
 
     return (
         <>
@@ -152,7 +154,9 @@ const CheckOut = () => {
                                     <span className="text-xl font-medium">IDR {subTotal.toLocaleString('id')}</span>
                                 </div>
                                 <button onClick={orders} className="px-5 py-2 bg-orange-500 border border-orange-500 rounded-md text-black transition duration-300 ease-in-out hover:scale-110">
-                                    <Link to={"/history-order"}>Checkout</Link>
+                                    <div>
+                                        Checkout
+                                    </div>
                                 </button>
                                 <span className="text-gray-500">We Accept</span>
                                 <div className="flex gap-2 justify-between">
