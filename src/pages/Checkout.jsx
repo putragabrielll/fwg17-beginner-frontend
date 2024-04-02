@@ -152,8 +152,7 @@ const CheckOut = () => {
                                     <span className="text-xl font-medium">IDR {subTotal.toLocaleString('id')}</span>
                                 </div>
                                 <button onClick={orders} className="px-5 py-2 bg-orange-500 border border-orange-500 rounded-md text-black transition duration-300 ease-in-out hover:scale-110">
-                                    {/* <Link to={"/history-order"}>Checkout</Link> */}
-                                    Checkout
+                                    <Link to={"/history-order"}>Checkout</Link>
                                 </button>
                                 <span className="text-gray-500">We Accept</span>
                                 <div className="flex gap-2 justify-between">
