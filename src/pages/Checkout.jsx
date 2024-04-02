@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar"
 import { FaPlus, FaRegTimesCircle, FaRegUser } from "react-icons/fa"
 import { IoLocationOutline } from "react-icons/io5"
 import { MdOutlineEmail } from "react-icons/md"
-import { Link, Navigate, useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import PlacaHolderImage from "../assets/images/img-placeholder.jpeg" // untuk backup jika dari database tidak ada gambar
 import BRI from "../assets/images/Bank BRI.png"
 import DANA from "../assets/images/DANA.png"
