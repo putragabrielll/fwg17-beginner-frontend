@@ -93,7 +93,7 @@ const DetailProduct = () => {
                 <div className="flex-1 flex items-center justify-center">
                     <div className="flex flex-col gap-4">
                         <div className="flex">
-                            <img className="flex-1 object-cover" src={products?.image !== null ? `${import.meta.env.VITE_BACKEND_URL}/uploads/products/${products?.image}` : PlacaHolderImage} alt="product coffee" />
+                            <img className="flex-1 object-cover" src={products?.image !== null ? `${products.image}` : PlacaHolderImage} alt="product coffee" />
                         </div>
                         <div className="flex max-w-[31.5%] gap-4 justify-between">
                             <img src={ProductImage} alt="product coffee" />

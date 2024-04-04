@@ -18,6 +18,7 @@ const Product = () => {
     const [totalPages, setTotalPages] = React.useState(1)
 
     const [isRecomended, setIsRecomended] = React.useState(false) // filter Best Seller
+    const [kateg, setKateg] = React.useState('') // filter kategori
 
     const getProduct = async() => { // get pertama saat buka page
         const { data } = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/products?sortby=createdAt&order=desc`)
@@ -41,7 +42,8 @@ const Product = () => {
         const { data } = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/products?sortby=createdAt&order=desc`, {
             params: {
                 filter: search,
-                best_seller: isRecomended
+                best_seller: isRecomended,
+                kategori: kateg
             }
         })
         setProducts(data.results)
@@ -178,20 +180,16 @@ const Product = () => {
                                         <label htmlFor="favorite">Favorite Product</label>
                                     </div>
                                     <div className="flex justify-start items-center gap-2">
-                                        <input className="h-11" type="checkbox" name="favorite" id="coffee" />
+                                        <input onChange={()=>setKateg('Coffee')} className="h-11" type="checkbox" name="favorite" id="coffee" />
                                         <label htmlFor="coffee">Coffee</label>
                                     </div>
                                     <div className="flex justify-start items-center gap-2">
-                                        <input className="h-11" type="checkbox" name="favorite" id="non-coffee" />
+                                        <input onChange={()=>setKateg('Non Coffee')} className="h-11" type="checkbox" name="favorite" id="non-coffee" />
                                         <label htmlFor="non-coffee">Non Coffee</label>
                                     </div>
                                     <div className="flex justify-start items-center gap-2">
-                                        <input className="h-11" type="checkbox" name="favorite" id="foods" />
+                                        <input onChange={()=>setKateg('Foods')} className="h-11" type="checkbox" name="favorite" id="foods" />
                                         <label htmlFor="foods">Foods</label>
-                                    </div>
-                                    <div className="flex justify-start items-center gap-2">
-                                        <input className="h-11" type="checkbox" name="favorite" id="add-on" />
-                                        <label htmlFor="add-on">Add-On</label>
                                     </div>
                                 </div>
                                 <div className="flex flex-col">
@@ -228,7 +226,7 @@ const Product = () => {
                             {/* Products */}
                             <div className="grid grid-cols-2 gap-4">
                                 {products?.map((data, i) => {
-                                    let images = data.image ? `${import.meta.env.VITE_BACKEND_URL}/uploads/products/${data.image}` : null
+                                    let images = data.image ? `${data.image}` : null
                                     return (
                                         <ProductCard key={i} image={images || PlacaHolderImage} ShowCardButton={true} name={data.name} discount={data.price} price={data.price - data.discount} description={data.description} id={data.id} />
                                     )
