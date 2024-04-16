@@ -54,7 +54,7 @@ const router = createBrowserRouter([
     element: <PrivateRoute><HistoryOrder /></PrivateRoute>
   },
   {
-    path: "/detail-order",
+    path: "/detail-order/:id",
     element: <PrivateRoute><DetailOrder /></PrivateRoute>
   },
   {

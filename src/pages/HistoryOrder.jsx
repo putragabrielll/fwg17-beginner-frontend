@@ -19,7 +19,7 @@ import { useSelector } from "react-redux"
 const HistoryOrder = () => {
     const [historyOrder, setHistoryOrder] = React.useState([])
 
-        // redux
+    // redux
     const token = useSelector(state => state.auth.token) // get token from redux.
 
     const getHistoryOrder = async() => {
@@ -82,8 +82,8 @@ const HistoryOrder = () => {
                                                 </div>
                                                 <span>No. Order</span>
                                             </div>
-                                            <Link className="text-md font-semibold" to={"/detail-order"}>{data.orderNumber}</Link>
-                                            <a className="text-orange-500" href="#">Views Order Detail</a>
+                                            <Link className="text-md font-semibold" to={`/detail-order/${data.id}`}>{data.orderNumber}</Link>
+                                            <Link className="text-orange-500" to={`/detail-order/${data.id}`}>Views Order Detail</Link>
                                         </div>
                                         <div className="flex-1 flex pt-2 flex-col gap-4">
                                             <div className="flex items-center gap-2">

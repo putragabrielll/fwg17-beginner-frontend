@@ -1,3 +1,5 @@
+import React from "react"
+import axios from "axios"
 import ChatBox from "../components/Chat"
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
@@ -7,12 +9,33 @@ import { MdOutlinePhoneInTalk, MdPayment } from "react-icons/md"
 import { LiaShippingFastSolid } from "react-icons/lia"
 import { TiArrowRepeat } from "react-icons/ti"
 import ProductImage from "../assets/images/coffee1.png"
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 
 import { useSelector } from "react-redux"
 
 const DetailOrder = () => {
-    const profile = useSelector(state => state.profile.data)
+    const { id } = useParams()
+    const [detailOrder, setDetailOrder] = React.useState([])
+    const [orderNumber, setOrderNumber] = React.useState('')
+    console.log(detailOrder)
+
+    // redux
+    const profile = useSelector(state => state.profile.data) // get profile from redux.
+    const token = useSelector(state => state.auth.token) // get token from redux.
+
+    const getDetailHistory = async() => {
+        const {data} = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/customer/orders/details-history/${id}`, {
+            headers: {
+                'Authorization' :  `Bearer ${token}`
+            }
+        })
+        setDetailOrder(data.results)
+        setOrderNumber(data.results[0].orderNumber)
+    }
+
+    React.useEffect(() => {
+        getDetailHistory()
+    },[])
 
     return (
         <>
@@ -22,7 +45,7 @@ const DetailOrder = () => {
 
             <div className="my-20 px-4 md:px-32 flex flex-col gap-12">
                 <div className="flex-1 flex flex-col gap-4">
-                    <h1 className="text-4xl">Order <span className="font-bold">#12354-09893</span></h1>
+                    <h1 className="text-4xl">Order <span className="font-bold">{ orderNumber }</span></h1>
                     <span className="text-gray-500">21 March 2023 at 10:30 AM</span>
                 </div>
 
@@ -100,65 +123,37 @@ const DetailOrder = () => {
                         </div>
 
                         <div className="flex-1 flex flex-col gap-4">
+                            {detailOrder?.map((data, i) => {
+                                return (
+                                    <div key={i} className="flex bg-gray-100 p-2 gap-4 pr-8">
+                                        {/* Bagian kiri */}
+                                        <div className="flex h-[170px]">
+                                            <img className="object-fill" src={ProductImage} alt="Product" />
+                                        </div>
 
-                            <div className="flex bg-gray-100 p-2 gap-4 pr-8">
-                                
-                                {/* Bagian kiri */}
-                                <div className="flex h-[170px]">
-                                    <img className="object-fill" src={ProductImage} alt="Product" />
-                                </div>
-
-                                {/* Bagian kanan */}
-                                <div className="flex-1 flex flex-col gap-4">
-                                    <div className="pt-2">
-                                        <span className="px-1 py-1 bg-red-600 border border-red-600 text-white rounded-full">FLASH SALE!</span>
+                                        {/* Bagian kanan */}
+                                        <div className="flex-1 flex flex-col gap-4">
+                                            <div className="pt-2">
+                                                <span className="px-1 py-1 bg-red-600 border border-red-600 text-white rounded-full">FLASH SALE!</span>
+                                            </div>
+                                            <h1 className="text-2xl">{data.namaProduct}</h1>
+                                            <div className="flex text-gray-600 gap-1 md:gap-3 text-lg">
+                                                <span>{data.qty} pcs</span>
+                                                <span>|</span>
+                                                <span>{data.size}</span>
+                                                <span>|</span>
+                                                <span>{data.name}</span>
+                                                <span>|</span>
+                                                <span>Dine In</span>
+                                            </div>
+                                            <div className="flex items-center gap-2">
+                                                {/* <del className="text-red-600 text-md">IDR 20.000</del> */}
+                                                <span className="text-orange-500 text-xl">IDR {data.subTotal.toLocaleString('id')}</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <h1 className="text-2xl">Hazelnut Latte</h1>
-                                    <div className="flex text-gray-600 gap-1 md:gap-3 text-lg">
-                                        <span>2 pcs</span>
-                                        <span>|</span>
-                                        <span>Reguler</span>
-                                        <span>|</span>
-                                        <span>Ice</span>
-                                        <span>|</span>
-                                        <span>Dine In</span>
-                                    </div>
-                                    <div className="flex items-center gap-2">
-                                        <del className="text-red-600 text-md">IDR 20.000</del>
-                                        <span className="text-orange-500 text-xl">IDR 10.000</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="flex bg-gray-100 p-2 gap-4 pr-8">
-                                
-                                {/* Bagian kiri */}
-                                <div className="flex h-[170px]">
-                                    <img className="object-fill" src={ProductImage} alt="Product" />
-                                </div>
-
-                                {/* Bagian kanan */}
-                                <div className="flex-1 flex flex-col gap-4">
-                                    <div className="pt-2">
-                                        <span className="px-1 py-1 bg-red-600 border border-red-600 text-white rounded-full">FLASH SALE!</span>
-                                    </div>
-                                    <h1 className="text-2xl">Hazelnut Latte</h1>
-                                    <div className="flex text-gray-600 gap-1 md:gap-3 text-lg">
-                                        <span>2 pcs</span>
-                                        <span>|</span>
-                                        <span>Reguler</span>
-                                        <span>|</span>
-                                        <span>Ice</span>
-                                        <span>|</span>
-                                        <span>Dine In</span>
-                                    </div>
-                                    <div className="flex items-center gap-2">
-                                        <del className="text-red-600 text-md">IDR 20.000</del>
-                                        <span className="text-orange-500 text-xl">IDR 10.000</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
+                                )
+                            })}
                         </div>
                     </div>
                 </div>
