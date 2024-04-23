@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import { FaStar } from "react-icons/fa"
 import { MdOutlineShoppingCart } from "react-icons/md"
+import propTypes from "prop-types"
 
 const ProductCard = ({image, name, description, discount, price, ShowCardButton, id}) => {
     return (
@@ -42,6 +43,16 @@ const ProductCard = ({image, name, description, discount, price, ShowCardButton,
             </div>
         </>
     )
+}
+
+ProductCard.propTypes = {
+    image: propTypes.string,
+    name: propTypes.string,
+    description: propTypes.string,
+    discount: propTypes.number,
+    price: propTypes.number,
+    ShowCardButton: propTypes.bool,
+    id: propTypes.number
 }
 
 export default ProductCard
